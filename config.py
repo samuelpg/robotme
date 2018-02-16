@@ -7,3 +7,6 @@ GPIO_INPUT = [24, 25] #GPIO input pins
 RTDB_HOST = 'localhost'
 RTDB_PORT = 28015
 RTDB_NAME = 'robotme'
+
+#SLUGS
+DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Book','Room','Song','Fun','Robot','Cat','Money','Ice','Fly','Apple','Berry']
