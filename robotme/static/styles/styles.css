@@ -1,0 +1,175 @@
+/*COLORS
+Dark Blue #080F2B
+Dark Teal #132F3A CONSOLE and EDITOR
+Teal #6ED79F
+Pink #DA3C6C
+*/
+@font-face {
+    font-family: myFirstFont;
+    src: url("./fonts/Nunito/Nunito-Regular.ttf") format("ttf");
+}
+body, h1, h2, h3, h4, p, span{
+    font-family: 'myFirstFont', sans-serif;
+    color: #132F3A 
+}
+.white-background{
+    background-color: white;
+}
+.navbar-container{
+    position: relative;
+    height: 60px;
+}
+.navbar{
+    /*postition*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*dimensions*/
+    height: 60px;
+    width: 100%;
+    /*postion of childs*/
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    /*shadow*/
+    box-shadow: 0px 10px 20px -4px rgba(0,0,0,0.75);
+}
+.logo{
+    /*dimension*/
+    height: 60px;
+    align-self: center;
+}
+ /* The Modal (background) */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+#myBtn {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: #6ED79F;
+    -webkit-box-shadow: 0px 0px 38px -5px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 0px 38px -5px rgba(0,0,0,0.48);
+    box-shadow: 0px 0px 18px -2px rgba(0,0,0,0.48);
+    border: none;
+    position: fixed;
+    bottom: 60px;
+    right: 60px;
+    color: white;
+    font-size: 35px;
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    box-shadow: 0px 10px 20px -4px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} 
+
+.project{
+    width: 80%;
+    margin: 20px auto;
+    border-radius: 2px;
+    padding: 15px;
+    -webkit-box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.48);
+    box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.48);
+    display: flex;
+    justify-content: space-around;
+    transition: 0.8s;
+}
+.project:hover{
+    -webkit-box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.48);
+    -moz-box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.48);
+    box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.48);
+    transition: 0.8s;
+}
+.project_text > h2, .project_text > h3 {
+    margin: 0px;
+}
+.tag {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+.tag-green{
+    background-color: #AAFF00;
+}
+.tag-orange{
+    background-color: #FFAA00;
+}
+.tag-pink{
+    background-color: #FF00AA;
+}
+.tag-purple{
+    background-color: #AA00FF
+}
+.tag-blue{
+    background-color: #00AAFF
+}
+.tag-teal{
+    background-color: #00FFAA
+}
+
+.project_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.pink{
+    color: #DA3C6C
+}
+.project-button{
+    padding: 10px 10px;
+    margin: 10px;
+    background-color: white;
+    color: black;
+    border: #6ED79F solid 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 18px;
+    transition: 0.5s;
+}
+.project-button:hover{
+    background-color: #6ED79F;
+    color: white
+}
+.project-buttons{
+    margin: auto 0px;
+}
+.delete{
+    font-size: 30px;
+    background-color: white;
+    border: none;
+}
+.trash-icon {
+    align-self: end;
+}

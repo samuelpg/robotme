@@ -8,5 +8,5 @@ RTDB_HOST = 'localhost'
 RTDB_PORT = 28015
 RTDB_NAME = 'robotme'
 
-#SLUGS
-DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Book','Room','Song','Fun','Robot','Cat','Money','Ice','Fly','Apple','Berry']
+#SLUG DICTIONARY, POSIBLE SLUGS: 10626
+DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Book','Room','Song','Fun','Robot','Cat','Money','Ice','Fly','Apple','Berry','Happy','Sad','Pizza','Cake']

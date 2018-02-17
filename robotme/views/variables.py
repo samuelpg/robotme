@@ -1,8 +1,8 @@
 from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
 from robotme import app
 
-#RESTFUL ENDPOINTS
-#variables
+#RESTFUL ENDPOINTS FOR VARIABLES
+
 @app.route('variables/<project_slug>', methods = ['GET', 'POST'])
 def variables(project_slug):
     pass

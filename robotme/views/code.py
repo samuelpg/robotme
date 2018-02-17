@@ -1,8 +1,8 @@
 from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
 from robotme import app
 
-#RESTFUL ENDPOINTS
-#IDE or Code Editor
+#RESTFUL ENDPOINTS FOR CODE EDITOR
+
 @app.route('code/<project_slug>', methods = ['GET', 'POST'])
 def code(project_slug):
     pass
