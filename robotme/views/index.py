@@ -19,7 +19,7 @@ def new_project():
         create_new_project_dir(slug)
         #redirect to variables
         redirect(url_for('variables')+'/'+slug)
-    Exception
+    Exception:
         print("Something went wrong creating a new project | views/index.py")
 
 @app.route('/delete/<project_slug>', methods = ['DELETE'])
