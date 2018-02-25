@@ -1,0 +1,157 @@
+/*VARIABLES*/
+
+/*general container*/
+
+.container-variables {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/*selecction container + raspberry pi*/
+
+.selecction-menu,
+.pi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 270px;
+    max-width: 350px;
+    width: 30%;
+}
+
+/*rows*/
+
+.element-holder,
+.pin-holder {
+    display: flex;
+    flex-direction: row;
+}
+
+/*elements + pin*/
+
+.element,
+.pin {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.element>img {
+    width: 70px;
+    height: 70px;
+    margin: 15px;
+}
+
+/*inner shadows of the pin*/
+
+.pin {
+    -webkit-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    border: none;
+    background-color: white;
+}
+
+input {
+    -webkit-box-shadow: inset 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+    border: none;
+}
+
+/*selected variables div*/
+
+.variables-selected {
+    min-width: 350px;
+    max-width: 450px;
+    width: 30%;
+    padding: 10px;
+}
+
+.element-label {
+    text-align: center;
+}
+
+.input-pin {
+    background-color: rgb(236, 236, 236);
+}
+
+th {
+    background-color: #6ED79F;
+    border-radius: 3px;
+}
+
+td {
+    text-align: center;
+}
+
+.table-variables {
+    width: 100%;
+}
+
+.mini-element {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.table-input {
+    width: 90%;
+    padding-left: 10px;
+}
+
+h3,
+p {
+    margin: 6px;
+}
+
+.variables-buttons {
+    float: right;
+    margin-right: 50px;
+}
+
+.delete-drop-zone {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    background-color: white;
+    border-radius: 100%;
+    top: -40px;
+    left: 50px;
+    -webkit-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    border: none;
+    color: #DA3C6C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pi.shadow {
+    background-color: darkgreen;
+    width: 230px;
+    border-radius: 15px;
+    background-image: url("../assets/001-interface.svg");
+    background-position: top;
+    background-size: 120%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80%;
+}

@@ -1,4 +1,4 @@
-#ROBOTME#
+#ROBOTME
 
 Robotme is a tool for teaching robotics in schools and lowering the learning curve for students and enthusiants. It was designed with kids in mind, but it can be use by anyone interested in learing robotics without much effort (other than the setup)
 

@@ -1,60 +1,108 @@
 <html>
-    <head>
-        <!--META-->
-        <meta charset="UTF-8">
-        <title>RobotMe</title>
-        <!--STYLESHEET-->
-        <link rel="stylesheet" href="../static/styles/styles.css">
-        <link rel="stylesheet" href="../static/styles/libs/font-awesome-4.7.0/css/font-awesome.css">
-        <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" >
-    </head>
-    <body>
-        <!--SECTIONS -->
-        <!-- navbar -->
-        <div class="navbar-container">
-            <div id="navbar" class="navbar white-background">
-                <img id="logo" class="logo" src="../static/assets/logo.png">
-            </div>
-        </div>
 
-        <!-- projects -->
-        <div id="projects">
-            <div class="project">
-                <div class="tag tag-green"><!--emoji--></div>
-                <div class="project_text">
-                    <h2 class="project-title">Hello World</h2>
-                    <h3 class="project-author">Hecho por: Robotme</h3>
-                    <span class="project-date pink">Ultima modificacion: 2018/16/02</span>
-                </div>
-                <div class="project-buttons">
-                    <a href="/variables" class="project-button">Variables <i class="fa fa-chevron-right"></i></a>
-                    <a href="/code" class="project-button">Ir al codigo <i class="fa fa-chevron-right"></i></a>
-                </div>
-                <div class="trash-icon">
-                    <button class="delete"><i class="fa fa-trash pink"></i></button>
-                </div>
-            </div>
-        </div>
-        <!-- create project floating button -->
-        <button id="myBtn"><i class="fa fa-plus"></i></button>
-        <!-- create project modal -->
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-            <i class="fa fa-pencil" title="Edit"></i> 
-            <span class="close"><i class="fa fa-fire"></i></span>
-            <form method="POST" action="/new-project">
-                <label>Nombre del proyecto: <input type="text" name="title"></label>
-                <label>Autor: <input type="text" name="author"></label>
-                <button type="submit"></button>
-            </form>
-            </div>
-        </div>
-        <!-- delete project modal confirmation -->
-        <div>
+<head>
+    <!--META-->
+    <meta charset="UTF-8">
+    <title>RobotMe</title>
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="../static/styles/styles.css">
+    <link rel="stylesheet" href="../static/styles/libs/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css">
+</head>
 
+<body>
+    <!--SECTIONS -->
+    <!-- navbar -->
+    <div class="navbar-container">
+        <div id="navbar" class="navbar white-background">
+            <img id="logo" class="logo" src="../static/assets/logo.png">
         </div>
-        <!-- SCRIPTS -->
-        <script src="../static/scripts/app.js" defer></script>
-    </body>
+    </div>
+    <!-- create project modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">
+                <i class="fa fa-close"></i>
+            </span>
+            <div class="form">
+                <h2>Crea un nuevo robot</h2>
+                <div class="form-div">
+                    <label>Nombre del proyecto:
+                        <input required type="text" name="title">
+                    </label>
+                    <label>Autor:
+                        <input required type="text" name="author">
+                    </label>
+                </div>
+                <label>Etiqueta:</label>
+                <div class="radio-group">
+                    <div class='radio green' data-value="robot">
+                        <img src="../static/assets/006-robot.svg">
+                    </div>
+                    <div class='radio orange' data-value="school">
+                        <img src="../static/assets/001-open-magazine.svg">
+                    </div>
+                    <div class='radio pink' data-value="idea">
+                        <img src="../static/assets/002-light-bulb.svg">
+                    </div>
+                    <div class='radio purple' data-value="science">
+                        <img src="../static/assets/003-rocket.svg">
+                    </div>
+                    <div class='radio blue' data-value="electricity">
+                        <img src="../static/assets/004-lightning-bolt.svg">
+                    </div>
+                    <div class='radio teal' data-value="game">
+                        <img src="../static/assets/005-console.svg">
+                    </div>
+                </div>
+                <button class="project-button">a codificar!
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- projects -->
+    <div id="projects">
+        <div class="project shadow">
+            <div class="tag green">
+                <!--emoji-->
+            </div>
+            <div class="project_text">
+                <h2 class="project-title">Hello World</h2>
+                <h3 class="project-author">Hecho por: Robotme</h3>
+                <span class="project-date pink-text">Ultima modificacion: 2018/16/02</span>
+            </div>
+            <div class="project-buttons">
+                <a href="/variables" class="project-button">Variables
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+                <a href="/code" class="project-button">Ir al codigo
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+            <div class="trash-icon">
+                <button class="delete">
+                    <i class="fa fa-trash pink-text"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- create project floating button -->
+    <button id="myBtn">
+        <i class="fa fa-plus"></i>
+    </button>
+
+    <!-- delete project modal confirmation -->
+    <div>
+        <h2>Estas seguro que quieres borrar este proyecto?</h2>
+        <button>Si, estoy seguro</button>
+        <button>No</button>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="../static/scripts/libs/jquery-3.3.1.min.js" defer></script>
+    <script src="../static/scripts/modal.js" defer></script>
+    <script src="../static/scripts/index.js" defer></script>
+</body>
+
 </html>

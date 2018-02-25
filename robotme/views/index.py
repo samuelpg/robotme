@@ -13,7 +13,7 @@ def show_projects():
 @app.route('/new',  methods = ['POST'])
 def new_project():
     try:
-        #etting the data out of the form and insert the new document and get slug
+        #getting the data out of the form and insert the new document and get slug
         slug = new_project(request.form['name'], request.form['author'], request.form['tag'])
         #create the new directory and files with the slug
         create_new_project_dir(slug)
@@ -21,10 +21,6 @@ def new_project():
         redirect(url_for('variables')+'/'+slug)
     Exception
         print("Something went wrong creating a new project | views/index.py")
-
-#@app.route('/open/<project_slug>', methods = ['GET'])
-#def open(project_slug):
-#    pass
 
 @app.route('/delete/<project_slug>', methods = ['DELETE'])
 def delete(project_slug):

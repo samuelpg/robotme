@@ -1,0 +1,183 @@
+<html>
+
+<head>
+    <!--META-->
+    <meta charset="UTF-8">
+    <title>RobotMe: Variables</title>
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="../static/styles/libs/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/styles/styles.css">
+    <link rel="stylesheet" href="../static/styles/variables.css">
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css">
+</head>
+
+<body>
+    <!--SECTIONS -->
+    <!-- navbar -->
+    <div class="navbar-container">
+        <div id="navbar" class="navbar white-background">
+            <img id="logo" class="logo" src="../static/assets/logo.png">
+        </div>
+    </div>
+    <!--SELECTION MENU-->
+    <div class="container">
+        <div class="container-variables">
+            <div class="selecction-menu shadow">
+                <div class="element-holder">
+                    <div class="element-label">
+                        <div class="element purple">
+                            <img src="../static/assets/007-servo.svg" alt="">
+                        </div>
+                        Servo
+                    </div>
+                    <div class="element-label">
+                        <div class="element teal">
+                            <img src="../static/assets/003-technology.svg" alt="">
+                        </div>
+                        Motor DC
+                    </div>
+                </div>
+                <div class="element-holder">
+                    <div class="element-label">
+                        <div class="element green">
+                            <img src="../static/assets/006-diode.svg" alt="">
+                        </div>
+                        LED
+                    </div>
+                    <div class="element-label">
+                        <div class="element blue">
+                            <img src="../static/assets/005-buzzer.svg" alt="">
+                        </div>
+                        Buzzer
+                    </div>
+                </div>
+                <div class="element-holder">
+                    <div class="element-label">
+                        <div class="element pink">
+                            <img src="../static/assets/001-switch.svg" alt="">
+                        </div>
+                        Boton
+                    </div>
+                    <div class="element-label">
+                        <div class="element orange">
+                            <img src="../static/assets/004-sensor.svg" alt="">
+                        </div>
+                        Sensor PIR
+                    </div>
+                </div>
+            </div>
+            <div class="pi shadow">
+                <div class="pin-holder">
+                    <div class="pin output">1</div>
+                    <div class="pin output">2</div>
+                </div>
+                <div class="pin-holder">
+                    <div class="pin output">3</div>
+                    <div class="pin output">4</div>
+                </div>
+                <div class="pin-holder">
+                    <div class="pin output">5</div>
+                    <div class="pin output">6</div>
+                </div>
+                <div class="pin-holder">
+                    <div class="pin input-pin">7</div>
+                    <div class="pin input-pin">8</div>
+                </div>
+            </div>
+            <div class="variables-selected shadow">
+                <h3>Nombra tus variables!</h3>
+                <p>Es importante que le des un nombre descriptivo a tu variable, no puede empezar con un numero, y ¡no deben
+                    haber espacios! Ejemplo:
+                    <span class="code-span">brazo-derecho</span>
+                </p>
+                <table id="table-selected-variables" class="table-variables">
+                    <thead>
+                        <tr>
+                            <th>Pin</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody id="selected-variables">
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element purple">1</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element  purple">2</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element teal">3</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element teal">4</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element green">5</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element blue">6</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element pink">7</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                        <tr class="table-selected-row">
+                            <td>
+                                <div class="mini-element pink">8</div>
+                            </td>
+                            <td>
+                                <input class="table-input">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="delete-drop-zone">
+            <i class="fa fa-trash fa-2x "></i>
+        </div>
+        <div class="variables-buttons">
+            <button class="project-button">Borrar todo</button>
+            <a href="/variables/set" class="project-button">Siguiente
+                <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
