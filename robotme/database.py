@@ -8,7 +8,7 @@ db = app.config['RTDB_NAME']
 def get_conn():
     try:
         return sql.connect(db)
-    Exception:
+    except (RuntimeError, TypeError, NameError):
         print("Something went wrong with the connection | database.py")
 
 def config_db():
@@ -39,7 +39,7 @@ def config_db():
                 ''')
             conn.commit()
             print("Database just created | database.py")
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Database already created | database.py")
 
 def new_project(name, author, tag):
@@ -50,7 +50,7 @@ def new_project(name, author, tag):
             c = conn.cursor()
             c.execute('INSERT INTO projects (slu_projects, nme_projects, aut_projects, tag_projects, dte_projects) VALUES (?,?,?,?,?)',[slug, name, author, tag, date])
             c.commit()
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Something went wrong inserting in the database: projects | database.py")
     return slug
 
@@ -75,7 +75,7 @@ def get_slug():
                     conn.commit()
                     if not c.fetchone:
                         found = True
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Something went wrong getting the slug | database.py")
     return slug
 
@@ -86,7 +86,7 @@ def get_projects():
             c.execute('SELECT * FROM projects')
             conn.commit()
             return json.dumps( [dict(ix) for ix in rows] ) 
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Something went wrong getting the projects | database.py")
 
 def get_variables(slug):
@@ -96,7 +96,7 @@ def get_variables(slug):
             c.execute('SELECT var_variables FROM variables WHERE slu_projects = ?', slug)
             conn.commit()
             return json.dumps( [dict(ix) for ix in rows] ) 
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Something went wrong getting the variables | database.py")
 
 def set_variables(slug, variables):
@@ -105,7 +105,7 @@ def set_variables(slug, variables):
             c = conn.cursor()
             c.execute('INSERT INTO variables (slu_projects, var_variables )VALUES (?,?)',[slug, variables])
             c.commit()
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Something went wrong with setting up variables | database.py")
 
 def get_date():
@@ -114,5 +114,5 @@ def get_date():
             c = conn.cursor()
             c.execute("SELECT datetime('now')")
             return c.fetchone()
-        Exception:
+        except (RuntimeError, TypeError, NameError):
             print("Something went wrong with getting the date | database.py")

@@ -19,14 +19,14 @@ def new_project():
         create_new_project_dir(slug)
         #redirect to variables
         redirect(url_for('variables')+'/'+slug)
-    Exception:
+    except (RuntimeError, TypeError, NameError):
         print("Something went wrong creating a new project | views/index.py")
 
 @app.route('/delete/<project_slug>', methods = ['DELETE'])
 def delete(project_slug):
     try:
         delete_project(project_slug)
-    Exception:
+    except (RuntimeError, TypeError, NameError):
         print("Something went wrong deleting a project | views/index.py")
         print("slug: "+project_slug)
     
