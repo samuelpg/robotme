@@ -60,6 +60,8 @@ def delete_project(slug):
             c = conn.cursor()
             c.execute('DELETE * FROM projects WHERE slu_projects = ?', slug)
             conn.commit()
+        except (RuntimeError, TypeError, NameError):
+            print("something went wrong deleting in the database")
 
 def get_slug():
     dictonary = app.config["DICTIONARY_EN"]
