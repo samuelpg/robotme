@@ -1,6 +1,5 @@
 import sqlite3 as sql
-import datetime, random
-import json
+import datetime, random, json
 from robotme import app
 
 db = app.config['RTDB_NAME']

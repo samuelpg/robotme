@@ -1,14 +1,19 @@
 from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
-from robotme import app, database, command
+from .. import app, database, command
 
-#RESTFUL ENDPOINTS FOR INDEX
+#RESTFUL ENDPOINTS FOR USE IN index.html
 
 @app.route('/', methods = ['GET', 'POST'])
 def show_projects():
+    #render index.html with all projects
+    return render_template('index.html')
+
+@app.route('/get_projects', methods = ['GET'])
+def show_projects():
     #getting all projects in DB
     projects = list(get_projects())
-    #render index.html with all projects
-    return render_template('index.html', projects = projects)
+    #return projects
+    pass
 
 @app.route('/new',  methods = ['POST'])
 def new_project():
