@@ -4,7 +4,7 @@ from .. import app, database, command
 #RESTFUL ENDPOINTS FOR USE IN index.html
 
 @app.route('/', methods = ['GET', 'POST'])
-def show_projects():
+def get_template():
     #render index.html with all projects
     return render_template('index.html')
 
