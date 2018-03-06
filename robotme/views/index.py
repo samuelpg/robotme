@@ -1,4 +1,4 @@
-from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, g, redirect, url_for, abort, render_template, flash, jsonify
 from .. import app, database, command
 
 #RESTFUL ENDPOINTS FOR USE IN index.html
@@ -11,26 +11,30 @@ def get_template():
 @app.route('/get_projects', methods = ['GET'])
 def show_projects():
     #getting all projects in DB
-    projects = list(get_projects())
-    #return projects
-    pass
+    projects = list(database.get_projects())
+    return jsonify(projects=projects)
 
 @app.route('/new',  methods = ['POST'])
 def new_project():
     try:
         #getting the data out of the form and insert the new document and get slug
-        slug = new_project(request.form['name'], request.form['author'], request.form['tag'])
-        #create the new directory and files with the slug
-        create_new_project_dir(slug)
-        #redirect to variables
-        redirect(url_for('variables')+'/'+slug)
+        name = request.form['name']
+        author = request.form['author']
+        tag = request.form['tag']
+        slug = database.new_project(name,author,tag)
+        ##create the new directory and files with the slug
+        #create_new_project_dir(slug)
+        ##redirect to variables
+        #redirect(url_for('variables')+'/'+slug)
+        return "ok"
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong creating a new project | views/index.py")
 
-@app.route('/delete/<project_slug>', methods = ['DELETE'])
-def delete(project_slug):
+@app.route('/delete_project', methods = ['DELETE'])
+def delete():
+    project_slug = request.form['slug']
     try:
-        delete_project(project_slug)
+        database.delete_project(project_slug)
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong deleting a project | views/index.py")
         print("slug: "+project_slug)

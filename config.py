@@ -8,3 +8,6 @@ RTDB_NAME = 'robotme.db'
 
 #SLUG DICTIONARY, POSIBLE SLUGS: 10626
 DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Book','Room','Song','Fun','Robot','Cat','Money','Ice','Fly','Apple','Berry','Happy','Sad','Pizza','Cake']
+
+#PROJECTS FOLDER
+PROJECT_FOLDER = '/projects'

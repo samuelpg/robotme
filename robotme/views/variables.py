@@ -1,5 +1,5 @@
 from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
-from robotme import app
+from .. import app, database, command
 
 #RESTFUL ENDPOINTS FOR VARIABLES
 
