@@ -1,16 +1,19 @@
-from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, g, redirect, url_for, abort, render_template, flash, jsonify
 from .. import app, database, command
 
 #RESTFUL ENDPOINTS FOR VARIABLES
 
 @app.route('/variables/<project_slug>', methods = ['GET', 'POST'])
 def variables(project_slug):
-    pass
+    return render_template('variables.html')
 
-@app.route('/variables/<project_slug>/get', methods = ['GET'])
+@app.route('/variables/get/<project_slug>', methods = ['GET'])
 def get_variables(project_slug):
-    pass
+    variables = list(database.get_variables(project_slug))
+    return jsonify(variables = variables)   
 
-@app.route('/variables/<project_slug>/set', methods = ['POST','PUT'])
+@app.route('/variables/set/<project_slug>', methods = ['POST','PUT'])
 def set_variables(project_slug):
-    pass
+    variables = request.form['variables']
+    database.set_variables(project_slug, variables)
+    return "ok"

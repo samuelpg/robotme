@@ -23,31 +23,8 @@ def config_db():
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            #slu = slug
-            #dte = date
-            #nme = name
-            #aut = author
-            #tag = tag
-            #var = variables
-            c.executescript('''                
-                CREATE TABLE IF NOT EXISTS projects (
-                    slu_projects VARCHAR(50) NOT NULL,
-                    dte_projects VARCHAR(50) NOT NULL,
-                    nme_projects VARCHAR(50) NOT NULL,
-                    aut_projects VARCHAR(50) NOT NULL,
-                    tag_projects VARCHAR(200) NOT NULL,
-                    PRIMARY KEY (slu_projects)
-                );
-
-                CREATE TABLE IF NOT EXISTS variables (
-                    slu_projects VARCHAR(50) NOT NULL,
-                    var_variables VARCHAR NOT NULL,
-                    FOREIGN KEY (slu_projects)
-                    REFERENCES projects (slu_projects)
-                    ON DELETE CASCADE
-                    ON UPDATE CASCADE
-                );
-                ''')
+            with app.open_resource('schema.sql', mode='r') as f:
+                c.executescript(f.read())
             conn.commit()
             print("Database just created | database.py")
         except (RuntimeError, TypeError, NameError):
@@ -56,7 +33,6 @@ def config_db():
 def new_project(name, author, tag):
     slug = get_slug()
     date = get_date()
-    print(date)
     with get_conn() as conn:
         try:
             c = conn.cursor()
@@ -107,9 +83,9 @@ def get_variables(slug):
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            c.execute('SELECT var_variables FROM variables WHERE slu_projects = ?', slug)
+            c.execute('SELECT var_variables FROM variables WHERE slu_projects = ?', [slug])
             conn.commit()
-            return json.dumps( [dict(ix) for ix in rows] ) 
+            return c.fetchall() 
         except (RuntimeError, TypeError, NameError):
             print("Something went wrong getting the variables | database.py")
 
@@ -117,8 +93,8 @@ def set_variables(slug, variables):
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            c.execute('INSERT INTO variables (slu_projects, var_variables )VALUES (?,?)',[slug, variables])
-            c.commit()
+            c.execute('INSERT OR REPLACE INTO variables (slu_projects, var_variables ) VALUES (?,?)',[slug, variables])
+            conn.commit()
         except (RuntimeError, TypeError, NameError):
             print("Something went wrong with setting up variables | database.py")
 
