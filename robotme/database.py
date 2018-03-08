@@ -83,20 +83,35 @@ def get_variables(slug):
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            c.execute('SELECT var_variables FROM variables WHERE slu_projects = ?', [slug])
+            c.execute('SELECT nme_variable, pin_variable, tpe_variable FROM variable WHERE slu_projects = ?', [slug])
             conn.commit()
             return c.fetchall() 
         except (RuntimeError, TypeError, NameError):
             print("Something went wrong getting the variables | database.py")
 
-def set_variables(slug, variables):
+def delete_variables(slug):
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            c.execute('INSERT OR REPLACE INTO variables (slu_projects, var_variables ) VALUES (?,?)',[slug, variables])
+            c.execute('DELETE FROM variable WHERE slu_projects = ?', [slug])
             conn.commit()
+            return True
         except (RuntimeError, TypeError, NameError):
-            print("Something went wrong with setting up variables | database.py")
+            print("Something went wrong deleting the variables | database.py")
+            return False
+
+def set_variables(slug, variables_json):
+    variables = json.loads(variables_json)
+    ok = delete_variables(slug)
+    if ok:
+        with get_conn() as conn:
+            for var in variables['vars']:
+                try:
+                    c = conn.cursor()
+                    c.execute('INSERT OR REPLACE INTO variable (slu_projects, nme_variable, pin_variable, tpe_variable) VALUES (?,?,?,?)',[slug, var['name'], var['pin'], var['type']])
+                    conn.commit()
+                except (RuntimeError, TypeError, NameError):
+                    print("Something went wrong with setting up variables | database.py")
 
 def get_date():
     with get_conn() as conn:

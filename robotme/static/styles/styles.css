@@ -96,7 +96,7 @@ span {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     /* 15% from the top and centered */
     padding: 20px;
     width: 80%;
@@ -154,6 +154,11 @@ span {
     height: 120px;
     border-radius: 100%;
     margin-right: 20px;
+}
+.tag > img{
+    width: 80px;
+    height: 80px;
+    margin: 20px;
 }
 
 .green {
@@ -294,3 +299,27 @@ input {
     background-color: white;
 }
 
+.button-delete{
+    padding: 10px 10px;
+    margin: 10px;
+    background-color:  #DA3C6C;
+    color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 18px;
+    border: none;
+}
+.button-cancel{
+    padding: 10px 10px;
+    margin: 10px;
+    background-color:  #6ED79F;
+    color: white;
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 18px;
+    border: none;
+}
+.delete-buttons{
+    display: inline;
+    text-align: center;
+}

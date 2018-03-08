@@ -6,6 +6,8 @@ nme = name, name of the projects
 aut = author, name of the author
 tag = tag, tag for a project
 var = variables, variables for a project (duh)
+pin = pin on the raspberry pi
+typ = type of variable
 */
 
 CREATE TABLE IF NOT EXISTS projects (
@@ -17,11 +19,14 @@ CREATE TABLE IF NOT EXISTS projects (
     PRIMARY KEY (slu_projects)
 );
 
-CREATE TABLE IF NOT EXISTS variables (
+CREATE TABLE IF NOT EXISTS variable (
+    key_variable INTEGER NOT NULL,
     slu_projects VARCHAR(50) NOT NULL,
-    var_variables TEXT NOT NULL,
+    nme_variable VARCHAR(50) NOT NULL,
+    pin_variable INTEGER NOT NULL,
+    tpe_variable VARCHAR(50) NOT NULL,
     FOREIGN KEY (slu_projects) REFERENCES projects (slu_projects)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    PRIMARY KEY (slu_projects)
+    PRIMARY KEY (key_variable)
 );

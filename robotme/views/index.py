@@ -25,7 +25,7 @@ def new_project():
         ##create the new directory and files with the slug
         #create_new_project_dir(slug)
         ##redirect to variables
-        #redirect(url_for('variables')+'/'+slug)
+        redirect('variables/'+slug)
         return "ok"
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong creating a new project | views/index.py")
@@ -38,4 +38,4 @@ def delete():
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong deleting a project | views/index.py")
         print("slug: "+project_slug)
-    
+    return "ok"

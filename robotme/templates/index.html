@@ -28,10 +28,10 @@
                 <h2>Crea un nuevo robot</h2>
                 <div class="form-div">
                     <label>Nombre del proyecto:
-                        <input required type="text" name="title">
+                        <input id="nme_project" required type="text" name="title">
                     </label>
                     <label>Autor:
-                        <input required type="text" name="author">
+                        <input id="aut_project" required type="text" name="author">
                     </label>
                 </div>
                 <label>Etiqueta:</label>
@@ -63,10 +63,8 @@
     </div>
     <!-- projects -->
     <div id="projects">
-        <div class="project shadow">
-            <div class="tag green">
-                <!--emoji-->
-            </div>
+        <!--<div class="project shadow" id="template">
+            <div id="icon" class="tag green"><img src="../static/assets/001-open-magazine.svg"></div>
             <div class="project_text">
                 <h2 class="project-title">Hello World</h2>
                 <h3 class="project-author">Hecho por: Robotme</h3>
@@ -81,11 +79,11 @@
                 </a>
             </div>
             <div class="trash-icon">
-                <button class="delete">
+                <button onclick="openDeleteModal('yey')" class="delete">
                     <i class="fa fa-trash pink-text"></i>
                 </button>
             </div>
-        </div>
+        </div>-->
     </div>
     <!-- create project floating button -->
     <button id="myBtn">
@@ -93,10 +91,19 @@
     </button>
 
     <!-- delete project modal confirmation -->
-    <div>
-        <h2>Estas seguro que quieres borrar este proyecto?</h2>
-        <button>Si, estoy seguro</button>
-        <button>No</button>
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <span class="close">
+                <i class="fa fa-close"></i>
+            </span>
+            <div class="delete-buttons">
+                <h2>Estas seguro que quieres borrar este proyecto?</h2>
+                <div>
+                    <button class="button-delete">Si, estoy seguro</button>
+                    <button class="button-cancel">No</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- SCRIPTS -->
     <script src="../static/scripts/libs/jquery-3.3.1.min.js" defer></script>
