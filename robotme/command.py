@@ -5,7 +5,7 @@ def create_new_project_dir(slug):
     #create dir projects /slug and files slug/program.py and slug/code.txt
     try: 
         print("BBBB")
-        new_project_folder = app['PROJECT_FOLDER'] + "/" + slug
+        new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug
         print(new_project_folder)
         call(['mkdir',new_project_folder])
         print("Folder created")
