@@ -1,7 +1,7 @@
 import subprocess, os
 from robotme import app
 
-def create_new_project_dir(slug):
+def create_new_project_dir(slug, name, author):
     #create dir projects /slug and files slug/program.py and slug/code.txt
     try: 
         new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug + "/pseudo.txt"
@@ -9,6 +9,8 @@ def create_new_project_dir(slug):
         #read project_template
         with open("robotme/project_template.txt", "r") as f:
             lines = f.readlines()
+            lines.replace("[project name]", name)
+            lines.replace("[author name]", author)
             with open("robotme/projects/"+slug+"/pseudo.txt", "w") as p:
                 p.writelines(lines)
         print("pseudo.txt created")
