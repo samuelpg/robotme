@@ -9,8 +9,7 @@ def code(project_slug):
 
 @app.route('/code/<project_slug>/get', methods = ['GET'])
 def get_code(project_slug):
-    pseudocode = command.get_pseudocode(project_slug)
-    return pseudocode
+    return send_from_directory(directory='robotme/projects/'+slug+,filename='pseudo.txt')
 
 @app.route('/code/<project_slug>/set', methods = ['POST','PUT'])
 def set_code(project_slug):

@@ -24,9 +24,3 @@ def ensure_dir(file_path):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def get_pseudocode(slug):
-    try:
-        with open("robotme/projects/"+slug+"/pseudo.txt", "r") as p:
-            return f.readlines()
-    except (RuntimeError, TypeError, NameError):
-        print("Error reading pseudocode in command.py")
