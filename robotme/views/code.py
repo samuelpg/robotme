@@ -1,5 +1,5 @@
 from flask import Flask, request, g, redirect, url_for, abort, render_template, flash
-from robotme import app
+from .. import app, database, command
 
 #RESTFULL ENDPOINTS FOR CODE EDITOR
 
@@ -9,7 +9,8 @@ def code(project_slug):
 
 @app.route('/code/<project_slug>/get', methods = ['GET'])
 def get_code(project_slug):
-    pass
+    pseudocode = command.get_pseudocode(project_slug)
+    return pseudocode
 
 @app.route('/code/<project_slug>/set', methods = ['POST','PUT'])
 def set_code(project_slug):
