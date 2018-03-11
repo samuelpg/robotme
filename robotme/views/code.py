@@ -5,7 +5,7 @@ from robotme import app
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
 def code(project_slug):
-    pass
+    return render_template('code.html')
 
 @app.route('/code/<project_slug>/get', methods = ['GET'])
 def get_code(project_slug):

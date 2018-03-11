@@ -14,22 +14,42 @@ btn.onclick = () => {
     modal.style.display = "none";
 }*/
 $('.close').click(()=>{
-    modal.style.display = "none";
-    del.style.display = "none";
-    document.getElementById("nme_project").value = '';
-    document.getElementById("aut_project").value = '';
+    cancel()
 })
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = (event) => {
     if (event.target == modal || event.target == del) {
-        modal.style.display = "none";
-        del.style.display = "none";
-        document.getElementById("nme_project").value = '';
-        document.getElementById("aut_project").value = '';
+        cancel()
     }
 }
 
-let openDeleteModal = (slug) =>{
-    console.log(slug)
+const openDeleteModal = (slug) =>{
+    $('body').data('del',slug);
     del.style.display = "block";
+}
+
+const deleteProject = () =>{
+    slug = $('body').data('del');
+    let fd = new FormData();
+    fd.append('slug', slug);
+    $.ajax({
+        url: "/delete_project",
+        data: fd,
+        type: "DELETE",
+        processData: false,
+        contentType: false,
+        success:(data)=>{
+            $('#'+slug).remove();
+            cancel();
+        },
+        error:(jqXHR, textStatus, errorThrown)=>{
+            console.log(errorThrown)  
+        }
+    })
+}
+const cancel = ()=>{
+    modal.style.display = "none";
+    del.style.display = "none";
+    document.getElementById("nme_project").value = '';
+    document.getElementById("aut_project").value = '';
 }

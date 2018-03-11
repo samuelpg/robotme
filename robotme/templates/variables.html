@@ -25,13 +25,13 @@
             <div class="selecction-menu shadow">
                 <div class="element-holder">
                     <div class="element-label">
-                        <div class="element purple element-output">
+                        <div data-type="servo" class="element purple element-output">
                             <img src="../static/assets/007-servo.svg" alt="">
                         </div>
                         Servo
                     </div>
                     <div class="element-label">
-                        <div class="element teal element-output">
+                        <div data-type="dc" class="element teal element-output">
                             <img src="../static/assets/003-technology.svg" alt="">
                         </div>
                         Motor DC
@@ -39,13 +39,13 @@
                 </div>
                 <div class="element-holder">
                     <div class="element-label">
-                        <div class="element green element-output">
+                        <div data-type="led" class="element green element-output">
                             <img src="../static/assets/006-diode.svg" alt="">
                         </div>
                         LED
                     </div>
                     <div class="element-label">
-                        <div class="element blue element-output">
+                        <div data-type="buzzer" class="element blue element-output">
                             <img src="../static/assets/005-buzzer.svg" alt="">
                         </div>
                         Buzzer
@@ -53,13 +53,13 @@
                 </div>
                 <div class="element-holder">
                     <div class="element-label">
-                        <div class="element pink element-input">
+                        <div data-type="button" class="element pink element-input">
                             <img src="../static/assets/001-switch.svg" alt="">
                         </div>
                         Boton
                     </div>
                     <div class="element-label">
-                        <div class="element orange element-input">
+                        <div data-type="pir" class="element orange element-input">
                             <img src="../static/assets/004-sensor.svg" alt="">
                         </div>
                         Sensor PIR
@@ -68,25 +68,25 @@
             </div>
             <div class="pi shadow">
                 <div class="pin-holder">
-                    <div class="pin output-pin output-pin-marker">1</div>
-                    <div class="pin output-pin output-pin-marker">2</div>
+                    <div id="pin-1" data-value="1" class="pin output-pin output-pin-marker">1</div>
+                    <div id="pin-2" data-value="2" class="pin output-pin output-pin-marker">2</div>
                 </div>
                 <div class="pin-holder">
-                    <div class="pin output-pin output-pin-marker">3</div>
-                    <div class="pin output-pin output-pin-marker">4</div>
+                    <div id="pin-3" data-value="3" class="pin output-pin output-pin-marker">3</div>
+                    <div id="pin-4" data-value="4" class="pin output-pin output-pin-marker">4</div>
                 </div>
                 <div class="pin-holder">
-                    <div class="pin output-pin output-pin-marker">5</div>
-                    <div class="pin output-pin output-pin-marker">6</div>
+                    <div id="pin-5" data-value="5" class="pin output-pin output-pin-marker">5</div>
+                    <div id="pin-6" data-value="6" class="pin output-pin output-pin-marker">6</div>
                 </div>
                 <div class="pin-holder">
-                    <div class="pin input-pin input-pin-marker">7</div>
-                    <div class="pin input-pin input-pin-marker">8</div>
+                    <div id="pin-7" data-value="7" class="pin input-pin input-pin-marker">7</div>
+                    <div id="pin-8" data-value="8" class="pin input-pin input-pin-marker">8</div>
                 </div>
             </div>
             <div class="variables-selected shadow">
-                <h3>Nombra tus variables!</h3>
-                <p>Es importante que le des un nombre descriptivo a tu variable, no puede empezar con un numero, y ¡no deben
+                <h3>¡Nombra tus variables!</h3>
+                <p>Es importante que le des un nombre descriptivo a tu variable, debe ser unico, no puede empezar con un numero, y ¡no deben
                     haber espacios! Ejemplo:
                     <span class="code-span">brazo-derecho</span>
                 </p>
@@ -98,70 +98,6 @@
                         </tr>
                     </thead>
                     <tbody id="selected-variables">
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element purple">1</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element  purple">2</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element teal">3</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element teal">4</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element green">5</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element blue">6</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element pink">7</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
-                        <tr class="table-selected-row">
-                            <td>
-                                <div class="mini-element pink">8</div>
-                            </td>
-                            <td>
-                                <input class="table-input">
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -172,11 +108,20 @@
             <i class="fa fa-trash fa-2x "></i>
         </div>
         <div class="variables-buttons">
-            <button class="project-button">Borrar todo</button>
-            <a href="/variables/set" class="project-button">Siguiente
+            <button class="button-delete" onclick="deleteAll()">Borrar todo</button>
+            <button href="/variables/set" onClick="sendVariables()" class="project-button">Siguiente
                 <i class="fa fa-chevron-right"></i>
-            </a>
+            </button>
         </div>
+    </div>
+    <div id="no-variables" class="toast">
+        ¡Debes tener al menos una variable!
+    </div>
+    <div id="no-repetition" class="toast">
+        ¡No debes tener nombres repetidos!
+    </div>
+    <div id="wrong-names" class="toast">
+        ¡Tienes un nombre con errores!
     </div>
     <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
     <script src="../static/scripts/libs/jquery-ui.min.js"></script>

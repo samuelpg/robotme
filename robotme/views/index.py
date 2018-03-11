@@ -1,5 +1,6 @@
-from flask import Flask, request, g, redirect, url_for, abort, render_template, flash, jsonify
+from flask import Flask, request, g, redirect, url_for, abort, render_template, flash, jsonify, send_from_directory
 from .. import app, database, command
+import os
 
 #RESTFUL ENDPOINTS FOR USE IN index.html
 
@@ -22,11 +23,10 @@ def new_project():
         author = request.form['author']
         tag = request.form['tag']
         slug = database.new_project(name,author,tag)
-        ##create the new directory and files with the slug
+        #create the new directory and files with the slug
         #create_new_project_dir(slug)
-        ##redirect to variables
-        redirect('variables/'+slug)
-        return "ok"
+        #redirect to variables
+        return 'variables/'+slug
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong creating a new project | views/index.py")
 
@@ -39,3 +39,13 @@ def delete():
         print("Something went wrong deleting a project | views/index.py")
         print("slug: "+project_slug)
     return "ok"
+
+@app.route('/test', methods = ['POST'])
+def test():
+    print(request.data)
+    print(json.loads(request.data))
+    return jsonify(json.loads(request.data))
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')

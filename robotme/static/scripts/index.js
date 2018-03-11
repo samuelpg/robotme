@@ -26,7 +26,7 @@ const template = ({nme_projects, aut_projects, dte_projects, slu_projects, tag_p
             color = "pink";
             break;
         }
-        case "rocket":{
+        case "science":{
             icon = rocket_icon;
             color = "purple";
             break;
@@ -42,7 +42,7 @@ const template = ({nme_projects, aut_projects, dte_projects, slu_projects, tag_p
             break;
         }
     }
-    return `<div class="project shadow" id="template">
+    return `<div class="project shadow" id="${slu_projects}">
         <div id="icon" class="tag ${color}"><img src="${icon}"></div>
         <div class="project_text">
             <h2 class="project-title">${nme_projects}</h2>
@@ -66,14 +66,6 @@ const template = ({nme_projects, aut_projects, dte_projects, slu_projects, tag_p
 `
 }
 
-//Radio selection for new project tag
-$('.radio-group .radio').click(function () {
-    $(this).parent().find('.radio').removeClass('selected');
-    $(this).addClass('selected');
-    var val = $(this).attr('data-value');
-    $(this).parent().find('input').val(val);
-});
-
 window.onload = () =>{
     $.get(
         "/get_projects",
@@ -82,4 +74,69 @@ window.onload = () =>{
             $('#projects').html(env["projects"].map(template).join(''));
         }
     )
+    $('body').data('tag',"");
+}
+
+//Radio selection for new project tag
+$('.radio-group .radio').click(function () {
+    $(this).parent().find('.radio').removeClass('selected');
+    $(this).addClass('selected');
+    var val = $(this).attr('data-value');
+    $('body').data('tag',val);
+    removePopup("tagErrorPopup");
+});
+
+const showPopup = (id) =>{
+    var popup = document.getElementById(id);
+    popup.className = "popuptext show";
+}
+
+const removePopup = (id) =>{
+    console.log("X")
+    var popup = document.getElementById(id);
+    popup.className = "popuptext";
+}
+
+$("#nme_project").change(()=>{removePopup("nameErrorPopup")});
+$("#aut_project").change(()=>{removePopup("authorErrorPopup")});
+
+const postNewProject = () =>{
+    console.log("A")
+    let name = $('#nme_project').val();
+    let author = $('#aut_project').val();
+    let tag =  $('body').data('tag');
+    let error = false;
+    if(name == ""){
+        showPopup("nameErrorPopup");
+        error = true;
+    }
+    if(author == ""){
+        showPopup("authorErrorPopup");
+        error = true;
+    }
+    console.log(tag)
+    if(tag == ""){
+        showPopup("tagErrorPopup");
+        error = true;
+    }
+    if(!error){
+        let fd = new FormData();
+        fd.append('name', name)
+        fd.append('author', author)
+        fd.append('tag', tag)
+        console.log("AB")
+        $.ajax({
+            url: "/new",
+            data: fd,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success:(data)=>{
+                window.location.href=data
+            },
+            error:(jqXHR, textStatus, errorThrown)=>{
+                console.log(errorThrown)  
+            }
+        })
+    }
 }

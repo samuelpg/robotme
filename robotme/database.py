@@ -73,7 +73,7 @@ def get_projects():
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            c.execute('SELECT * FROM projects')
+            c.execute('SELECT * FROM projects ORDER BY date(dte_projects) DESC')
             conn.commit()
             return c.fetchall()
         except (RuntimeError, TypeError, NameError):
@@ -83,7 +83,7 @@ def get_variables(slug):
     with get_conn() as conn:
         try:
             c = conn.cursor()
-            c.execute('SELECT nme_variable, pin_variable, tpe_variable FROM variable WHERE slu_projects = ?', [slug])
+            c.execute('SELECT nme_variable, pin_variable, tpe_variable FROM variable WHERE slu_projects = ? ORDER BY pin_variable', [slug])
             conn.commit()
             return c.fetchall() 
         except (RuntimeError, TypeError, NameError):
@@ -108,10 +108,11 @@ def set_variables(slug, variables_json):
             for var in variables['vars']:
                 try:
                     c = conn.cursor()
-                    c.execute('INSERT OR REPLACE INTO variable (slu_projects, nme_variable, pin_variable, tpe_variable) VALUES (?,?,?,?)',[slug, var['name'], var['pin'], var['type']])
+                    c.execute('INSERT OR REPLACE INTO variable (slu_projects, nme_variable, pin_variable, tpe_variable) VALUES (?,?,?,?)',[slug, var['nme_variable'], var['pin_variable'], var['tpe_variable']])
                     conn.commit()
                 except (RuntimeError, TypeError, NameError):
                     print("Something went wrong with setting up variables | database.py")
+        update_date(slug)
 
 def get_date():
     with get_conn() as conn:
@@ -119,3 +120,12 @@ def get_date():
             return datetime.date.today().strftime("%B %d, %Y")
         except (RuntimeError, TypeError, NameError):
             print("Something went wrong with getting the date | database.py")
+
+def update_date(slug):
+    with get_conn() as conn:
+        try:
+            c = conn.cursor()
+            c.execute('UPDATE projects SET dte_projects = ? WHERE slu_projects = ?',[get_date(), slug])
+            conn.commit()
+        except (RuntimeError, TypeError, NameError):
+            print("Something went wrong with updating the date | database.py")

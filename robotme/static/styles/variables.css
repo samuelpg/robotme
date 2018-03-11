@@ -128,8 +128,8 @@ p {
     position: absolute;
     background-color: white;
     border-radius: 100%;
-    top: -40px;
-    left: 50px;
+    top: -120px;
+    right: 40px;
     -webkit-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
     box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
@@ -138,8 +138,16 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.5s;
 }
-
+.delete-drop-zone-hover{
+    width: 100px !important;
+    height: 100px !important;
+    right: 100px !important;
+    background-color: #DA3C6C !important;
+    color: white !important;
+    transition: 0.5s;
+}
 .pi.shadow {
     background-color: darkgreen;
     width: 230px;
@@ -154,4 +162,9 @@ p {
     flex-direction: column;
     justify-content: center;
     height: 80%;
+}
+
+.wrongVariableName{
+    border: solid 2px #DA3C6C;
+    color: #DA3C6C;
 }

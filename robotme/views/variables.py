@@ -16,4 +16,4 @@ def get_variables(project_slug):
 def set_variables(project_slug):
     variables = request.form['variables']
     database.set_variables(project_slug, variables)
-    return "ok"
+    return '/code/'+project_slug

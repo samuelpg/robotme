@@ -7,6 +7,7 @@
     <!--STYLESHEET-->
     <link rel="stylesheet" href="../static/styles/styles.css">
     <link rel="stylesheet" href="../static/styles/libs/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="shortcut icon" href="../static/favicon.ico">
 </head>
 
 <body>
@@ -27,11 +28,17 @@
             <div class="form">
                 <h2>Crea un nuevo robot</h2>
                 <div class="form-div">
-                    <label>Nombre del proyecto:
-                        <input id="nme_project" required type="text" name="title">
+                    <label class="input-form">Nombre del proyecto:
+                        <input id="nme_project" type="text" title="test" name="title">
+                        <div class="popup">
+                            <span class="popuptext" id="nameErrorPopup">¡Escribe un nombre!</span>
+                        </div>
                     </label>
-                    <label>Autor:
-                        <input id="aut_project" required type="text" name="author">
+                    <label class="input-form">Autor:
+                        <input id="aut_project" type="text" name="author">
+                        <div class="popup">
+                            <span class="popuptext" id="authorErrorPopup">¡Escribe un autor!</span>
+                        </div>
                     </label>
                 </div>
                 <label>Etiqueta:</label>
@@ -54,8 +61,11 @@
                     <div class='radio teal' data-value="game">
                         <img src="../static/assets/005-console.svg">
                     </div>
+                   <div class="popup" style="top:-18%">
+                        <span class="popuptext" id="tagErrorPopup">¡Selecciona una etiqueta!</span>
+                    </div>
                 </div>
-                <button class="project-button">a codificar!
+                <button onclick="postNewProject()" class="project-button">¡a codificar!
                     <i class="fa fa-chevron-right"></i>
                 </button>
             </div>
@@ -63,27 +73,6 @@
     </div>
     <!-- projects -->
     <div id="projects">
-        <!--<div class="project shadow" id="template">
-            <div id="icon" class="tag green"><img src="../static/assets/001-open-magazine.svg"></div>
-            <div class="project_text">
-                <h2 class="project-title">Hello World</h2>
-                <h3 class="project-author">Hecho por: Robotme</h3>
-                <span class="project-date pink-text">Ultima modificacion: 2018/16/02</span>
-            </div>
-            <div class="project-buttons">
-                <a href="/variables" class="project-button">Variables
-                    <i class="fa fa-chevron-right"></i>
-                </a>
-                <a href="/code" class="project-button">Ir al codigo
-                    <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-            <div class="trash-icon">
-                <button onclick="openDeleteModal('yey')" class="delete">
-                    <i class="fa fa-trash pink-text"></i>
-                </button>
-            </div>
-        </div>-->
     </div>
     <!-- create project floating button -->
     <button id="myBtn">
@@ -98,15 +87,19 @@
             </span>
             <div class="delete-buttons">
                 <h2>Estas seguro que quieres borrar este proyecto?</h2>
+                <div id="project_info">
+                    
+                </div>
                 <div>
-                    <button class="button-delete">Si, estoy seguro</button>
-                    <button class="button-cancel">No</button>
+                    <button class="button-delete" id="button-delete" onclick="deleteProject()">Si, estoy seguro</button>
+                    <button class="button-cancel" id="button-cancel" onclick="cancel()">No</button>
                 </div>
             </div>
         </div>
     </div>
     <!-- SCRIPTS -->
-    <script src="../static/scripts/libs/jquery-3.3.1.min.js" defer></script>
+    <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
+    <script src="../static/scripts/libs/jquery-ui.min.js"></script>
     <script src="../static/scripts/modal.js" defer></script>
     <script src="../static/scripts/index.js" defer></script>
 </body>
