@@ -25,7 +25,7 @@ def new_project():
         slug = database.new_project(name,author,tag)
         #create the new directory and files with the slug
         print("AAAAA")
-        result = command.create_new_project_dir(slug)
+        result = create_new_project_dir(slug)
         if (result):
             print("TRUE")
             #redirect to variables
