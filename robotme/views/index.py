@@ -24,8 +24,9 @@ def new_project():
         tag = request.form['tag']
         slug = database.new_project(name,author,tag)
         #create the new directory and files with the slug
-        print("AAAAA")
+        print(slug)
         result = create_new_project_dir(slug)
+        print("AAAA")
         if (result):
             print("TRUE")
             #redirect to variables
