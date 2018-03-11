@@ -10,7 +10,7 @@ def create_new_project_dir(slug):
         subprocess.Popen(["mkdir","-p",new_project_folder])
         print("Folder created")
         #read project_template
-        with open("/project_template.txt") as f:
+        with open("project_template.txt", "r") as f:
             lines = f.readlines()
             lines = [l for l in lines if "ROW" in l]
             with open(slug+"projects/"+slug+"/pseudo.txt", "w") as p:
