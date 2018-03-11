@@ -9,6 +9,7 @@ def create_new_project_dir(slug):
         #read project_template
         with open("robotme/project_template.txt", "r") as f:
             lines = f.readlines()
+            print(lines)
             lines = [l for l in lines if "ROW" in l]
             with open("robotme/projects/"+slug+"/pseudo.txt", "w") as p:
                 p.writelines(lines)

@@ -8,29 +8,3 @@
 
 #Programa dentro del bucle 'por siempre' tu robot
 #Dudas? busca las respuestas a tu izquierda o pide ayuda a tu profesor
-
-
-
-#ROBOTME 
-#[project name]
-#Autor: [author name]
-
-#Declaracion de variables
-#declara aqui tus variables
-bandera = Falso
-
-#Programa dentro del bucle 'por siempre' tu robot
-#Dudas? busca las respuestas a tu izquierda o pide ayuda a tu profesor
-por siempre:
-  	si (bandera) entonces:
-          girar brazo a 0 grados
-          esperar 1 segundo
-          decir “hola”
-          girar brazo a 90 grados
-          esperar 1 segundo
-          girar brazo a 180  grados
-          bandera = falso
-
-
-cuando ojo detecte alto entonces:
-	bandera = Verdadero	
