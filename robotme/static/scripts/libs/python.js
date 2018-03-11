@@ -32,6 +32,13 @@
                         "sorted", "staticmethod", "str", "sum", "super", "tuple",
                         "type", "vars", "zip", "__import__", "NotImplemented",
                         "Ellipsis", "__debug__"];
+  var servoCode = ["girar","grados"]
+  var ledBuzzerCode = ["encender","apagar"]
+  var motorCode = ["mover","parar","lentamente"]
+  var interruptionCode = ["cuando","detecte","alto","bajo"]
+  var controlCode = ["si","entonces","sino", "siempre"]
+  var otherCode = ["decir","esperar","segundo"]
+
   CodeMirror.registerHelper("hintWords", "python", commonKeywords.concat(commonBuiltins));
 
   function top(state) {
@@ -60,7 +67,7 @@
     if (py3) {
       // since http://legacy.python.org/dev/peps/pep-0465/ @ is also an operator
       var identifiers = parserConf.identifiers|| /^[_A-Za-z\u00A1-\uFFFF][_A-Za-z0-9\u00A1-\uFFFF]*/;
-      myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await"]);
+      myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await","Falso","Verdadero"]);
       myBuiltins = myBuiltins.concat(["ascii", "bytes", "exec", "print"]);
       var stringPrefixes = new RegExp("^(([rbuf]|(br))?('{3}|\"{3}|['\"]))", "i");
     } else {
@@ -73,7 +80,13 @@
     }
     var keywords = wordRegexp(myKeywords);
     var builtins = wordRegexp(myBuiltins);
-
+    //ROBOTME WORDS
+    var servo = wordRegexp(servoCode);
+    var motor = wordRegexp(motorCode);
+    var ledbuzzer = wordRegexp(ledBuzzerCode);
+    var interruption = wordRegexp(interruptionCode);
+    var control = wordRegexp(controlCode);
+    var other = wordRegexp(otherCode);
     // tokenizers
     function tokenBase(stream, state) {
       if (stream.sol()) state.indent = stream.indentation()
@@ -154,6 +167,18 @@
         if (stream.match(operators[i])) return "operator"
 
       if (stream.match(delimiters)) return "punctuation";
+
+      if (stream.match(servo)) return "servo";
+
+      if (stream.match(control)) return "control";
+
+      if (stream.match(interruption)) return "interruption";
+
+      if (stream.match(ledbuzzer)) return "ledbuzzer";
+
+      if (stream.match(motor)) return "motor";
+
+      if (stream.match(other)) return "other";
 
       if (state.lastToken == "." && stream.match(identifiers))
         return "property";

@@ -1,5 +1,13 @@
+@font-face {
+    font-family: ubuntu;
+    src: url("../assets/Ubuntu-Regular.ttf");
+}
+
 .navbar{
     box-shadow: none !important;
+}
+body{
+    background-color: #132F3A;
 }
 .sidebar {
     position: fixed;
@@ -14,5 +22,39 @@
 }
 .code-container{
     width: 70%;
-    float: right;
+    position: absolute;
+    top: 60px;
+    left: 30%;
+    z-index: -1;
 }
+.CodeMirror{
+    height: 120% !important;
+    font-family: ubuntu, monospace !important;
+}
+/* .connection-indicator {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    transition: 0.5s;
+    background-color: #6ED79F
+}
+.connection-indicator:hover{
+    width:150px;
+    transition: 0.5s;
+}
+.connection-indicator > span{
+    position: relative;
+    top: 5px;
+    left: 15px;
+    color: transparent;
+    display: none;
+    transition: 0.5s;
+}
+.connection-indicator:hover > span{
+    color: white;
+    display: inline;
+    transition: 0.5s;    
+} */

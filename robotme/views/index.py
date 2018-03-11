@@ -24,9 +24,11 @@ def new_project():
         tag = request.form['tag']
         slug = database.new_project(name,author,tag)
         #create the new directory and files with the slug
-        #create_new_project_dir(slug)
-        #redirect to variables
-        return 'variables/'+slug
+        if command.create_new_project_dir(slug):
+            #redirect to variables
+            return 'variables/'+slug
+        else:
+            return 'ERROR'
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong creating a new project | views/index.py")
 

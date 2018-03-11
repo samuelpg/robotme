@@ -218,8 +218,9 @@ const sendVariables = () => {
        showToast("#no-variables")
     }
 }
-
-const varNameValidator = new RegExp('^(?=\S*[a-zA-Z])[a-zA-Z]+[a-zA-Z0-9-_]+[^-_]$');
+//(?=\S*[^0-9]*[a-z])[a-z_]+[^_\s]$
+//[a-z][a-z]*(_[a-z0-9]+)*$
+const varNameValidator = new RegExp('[a-z][a-z]*(_[a-z0-9]+)*$');
 //check inputs for variable names
 const checkInput = (input) =>{
     let result = varNameValidator.test($(input).val());

@@ -3,7 +3,19 @@ from . import app
 
 def create_new_project_dir(slug):
     #create dir projects /slug and files slug/program.py and slug/code.txt
-    new_project_folder = app['PROJECT_FOLDER'] + "/" + slug
-    call(['mkdir',new_project_folder])
-    call(['touch','pseudo.txt'])
-    call(['touch','code.py'])
+    try:
+        new_project_folder = app['PROJECT_FOLDER'] + "/" + slug
+        print(new_project_folder)
+        call(['mkdir',new_project_folder])
+        print("Folder created")
+        #read project_template
+        with open("project_template.txt") as f:
+            lines = f.readlines()
+            lines = [l for l in lines if "ROW" in l]
+            with open(slug+"/pseudo.txt", "w") as p:
+                p.writelines(lines)
+        print("pseudo.txt created")
+        #call(['touch','code.py'])
+        return True
+    except (RuntimeError, TypeError, NameError):
+        return False
