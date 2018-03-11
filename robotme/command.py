@@ -4,15 +4,8 @@ from robotme import app
 def create_new_project_dir(slug):
     #create dir projects /slug and files slug/program.py and slug/code.txt
     try: 
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        print(dir_path)
-        cwd = os.getcwd()
-        print(cwd)
-        print("BBBB")
-        new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug
-        print(new_project_folder)
-        subprocess.Popen(["mkdir","-p",new_project_folder])
-        print("Folder created")
+        new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug + "/pseudo.txt"
+        ensure_dir(new_project_folder)      
         #read project_template
         with open("project_template.txt", "r") as f:
             lines = f.readlines()
@@ -24,3 +17,9 @@ def create_new_project_dir(slug):
         return True
     except (RuntimeError, TypeError, NameError):
         return False
+
+def ensure_dir(file_path):
+    directory = os.path.dirname(file_path)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+        print("Folder created")
