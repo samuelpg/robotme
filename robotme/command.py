@@ -10,11 +10,10 @@ def create_new_project_dir(slug, name, author):
         with open("robotme/project_template.txt", "r") as f:
             lines = f.readlines()
             for i in range(len(lines)):
-                lines[i] = lines[i].replace("[project name]", name)
-                lines[i] = lines[i].replace("[project author]", author)
+                lines[i] = lines[i].replace("[project name]",name)
+                lines[i] = lines[i].replace("[author name]", author)
             with open("robotme/projects/"+slug+"/pseudo.txt", "w") as p:
                 p.writelines(lines)
-        print("pseudo.txt created")
         #call(['touch','code.py'])
         return True
     except (RuntimeError, TypeError, NameError):
@@ -24,4 +23,3 @@ def ensure_dir(file_path):
     directory = os.path.dirname(file_path)
     if not os.path.exists(directory):
         os.makedirs(directory)
-        print("Folder created")
