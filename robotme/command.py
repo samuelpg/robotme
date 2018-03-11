@@ -9,8 +9,9 @@ def create_new_project_dir(slug, name, author):
         #read project_template
         with open("robotme/project_template.txt", "r") as f:
             lines = f.readlines()
-            lines.replace("[project name]", name)
-            lines.replace("[author name]", author)
+            for i in range(len(lines)):
+                lines[i] = lines[i].replace("[project name]", name)
+                lines[i] = lines[i].replace("[project author]", author)
             with open("robotme/projects/"+slug+"/pseudo.txt", "w") as p:
                 p.writelines(lines)
         print("pseudo.txt created")
