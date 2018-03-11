@@ -12,7 +12,7 @@ def create_new_project_dir(slug):
         with open("project_template.txt") as f:
             lines = f.readlines()
             lines = [l for l in lines if "ROW" in l]
-            with open(slug+"/pseudo.txt", "w") as p:
+            with open(slug+"projects/pseudo.txt", "w") as p:
                 p.writelines(lines)
         print("pseudo.txt created")
         #call(['touch','code.py'])
