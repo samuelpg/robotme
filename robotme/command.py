@@ -1,9 +1,13 @@
-import subprocess
+import subprocess, os
 from robotme import app
 
 def create_new_project_dir(slug):
     #create dir projects /slug and files slug/program.py and slug/code.txt
     try: 
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        print(dir_path)
+        cwd = os.getcwd()
+        print(cwd)
         print("BBBB")
         new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug
         print(new_project_folder)
