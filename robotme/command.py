@@ -7,7 +7,7 @@ def create_new_project_dir(slug):
         print("BBBB")
         new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug
         print(new_project_folder)
-        call(['mkdir',new_project_folder])
+        subprocess.Popen(["mkdir",new_project_folder])
         print("Folder created")
         #read project_template
         with open("project_template.txt") as f:
