@@ -7,10 +7,10 @@ def create_new_project_dir(slug):
         new_project_folder = app.config['PROJECT_FOLDER'] + "/" + slug + "/pseudo.txt"
         ensure_dir(new_project_folder)      
         #read project_template
-        with open("project_template.txt", "r") as f:
+        with open("robotme/project_template.txt", "r") as f:
             lines = f.readlines()
             lines = [l for l in lines if "ROW" in l]
-            with open(slug+"projects/"+slug+"/pseudo.txt", "w") as p:
+            with open("robotme/projects/"+slug+"/pseudo.txt", "w") as p:
                 p.writelines(lines)
         print("pseudo.txt created")
         #call(['touch','code.py'])
