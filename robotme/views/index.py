@@ -30,6 +30,8 @@ def new_project():
             return 'variables/'+slug
         else:
             return 'ERROR'
+        #return 'variables/'+slug
+            
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong creating a new project | views/index.py")
 
@@ -38,6 +40,7 @@ def delete():
     project_slug = request.form['slug']
     try:
         database.delete_project(project_slug)
+        command.delete_project_dir(project_slug)
     except (RuntimeError, TypeError, NameError):
         print("Something went wrong deleting a project | views/index.py")
         print("slug: "+project_slug)

@@ -3,15 +3,17 @@
     src: url("../assets/Ubuntu-Regular.ttf");
 }
 
-.navbar{
+.navbar {
     box-shadow: none !important;
 }
-body{
+
+body {
     background-color: #132F3A;
 }
+
 .sidebar {
     position: fixed;
-    height: 100%;
+    height: 83%;
     background-color: white;
     width: 30%;
     left: 0;
@@ -19,18 +21,22 @@ body{
     -webkit-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
     box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
+    overflow-y: scroll;
 }
-.code-container{
+
+.code-container {
     width: 70%;
     position: absolute;
     top: 60px;
     left: 30%;
     z-index: -1;
 }
-.CodeMirror{
+
+.CodeMirror {
     height: 120% !important;
     font-family: ubuntu, monospace !important;
 }
+
 /* .connection-indicator {
     position: absolute;
     top: 15px;
@@ -58,3 +64,29 @@ body{
     display: inline;
     transition: 0.5s;    
 } */
+
+/* .accordion{
+    padding: 10px;
+}
+.accordion > div{
+    display: inline;
+} */
+
+.accordion-toggle {
+    cursor: pointer;
+}
+
+.accordion-content {
+    display: none;
+    padding: 0px 10px;
+}
+
+.accordion-content.default {
+    display: block;
+}
+.accordion-content > p {
+    line-height: 1.8;
+}
+.code-buttons{
+    float: right;
+}

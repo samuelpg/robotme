@@ -1,0 +1,13 @@
+import pigpio, os
+
+#variable initialization
+[vars]
+
+try:
+    #Always loop
+    while True:
+        [code]
+except (RuntimeError):
+    print("ERROR")
+finally:
+    #cleanup

@@ -4,3 +4,4 @@
 *.sql
 *.sqlite
 *.db
+robotme/projects/*

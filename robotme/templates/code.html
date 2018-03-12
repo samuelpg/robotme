@@ -1,40 +1,116 @@
 <html>
-    <head>
-        <!--META-->
-        <meta charset="UTF-8">
-        <title>RobotMe: Codificar</title>
-        <!--STYLESHEET-->
-        <link rel="stylesheet" href="../static/styles/libs/font-awesome-4.7.0/css/font-awesome.css">
-        <link rel="stylesheet" href="../static/styles/styles.css">
-        <link rel="stylesheet" href="../static/styles/code.css">
-        <link rel="stylesheet" href="../static/styles/libs/codemirror.css">
-        <link rel="stylesheet" href="../static/styles/libs/tomorrow-night-bright.css">
-    </head>
-    <body>
-         <!--SECTIONS -->
-        <!-- navbar -->
-        <div class="navbar-container">
-            <div id="navbar" class="navbar white-background">
-                <img id="logo" class="logo" src="../static/assets/logo.png">
+
+<head>
+    <!--META-->
+    <meta charset="UTF-8">
+    <title>RobotMe: Codificar</title>
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="../static/styles/libs/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/styles/styles.css">
+    <link rel="stylesheet" href="../static/styles/code.css">
+    <link rel="stylesheet" href="../static/styles/libs/codemirror.css">
+    <link rel="stylesheet" href="../static/styles/libs/tomorrow-night-bright.css">
+</head>
+
+<body>
+    <!--SECTIONS -->
+    <!-- navbar -->
+    <div class="navbar-container">
+        <div id="navbar" class="navbar white-background">
+            <img id="logo" class="logo" src="../static/assets/logo.png">
+        </div>
+    </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="show-selected-variables"></div>
+        <div id="accordion">
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Variables
+            </h3>
+            <div class="accordion-content">
+                <p>Las variables son espacios reservados en la memoria que, como su nombre indica, pueden cambiar de contenido a lo largo de la ejecución de un programa.</p>
+                <p>Los nombres de tus variables deben tener un nombre descriptivo, y debe seguir las siguientes normas:</p>
+                <ul>
+                    <li>No debe tener espacios</li>
+                    <li>No deben tener numeros</li>
+                    <li>No deben tener mayusculas</li>
+                </ul>
+                <p>
+                    una buena practica para nombrar variables es de separarlas con "_". 
+                    <span class="code-span">brazo_zombie_derecho</span> se lee mejor que <span class="code-span">brazozombiederecho</span>.
+                </p>
+            </div>
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Movimiento
+            </h3>
+            <div class="accordion-content">
+                
+            </div>
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Variables
+            </h3>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in porta dui. Duis eu arcu nisi. Aenean ornare vitae odio
+                in rutrum. Curabitur nec quam sed sapien rutrum tincidunt. Aliquam faucibus lacus in rhoncus pretium. Curabitur
+                lorem turpis, lacinia nec tortor a, commodo accumsan neque. Etiam varius ipsum sit amet dolor consequat rhoncus.
+                Nunc in mauris luctus, scelerisque diam in, gravida quam. Quisque consequat turpis quis finibus luctus. Curabitur
+                ultrices commodo nisi ac vulputate. Etiam lectus mi, fringilla nec erat nec, tempor volutpat enim. Orci varius
+                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec sodales arcu, eget
+                efficitur libero. Duis elementum pulvinar tempus. Nulla imperdiet felis eu ligula placerat fringilla. Proin
+                id auctor ante.
+            </div>
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Variables
+            </h3>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in porta dui. Duis eu arcu nisi. Aenean ornare vitae odio
+                in rutrum. Curabitur nec quam sed sapien rutrum tincidunt. Aliquam faucibus lacus in rhoncus pretium. Curabitur
+                lorem turpis, lacinia nec tortor a, commodo accumsan neque. Etiam varius ipsum sit amet dolor consequat rhoncus.
+                Nunc in mauris luctus, scelerisque diam in, gravida quam. Quisque consequat turpis quis finibus luctus. Curabitur
+                ultrices commodo nisi ac vulputate. Etiam lectus mi, fringilla nec erat nec, tempor volutpat enim. Orci varius
+                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec sodales arcu, eget
+                efficitur libero. Duis elementum pulvinar tempus. Nulla imperdiet felis eu ligula placerat fringilla. Proin
+                id auctor ante.
+            </div>
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Variables
+            </h3>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in porta dui. Duis eu arcu nisi. Aenean ornare vitae odio
+                in rutrum. Curabitur nec quam sed sapien rutrum tincidunt. Aliquam faucibus lacus in rhoncus pretium. Curabitur
+                lorem turpis, lacinia nec tortor a, commodo accumsan neque. Etiam varius ipsum sit amet dolor consequat rhoncus.
+                Nunc in mauris luctus, scelerisque diam in, gravida quam. Quisque consequat turpis quis finibus luctus. Curabitur
+                ultrices commodo nisi ac vulputate. Etiam lectus mi, fringilla nec erat nec, tempor volutpat enim. Orci varius
+                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec sodales arcu, eget
+                efficitur libero. Duis elementum pulvinar tempus. Nulla imperdiet felis eu ligula placerat fringilla. Proin
+                id auctor ante.
             </div>
         </div>
-        <!-- SIDEBAR -->
-        <div class="sidebar">
-
+    </div>
+    <!-- CODEMIRROR -->
+    <div class="code-container">
+        <textarea id="codemirror" name=""></textarea>
+    </div>
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="code-buttons">
+            <button class="project-button" onclick="save()"><i class="fa fa-floppy-o"></i> Guardar</button>
+            <button class="project-button"><i class="fa fa-play"></i> Correr</button>
         </div>
-        <!-- CODEMIRROR -->
-        <div class="code-container">
-            <textarea id="codemirror" name=""></textarea>
-        </div>
-        <!-- FOOTER -->
-        <div class="footer">
-            
-        </div>
-        <!-- <div class="connection-indicator">
+    </div>
+    <!-- <div class="connection-indicator">
             <span>Connectado!</span>
         </div> -->
-        <script src="../static/scripts/libs/codemirror.js"></script>
-        <script src="../static/scripts/libs/python.js"></script>
-        <script src="../static/scripts/code.js"></script>
-    </body>
+    <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
+    <script src="../static/scripts/libs/jquery-ui.min.js"></script>
+    <script src="../static/scripts/libs/codemirror.js"></script>
+    <script src="../static/scripts/libs/python.js"></script>
+    <script src="../static/scripts/code.js"></script>
+</body>
+
 </html>
