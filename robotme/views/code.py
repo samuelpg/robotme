@@ -30,7 +30,8 @@ def stop_code(project_slug):
 
 @app.route('/connected')
 def connected():
-    return "data: 'yes' \n\n"
+    print("HELLO")
+    return "data:"+'yes'+"\n\n"
 
 @app.route('/test/<project_slug>')
 def test_this(project_slug):

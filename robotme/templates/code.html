@@ -22,31 +22,88 @@
     </div>
     <!-- SIDEBAR -->
     <div class="sidebar">
-        <div class="show-selected-variables"></div>
+        <div class="show-selected-variables">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pin</th>
+                        <th>Tipo</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="selected-variables">
+
+                </tbody>
+            </table>
+        </div>
         <div id="accordion">
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
                 Variables
             </h3>
             <div class="accordion-content">
-                <p>Las variables son espacios reservados en la memoria que, como su nombre indica, pueden cambiar de contenido a lo largo de la ejecución de un programa.</p>
+                <p>Las variables son espacios reservados en la memoria que, como su nombre indica, pueden cambiar de contenido
+                    a lo largo de la ejecución de un programa.</p>
                 <p>Los nombres de tus variables deben tener un nombre descriptivo, y debe seguir las siguientes normas:</p>
                 <ul>
-                    <li>No debe tener espacios</li>
-                    <li>No deben tener numeros</li>
-                    <li>No deben tener mayusculas</li>
+                    <li>No debe tener espacios.</li>
+                    <li>No deben tener numeros.</li>
+                    <li>No deben tener mayusculas.</li>
                 </ul>
                 <p>
-                    una buena practica para nombrar variables es de separarlas con "_". 
-                    <span class="code-span">brazo_zombie_derecho</span> se lee mejor que <span class="code-span">brazozombiederecho</span>.
+                    una buena practica para nombrar variables es de separarlas con "_".
+                    <span class="code-span">brazo_zombie_derecho</span> se lee mejor que
+                    <span class="code-span">brazozombiederecho</span>.
                 </p>
+                <p>
+                    Siempre deben tener un valor inicial:
+                </p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Pueden ser cadenas o strings</span>
+                    <br> saludo =
+                    <span class="cm-string">'Hola Mundo'</span>
+                    <br>
+                    <span class="cm-comment">#o numeros</span>
+                    <br> edad =
+                    <span class="cm-number">14</span>
+                </div>
+                <p>Darle un valor inicial a una variable se llama 'inicializar', y debemos hacerlo todo el tiempo.</p>
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
                 Movimiento
             </h3>
             <div class="accordion-content">
-                
+                <p>Los elementos capaces de causar moviemiento son los
+                    <b>servos</b> y los
+                    <b>motores DC.</b>
+                </p>
+                <h3>Servo</h3>
+                <p>Para controlar un servo tienes la instruccion
+                    <span class="code-span">girar</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#girar [variable] [posicion] grado</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: esta linea gira 'brazo' al grado 0</span>
+                    <br>
+                    <span class="cm-servo">girar</span> brazo
+                    <span class="cm-number">0 </span>
+                    <span class="cm-servo">grados</span>
+                </div>
+                <p>Puedes girar un servo a las posiciones 0, 90 y 180 grados.</p>
+                <h3>Motor</h3>
+                <p>Para controlar un motor tienes las instrucciones
+                    <span class="code-span">mover</span> y
+                    <span class="code-span">parar</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Para mover un motor</span>
+                    <br>
+                    <span class="cm-motor">mover</span> rueda
+                    <br>
+                    <span class="cm-comment">#Para parar un motor</span>
+                    <br>
+                    <span class="cm-motor">parar</span> rueda
+                </div>
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
@@ -98,19 +155,30 @@
     </div>
     <!-- FOOTER -->
     <div class="footer">
+        <button class="project-button">
+            <i class="fa fa-chevron-"></i> Variables</button>
         <div class="code-buttons">
-            <button class="project-button" onclick="save()"><i class="fa fa-floppy-o"></i> Guardar</button>
-            <button class="project-button"><i class="fa fa-play"></i> Correr</button>
+            <button class="project-button" onclick="goBack()">
+                <i class="fa fa-undo"></i>
+            </button>
+            <button class="project-button" onclick="goBack()">
+                <i class="fa fa-reundo"></i>
+            </button>
+            <button class="project-button" onclick="save()">
+                <i class="fa fa-floppy-o"></i> Guardar</button>
+            <button class="project-button" onclick="parseAndUpload()">
+                <i class="fa fa-play"></i> Correr</button>
         </div>
     </div>
-    <!-- <div class="connection-indicator">
-            <span>Connectado!</span>
-        </div> -->
+    <div class="connection-indicator">
+        <span>Connectado!</span>
+    </div>
     <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
     <script src="../static/scripts/libs/jquery-ui.min.js"></script>
     <script src="../static/scripts/libs/codemirror.js"></script>
     <script src="../static/scripts/libs/python.js"></script>
     <script src="../static/scripts/code.js"></script>
+    <script src="../static/scripts/parser.js"></script>
 </body>
 
 </html>

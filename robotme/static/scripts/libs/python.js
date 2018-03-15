@@ -37,7 +37,9 @@
   var motorCode = ["mover","parar","lentamente"]
   var interruptionCode = ["cuando","detecte","alto","bajo"]
   var controlCode = ["si","entonces","sino", "siempre"]
-  var otherCode = ["decir","esperar","segundo"]
+  var otherCode = ["decir","esperar","segundos"]
+  var booleanCode = ["Falso","Verdadero"]
+  var logicCode = ["y","o","no"]
 
   CodeMirror.registerHelper("hintWords", "python", commonKeywords.concat(commonBuiltins));
 
@@ -67,7 +69,7 @@
     if (py3) {
       // since http://legacy.python.org/dev/peps/pep-0465/ @ is also an operator
       var identifiers = parserConf.identifiers|| /^[_A-Za-z\u00A1-\uFFFF][_A-Za-z0-9\u00A1-\uFFFF]*/;
-      myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await","Falso","Verdadero"]);
+      myKeywords = myKeywords.concat(["nonlocal", "False", "True", "None", "async", "await"]);
       myBuiltins = myBuiltins.concat(["ascii", "bytes", "exec", "print"]);
       var stringPrefixes = new RegExp("^(([rbuf]|(br))?('{3}|\"{3}|['\"]))", "i");
     } else {
@@ -87,6 +89,8 @@
     var interruption = wordRegexp(interruptionCode);
     var control = wordRegexp(controlCode);
     var other = wordRegexp(otherCode);
+    var logic = wordRegexp(logicCode);
+    var boolean = wordRegexp(booleanCode);
     // tokenizers
     function tokenBase(stream, state) {
       if (stream.sol()) state.indent = stream.indentation()
@@ -180,21 +184,31 @@
 
       if (stream.match(other)) return "other";
 
-      if (state.lastToken == "." && stream.match(identifiers))
-        return "property";
+      if (stream.match(boolean)) return "keyword";
 
-      if (stream.match(keywords) || stream.match(wordOperators))
-        return "keyword";
+      if (stream.match(logic)) return "property";
 
-      if (stream.match(builtins))
-        return "builtin";
+      if (state.lastToken == "." && stream.match(identifiers)) return ERRORCLASS
+        //return "property";
 
-      if (stream.match(/^(self|cls)\b/))
-        return "variable-2";
+      if (stream.match(keywords) || stream.match(wordOperators)) return ERRORCLASS
+        //return "keyword";
+
+      if (stream.match(builtins)) return ERRORCLASS
+        //return "builtin";
+
+      if (stream.match(/^(self|cls)\b/)) return ERRORCLASS
+        //return "variable-2";
 
       if (stream.match(identifiers)) {
-        if (state.lastToken == "def" || state.lastToken == "class")
-          return "def";
+        if (state.lastToken == "def" || state.lastToken == "class") return ERRORCLASS
+        //return "def";
+        /*
+        if (state.lastToken == "ledbuzzer" && ledbuzzer_vars.indexOf(stream.current())<0) return ERRORCLASS
+        if (state.lastToken == "servo" && servo_vars.indexOf(stream.current())<0) return ERRORCLASS
+        if (state.lastToken == "motor" && motor_vars.indexOf(stream.current())<0) return ERRORCLASS
+        if (state.lastToken == "interruption" && interruption_vars.indexOf(stream.current())<0) return ERRORCLASS
+        */
         return "variable";
       }
 

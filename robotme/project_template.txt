@@ -1,10 +1,14 @@
+################################################
 #ROBOTME 
-#[project name]
+#Proyecto: [project name]
 #Autor: [author name]
+################################################
 
-#Declaracion de variables
-#declara aqui tus variables
+#Inicializa aqui tus variables dandoles un nombre y un valor
+#Ejemplo: mensaje = 'Hola Mundo'
 
 
-#Programa dentro del bucle 'por siempre' tu robot
+#Programa dentro del bucle 'siempre' tu robot
+#Recuerda, la indentacion es importante
 #Dudas? busca las respuestas a tu izquierda o pide ayuda a tu profesor
+siempre:

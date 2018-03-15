@@ -198,6 +198,7 @@ span {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width:30%; 
 }
 
 .project-button {

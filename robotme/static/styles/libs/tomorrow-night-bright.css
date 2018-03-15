@@ -22,7 +22,7 @@ span[role="presentation"] {color: white;}
 .cm-s-tomorrow-night-bright .CodeMirror-linenumber { color: white; }
 .cm-s-tomorrow-night-bright .CodeMirror-cursor { border-left: 1px solid #6A6A6A; }
 
-.cm-s-tomorrow-night-bright span.cm-comment { color: #6ED79F; }
+.cm-s-tomorrow-night-bright span.cm-comment {/* color: rgb(186, 255, 140);*/ color: rgb(167, 167, 167) }
 .cm-s-tomorrow-night-bright span.cm-atom { color: #a16a94; }
 .cm-s-tomorrow-night-bright span.cm-number { color: #a16a94; }
 
@@ -44,7 +44,7 @@ span[role="presentation"] {color: white;}
 .cm-s-tomorrow-night-bright span.cm-bracket { color: #eaeaea; }
 .cm-s-tomorrow-night-bright span.cm-tag { color: #d54e53; }
 .cm-s-tomorrow-night-bright span.cm-link { color: #a16a94; }
-.cm-s-tomorrow-night-bright span.cm-error { background: #d54e53; color: #6A6A6A; }
+.cm-s-tomorrow-night-bright span.cm-error { background: #d54e53; color: rgb(223, 223, 223); }
 
 .cm-s-tomorrow-night-bright .CodeMirror-activeline-background { background: #2a2a2a; }
 .cm-s-tomorrow-night-bright .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }

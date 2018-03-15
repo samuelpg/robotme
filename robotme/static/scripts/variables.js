@@ -46,7 +46,7 @@ const row = (pin, type, name) => {
             <div class="mini-element ${color}">${pin}</div>
         </td>
         <td>
-            <input class="table-input" onchange="checkInput(this)" id="input-${pin}" value="${name}">
+            <input class="table-input" max="20" onchange="checkInput(this)" id="input-${pin}" value="${name}">
         </td>
     </tr>`
 }
