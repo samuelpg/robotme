@@ -19,6 +19,9 @@
         <div id="navbar" class="navbar white-background">
             <img id="logo" class="logo" src="../static/assets/logo.png">
         </div>
+        <div class="connection-indicator">
+            <span>Connectado!</span>
+        </div>
     </div>
     <!-- SIDEBAR -->
     <div class="sidebar">
@@ -156,22 +159,19 @@
     <!-- FOOTER -->
     <div class="footer">
         <button class="project-button">
-            <i class="fa fa-chevron-"></i> Variables</button>
+            <i class="fa fa-chevron-left"></i> Variables</button>
         <div class="code-buttons">
             <button class="project-button" onclick="goBack()">
-                <i class="fa fa-undo"></i>
+                <i class="fa fa-undo"></i> 
             </button>
             <button class="project-button" onclick="goBack()">
-                <i class="fa fa-reundo"></i>
+                <i class="fa fa-reundo"> </i>
             </button>
             <button class="project-button" onclick="save()">
-                <i class="fa fa-floppy-o"></i> Guardar</button>
+                <i class="fa fa-floppy-o"></i> </button>
             <button class="project-button" onclick="parseAndUpload()">
                 <i class="fa fa-play"></i> Correr</button>
         </div>
-    </div>
-    <div class="connection-indicator">
-        <span>Connectado!</span>
     </div>
     <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
     <script src="../static/scripts/libs/jquery-ui.min.js"></script>

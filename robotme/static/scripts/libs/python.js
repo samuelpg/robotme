@@ -203,7 +203,7 @@
       if (stream.match(identifiers)) {
         if (state.lastToken == "def" || state.lastToken == "class") return ERRORCLASS
         //return "def";
-        /*
+       /* 
         if (state.lastToken == "ledbuzzer" && ledbuzzer_vars.indexOf(stream.current())<0) return ERRORCLASS
         if (state.lastToken == "servo" && servo_vars.indexOf(stream.current())<0) return ERRORCLASS
         if (state.lastToken == "motor" && motor_vars.indexOf(stream.current())<0) return ERRORCLASS

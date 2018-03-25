@@ -30,6 +30,7 @@ body {
     top: 60px;
     left: 30%;
     z-index: -1;
+    height: 69%;
 }
 
 .CodeMirror {
@@ -38,7 +39,7 @@ body {
 }
 
 .connection-indicator {
-    position: absolute;
+    position: fixed;
     top: 15px;
     right: 20px;
     width: 30px;

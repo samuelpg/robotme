@@ -145,12 +145,21 @@ const addVariable = (pin, type) => {
 const deleteVariable = (pin) =>{
     $(`#row-${pin}`).remove();
     $(`#pin-${pin}`).droppable('enable')
-    $.each(variables, (key, value) => {
+    /* $.each(variables, (key, value) => {
         if(value['pin_variable']==pin){
             variables.pop(key)
             return false
         }
-    })
+    }) */
+
+    for(i = 0; i < variables.length; i++){
+        value = variables[i]
+        if(value['pin_variable']==pin){
+            variables.splice(i, 1)
+            console.log(variables)
+            break
+        }
+    }
 }
 
 //deletes all variables from variables array, table and pi.
@@ -175,6 +184,7 @@ const sendVariables = () => {
         var values = [];
         let readyToSend = true;
         $('input[id^=input-]').each(function () {
+            console.log(this.value)
             if ($.inArray(this.value, values) >= 0) {
                 showToast("#no-repetition")
                 readyToSend = false;
@@ -192,6 +202,8 @@ const sendVariables = () => {
         values.push(this.value);
         });
         if(readyToSend){
+            console.log(variables)
+            console.log(variables)
             let fd = new FormData();
             let json = {
                 "vars":variables,

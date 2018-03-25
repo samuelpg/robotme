@@ -68,24 +68,7 @@ const row = (pin, type, name) =>{
         </td>
     </tr>`
 }
-const save = () =>{
-    let fd = new FormData();
-    let file = new File([editor.getValue()],'pseudo.txt',{type: "text/plain"})
-    fd.append('file',file)
-    $.ajax({
-        url: '/code/'+slug+'/set',
-        data: fd,
-        type: 'POST',
-        contentType: false,
-        processData: false, 
-        success:(data)=>{
-            console.log(data)
-        },
-        error:(data)=>{
-            console.log(data)
-        }
-    })
-}
+
 
 const draw = (variables) =>{
     for (let i = 0; i < variables.length; i++) {
@@ -97,15 +80,32 @@ const draw = (variables) =>{
 $(document).ready(function () {
     path = window.location.pathname.split('/');
     slug = path[2];
-    $.get('/variables/get/' + slug, (data) => {
-        variables = data['variables'];
-        draw(variables);
+    $.ajax({
+        url: '/variables/get/' + slug,
+        method: "GET",
+        cache: false,
+        success: (data) => {
+            variables = data['variables'];
+            draw(variables);
+        },
+        error: (data)=>{
+            console.log(error)
+        }
     })
-    console.log(editor.getValue())
-    $.get('/code/' + slug + '/get', (data) => {
-        editor.setValue(data);
-        editor.clearHistory();
+
+    $.ajax({
+        url: '/code/get/' + slug,
+        method: "GET",
+        cache: false,
+        success: (data) => {
+            editor.setValue(data);
+            editor.clearHistory();
+        },
+        error: (data)=>{
+            console.log(error)
+        }
     })
+
     $('#accordion').find('.accordion-toggle').click(function () {
         //Expand or collapse this panel
         $(this).next().slideToggle('fast');
@@ -119,11 +119,30 @@ $(document).ready(function () {
         }
     });
 
-    let eventSource = new EventSource("/connected");
+    /*let eventSource = new EventSource("/connected");
     eventSource.onmessage = function (e) {
         console.log(e);
-    };
+    };*/
 })
+
+const save = () =>{
+    let fd = new FormData();
+    let file = new File([editor.getValue()],'pseudo.txt',{type: "text/plain"})
+    fd.append('file',file)
+    $.ajax({
+        url: '/code/set/' + slug,
+        data: fd,
+        type: 'POST',
+        contentType: false,
+        processData: false, 
+        success:(data)=>{
+            console.log(data)
+        },
+        error:(data)=>{
+            console.log(data)
+        }
+    })
+}
 
 const goBack = () =>{
     editor.undo();
