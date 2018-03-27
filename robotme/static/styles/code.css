@@ -154,3 +154,21 @@ th {
     background-color: red;
     border-radius: 100%;
 }
+
+.error-th{
+    background-color: #d54e53;
+    color: white;
+    border-radius: 3px;
+}
+
+.error-td{
+    color:#d54e53;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    padding: 2px;
+    text-align: center
+}
+
+#errors{
+    display: none;
+}

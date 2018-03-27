@@ -38,6 +38,15 @@
 
                 </tbody>
             </table>
+            <table id="errors">
+                <thead>
+                    <th class="error-th">
+                        Errores
+                    </th>
+                </thead>
+                <tbody id="error-desc">
+                </tbody>
+            </table>
         </div>
         <div id="accordion">
             <h3 class="accordion-toggle">
@@ -110,46 +119,147 @@
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
-                Variables
+                Salida
             </h3>
             <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in porta dui. Duis eu arcu nisi. Aenean ornare vitae odio
-                in rutrum. Curabitur nec quam sed sapien rutrum tincidunt. Aliquam faucibus lacus in rhoncus pretium. Curabitur
-                lorem turpis, lacinia nec tortor a, commodo accumsan neque. Etiam varius ipsum sit amet dolor consequat rhoncus.
-                Nunc in mauris luctus, scelerisque diam in, gravida quam. Quisque consequat turpis quis finibus luctus. Curabitur
-                ultrices commodo nisi ac vulputate. Etiam lectus mi, fringilla nec erat nec, tempor volutpat enim. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec sodales arcu, eget
-                efficitur libero. Duis elementum pulvinar tempus. Nulla imperdiet felis eu ligula placerat fringilla. Proin
-                id auctor ante.
+                <p>Los elementos que pueden ser utilizados en los pines de salida son los
+                    <b>leds</b> y los
+                    <b>buzzers.</b>
+                </p>
+                <h3>LEDS</h3>
+                <p>Los LEDS son diodos emisores de luz, los cuales tienen la función de convertir la corriente eléctrica de
+                    bajo voltaje en luz. Para controlar un LED tienes las siguientes intrucciones:
+                    <span class="code-span">encender</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#encender</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: esta linea enciende el LED</span>
+                    <br>
+                    <span class="cm-ledbuzzer">encender</span> led
+                </div>
+                <br>
+                <span class="code-span">apagar</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#apagar</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: esta linea apaga el LED</span>
+                    <br>
+                    <span class="cm-ledbuzzer">apagar</span> led
+                </div>
+                <br>
+                <h3>Buzzer</h3>
+                <p>Un buzzer es un elemento cuya función es transformar la energía eléctrica en acústica, de manera que se emita
+                    un sonido. Para controlar un buzzer tienes las siguientes instrucciones:
+                    <span class="code-span">encender</span> y debes usarla de esta manera:
+                    <div class="looks-like-code">
+                        <span class="cm-comment">#Para encender el buzzer</span>
+                        <br>
+                        <span class="cm-comment">#Ejemplo: esta linea enciende el buzzer</span>
+                        <br>
+                        <span class="cm-ledbuzzer">encender</span> buzzer
+                    </div>
+                    <br>
+                    <span class="code-span">apagar</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Para apagar el buzzer</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: esta linea apaga el buzzer</span>
+                    <br>
+                    <span class="cm-ledbuzzer">apagar</span> buzzer
+                </div>
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
-                Variables
+                Entrada
             </h3>
             <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in porta dui. Duis eu arcu nisi. Aenean ornare vitae odio
-                in rutrum. Curabitur nec quam sed sapien rutrum tincidunt. Aliquam faucibus lacus in rhoncus pretium. Curabitur
-                lorem turpis, lacinia nec tortor a, commodo accumsan neque. Etiam varius ipsum sit amet dolor consequat rhoncus.
-                Nunc in mauris luctus, scelerisque diam in, gravida quam. Quisque consequat turpis quis finibus luctus. Curabitur
-                ultrices commodo nisi ac vulputate. Etiam lectus mi, fringilla nec erat nec, tempor volutpat enim. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec sodales arcu, eget
-                efficitur libero. Duis elementum pulvinar tempus. Nulla imperdiet felis eu ligula placerat fringilla. Proin
-                id auctor ante.
+                <p>Los elementos que pueden ser utilizados en los pines de entrada son los
+                    <b>botones</b> y el
+                    <b>sensor PIR.</b>
+                </p>
+                <h3>Botones</h3>
+                <p>Un botón (pulsador) es un operador eléctrico que, cuando se oprime, permite el paso de la corriente eléctrica
+                    y, cuando se deja de oprimir, lo interrumpe. Permitiendo así la ejecución de diversas actividades. Para
+                    el boton tienes las siguientes intrucciones:
+                    <span class="code-span">cuando variable detecte [alto, bajo] entonces</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#cuando detecte alto</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-interruption">cuando </span> boton
+                    <span class="cm-interruption">detecte alto</span>
+                    <span class="cm-control">entonces</span>:
+                    <br>
+                    <br>
+                    <span class="cm-comment">#cuando detecte bajo</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-interruption">cuando </span> boton
+                    <span class="cm-interruption">detecte bajo</span>
+                    <span class="cm-control">entonces</span>:
+                </div>
+                <br>
+                <h3>Sensor PIR</h3>
+                <p>El sensor infrarrojo pasivo (o sensor PIR) es un sensor electrónico que mide la luz infrarroja (IR) radiada
+                    de los objetos situados en su campo de visión, permitiendo así percibir movimientos, detectar objetos,
+                    etc. Para controlar un sensor PIR tienes las siguientes instrucciones:
+                    <span class="code-span">cuando variable detecte [alto, bajo] entonces</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#cuando detecte alto</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-interruption">cuando </span> sensor
+                    <span class="cm-interruption">detecte alto</span>
+                    <span class="cm-control">entonces</span>:
+                    <br>
+                    <br>
+                    <span class="cm-comment">#cuando detecte bajo</span>
+                    <br>
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-interruption">cuando </span> sensor
+                    <span class="cm-interruption">detecte bajo</span>
+                    <span class="cm-control">entonces</span>:
+                </div>
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
-                Variables
+                Otros
             </h3>
             <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in porta dui. Duis eu arcu nisi. Aenean ornare vitae odio
-                in rutrum. Curabitur nec quam sed sapien rutrum tincidunt. Aliquam faucibus lacus in rhoncus pretium. Curabitur
-                lorem turpis, lacinia nec tortor a, commodo accumsan neque. Etiam varius ipsum sit amet dolor consequat rhoncus.
-                Nunc in mauris luctus, scelerisque diam in, gravida quam. Quisque consequat turpis quis finibus luctus. Curabitur
-                ultrices commodo nisi ac vulputate. Etiam lectus mi, fringilla nec erat nec, tempor volutpat enim. Orci varius
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec sodales arcu, eget
-                efficitur libero. Duis elementum pulvinar tempus. Nulla imperdiet felis eu ligula placerat fringilla. Proin
-                id auctor ante.
+                <p>Los elementos que pueden ser utilizados en los pines de entrada son los
+                    <b>decir</b> y
+                    <b>esperar</b>
+                </p>
+                <h3>Decir</h3>
+                <p>La consola del sistema es un terminal que tiene atributos especiales y se utiliza para determinados fines.
+                    En este caso, el fin sería el de verificar como esta ejecutandose el programa previamente realizado.
+                    Para poder utilizar la consola de esta manera tienes las siguientes instrucciones:
+                    <span class="code-span">esperar [numero] segundos</span>, debes usarla de esta manera:</p>
+                <br>
+                <h3>Esperar</h3>
+                <p>La finalidad de esta función es la de detenr la ejecución del programa por una cantidad de segundos determinada.
+                    Para poder detener el programa tienes la siguiente instruccion:
+                    <span class="code-span">esperar [numero] segundos</span>, debes usarla de esta manera:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-other">esperar</span>
+                    <span class="cm-number">24</span>
+                    <span class="cm-other">segundos</span>
+                    <br>
+                </div>
+                <br>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
     </div>
     <!-- CODEMIRROR -->
@@ -162,13 +272,14 @@
             <i class="fa fa-chevron-left"></i> Variables</button>
         <div class="code-buttons">
             <button class="project-button" onclick="goBack()">
-                <i class="fa fa-undo"></i> 
+                <i class="fa fa-undo"></i>
             </button>
             <button class="project-button" onclick="goBack()">
                 <i class="fa fa-redo"> </i>
             </button>
             <button class="project-button" onclick="save()">
-                <i class="fa fa-floppy-o"></i> </button>
+                <i class="fa fa-floppy-o"></i>
+            </button>
             <button class="project-button" onclick="parseAndUpload()">
                 <i class="fa fa-play"></i> Correr</button>
         </div>

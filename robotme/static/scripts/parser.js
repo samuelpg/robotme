@@ -1,4 +1,6 @@
 const check = () => {
+    $("#errors").hide();
+    $("#error-desc").empty();
     let siempreCounter = new Array();
     for (i = 0; i < editor.lineCount(); i++) {
         tokens = editor.getLineTokens(i)
@@ -47,9 +49,9 @@ const check = () => {
                         if (element.string == "girar") {
                             checkIndent(element, i)
                             posible_values = ["0", "90", "180"]
-                            if (servo_vars.indexOf(tokens[index + 2].string) < 0) error("Error: servo variable", i)
-                            if (posible_values.indexOf(tokens[index + 4].string) < 0) error("Error: valor no valido", i)
-                            if (tokens[index + 6].string !== "grados") error("Error: servo completar codigo", i)
+                            if (servo_vars.indexOf(tokens[index + 2].string) < 0) error("Error: variable de tipo difente a servo", i)
+                            if (posible_values.indexOf(tokens[index + 4].string) < 0) error("Error: valor de grado no valido", i)
+                            if (tokens[index + 6].string !== "grados") error("Error: Instruccion incompleta", i)
                         }
                         return true;
                         break;
@@ -57,14 +59,14 @@ const check = () => {
                 case "ledbuzzer":
                     {
                         checkIndent(element, i)
-                        if (ledbuzzer_vars.indexOf(tokens[index + 2].string) < 0) error("Error: ledbuzzer variable", i)
+                        if (ledbuzzer_vars.indexOf(tokens[index + 2].string) < 0) error("Error: variable de tipo difente a ledbuzzer", i)
                         return true;
                         break;
                     }
                 case "motor":
                     {
                         checkIndent(element, i)
-                        if (motor_vars.indexOf(tokens[index + 2].string) < 0) error("Error: motor variable", i)
+                        if (motor_vars.indexOf(tokens[index + 2].string) < 0) error("Error: variable de tipo difente a motor ", i)
                         return true;
                         break
                     }
@@ -72,8 +74,8 @@ const check = () => {
                     {
                         if (element.string === "cuando") {
                             if (interruption_vars.indexOf(tokens[index + 2].string) < 0) error("Error: variable de interrupcion no valida", i)
-                            if (tokens[index + 4].string !== "detecte") error("Error: Completacion de codigo", i)
-                            if (tokens[index + 8].string !== "entonces") error("He", i)
+                            if (tokens[index + 4].string !== "detecte") error("Error: instruccion incompleta", i)
+                            if (tokens[index + 8].string !== "entonces") error("Error: instruccion incompleta", i)
                             tokens[index + 6].string === "bajo"?  null : tokens[index + 6].string !== "alto" ? error("Error: valor de caida no valido", i) : null;
                             siempreCounter.length > 0 ? error("Error: Las interrupciones deben ir antes del siempre", i) : null;
                         }
@@ -88,7 +90,7 @@ const check = () => {
                                     checkIndent(element, i)
                                     if (tokens[index + 2].type !== "number") error("Error: debe ser un valor numerico", i)
                                     if (parseInt(tokens[index + 2].string) > 60 || parseInt(tokens[index + 2].string) < 0) error("Error: valor entre 0 y 60", i)
-                                    if (tokens[index + 4].string !== "segundos") error("Error: debes completar el codigo", i)
+                                    if (tokens[index + 4].string !== "segundos") error("Error: Instruccion incompleta", i)
                                     break;
                                 }
                             case "decir":
@@ -138,7 +140,14 @@ const error = (message, line) => {
         className: "cm-error",
         clearOnEnter: true,
     })
-    console.log(message)
+    $("#error-desc").append(`
+    <tr>
+        <td class="error-td">
+            ${line + 1}: ${message}
+        </td>
+    </tr>
+    `)
+    $("#errors").show();
 }
 
 const checkIndent = (element, line) => {
