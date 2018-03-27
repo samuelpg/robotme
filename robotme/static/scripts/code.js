@@ -7,6 +7,9 @@ let servo_vars = new Array();
 let motor_vars = new Array();
 let interruption_vars = new Array();
 
+let importTemplate = new Array();
+let exceptTemplate = new Array();
+
 let editor = CodeMirror.fromTextArea(textArea, {
     lineNumbers: true,
     autoClearEmptyLines: true,
@@ -100,6 +103,28 @@ $(document).ready(function () {
         success: (data) => {
             editor.setValue(data);
             editor.clearHistory();
+        },
+        error: (data)=>{
+            console.log(error)
+        }
+    })
+
+    $.ajax({
+        url: '/code/import_template',
+        method: "GET",
+        success: (data) => {
+            importTemplate = data.split("\n")
+        },
+        error: (data)=>{
+            console.log(error)
+        }
+    })
+
+    $.ajax({
+        url: '/code/except_template',
+        method: "GET",
+        success: (data) => {
+            exceptTemplate = data.split("\n")
         },
         error: (data)=>{
             console.log(error)

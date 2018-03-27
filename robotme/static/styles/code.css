@@ -13,7 +13,7 @@ body {
 
 .sidebar {
     position: fixed;
-    height: 83%;
+    height: 90%;
     background-color: white;
     width: 30%;
     left: 0;
@@ -120,7 +120,7 @@ body {
 .cm-interruption { color: #FF00AA; }
 .cm-control { color: #FFAA00; }
 .cm-other { color: #00AAFF; }
-.cm-comment { color: rgb(186, 255, 140); }
+.cm-comment { color: rgb(167, 167, 167) }
 .cm-number { color: #a16a94; }
 
 .show-selected-variables table{

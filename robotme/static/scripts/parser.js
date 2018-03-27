@@ -2,21 +2,28 @@ const check = () => {
     let siempreCounter = new Array();
     for (i = 0; i < editor.lineCount(); i++) {
         tokens = editor.getLineTokens(i)
-        tokens.forEach((element, index) => {
+        tokens.some((element, index) => {
             switch (element.type) {
                 case "comment":
                     {
+                        return true;
                         break;
                     }
+                case "variable":{
+                    servo_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
+                    motor_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
+                    ledbuzzer_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
+                    interruption_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
+                }
                 case "control":
                     {
-                        //Control words: ["si","entonces","sino", "siempre"]
                         switch (element.string) {
                             case "siempre":
                                 {
                                     siempreCounter.push(element);
                                     if (siempreCounter.length >= 2) error("Error: Solo debe haber un siempre", i)
                                     if (element.state.indent !== 0) error("Error: siempre no puede estar indentado", i)
+                                    return true;
                                     break;
                                 }
                             case "si":
@@ -29,6 +36,8 @@ const check = () => {
                                     if (stringsIf.indexOf(")") < 0) error("Error: Completa los parentesis", i)
                                     if (stringsIf.indexOf("(") < 0) error("Error: Completa los parentesis", i)
                                     if (stringsIf.indexOf("(") > stringsIf.indexOf(")")) error("Error: Completa los parentesis", i)
+                                    return true;
+                                    break;
                                 }
                         }
                         break;
@@ -42,28 +51,33 @@ const check = () => {
                             if (posible_values.indexOf(tokens[index + 4].string) < 0) error("Error: valor no valido", i)
                             if (tokens[index + 6].string !== "grados") error("Error: servo completar codigo", i)
                         }
+                        return true;
                         break;
                     }
                 case "ledbuzzer":
                     {
                         checkIndent(element, i)
                         if (ledbuzzer_vars.indexOf(tokens[index + 2].string) < 0) error("Error: ledbuzzer variable", i)
+                        return true;
                         break;
                     }
                 case "motor":
                     {
                         checkIndent(element, i)
                         if (motor_vars.indexOf(tokens[index + 2].string) < 0) error("Error: motor variable", i)
+                        return true;
                         break
                     }
                 case "interruption":
                     {
                         if (element.string === "cuando") {
-                            if (interruption_vars.indexOf(tokens[index + 2].string) < 0) error("Error: interrupcion no valida", i)
+                            if (interruption_vars.indexOf(tokens[index + 2].string) < 0) error("Error: variable de interrupcion no valida", i)
                             if (tokens[index + 4].string !== "detecte") error("Error: Completacion de codigo", i)
-                            if (tokens[index + 6].string !== "alto") error("Error: valor no valido", i)
                             if (tokens[index + 8].string !== "entonces") error("He", i)
+                            tokens[index + 6].string === "bajo"?  null : tokens[index + 6].string !== "alto" ? error("Error: valor de caida no valido", i) : null;
+                            siempreCounter.length > 0 ? error("Error: Las interrupciones deben ir antes del siempre", i) : null;
                         }
+                        return true;
                         break;
                     }
                 case "other":
@@ -81,21 +95,22 @@ const check = () => {
                                 {
                                     checkIndent(element, i)
                                     let allowed_types = ["string", "number", "variable", "operator"]
-                                    //let string_reg_exp = new RegExp(/[']+[a-zA-Z0-9-_",./']+[']/)
                                     let stringsPrint = new Array();
                                     for (j = 0; j < tokens.length; j++) {
                                         stringsPrint.push(tokens[j].string)
                                     }
-                                    let start = stringsPrint.indexOf('decir')+2
-                                    for ( j = start; j < tokens.length ; j++){
-                                        if (allowed_types.indexOf(tokens[j].type) < 0 && tokens[j].type !== null){
+                                    let start = stringsPrint.indexOf('decir') + 2
+                                    for (j = start; j < tokens.length; j++) {
+                                        if (allowed_types.indexOf(tokens[j].type) < 0 && tokens[j].type !== null) {
                                             console.log(tokens[j])
                                             error("Error: valor de 'decir' no valido" + j, i)
-                                        } 
+                                        }
                                     }
                                     break;
                                 }
                         }
+                        return true;
+                        break;
                     }
                     break;
             }
@@ -130,24 +145,55 @@ const checkIndent = (element, line) => {
     if (element.state.indent <= 0) error("Error: falta indentacion", line)
 }
 
-let code
+let code, def, functionNames, interruptionStack, expectedIndent
 
 const parseAndUpload = () => {
     let errors = check()
     if (!errors) {
         code = new Array()
+        def = new Array()
+        interruptionStack = new Array()
+        functionNames = new Array();
+        writeArray(importTemplate);
+        expectedIndent = 0;
+        writeVariables();
         for (let i = 0; i < editor.lineCount(); i++) {
             tokens = editor.getLineTokens(i)
-            tokens.forEach((element, index) => {
+            try{
+                if (tokens[0].state.indent == 0 && interruptionStack.length > 0){
+                    write(`\n${interruptionStack[0]['name']}_ref = pi.callback(${interruptionStack[0]['variable']},${interruptionStack[0]['state']},${interruptionStack[0]['name']})\n`, 0)
+                    interruptionStack.splice(0,1)
+                }
+            }catch(e){
+                
+            }
+           tokens.some((element, index) => {
                 switch (element.type) {
                     case "comment":
                         {
+                            return true;
                             break;
                         }
+                    case "variable":{
+                        let finalString = "";
+                        if(tokens[index + 4].string==="Verdadero"||tokens[index + 4].string==="Falso"){
+                            tokens[index + 4].string === "Verdadero" ? finalString = `${element.string} = True` : finalString = `${element.string} = False`;
+                        }else{
+                            for(j = index; j < tokens.length; j++){
+                                finalString += tokens[j].string;
+                            }
+                        }
+                        write(finalString, element.state.indent + expectedIndent);
+                        return true;
+                        break;
+                    }
                     case "control":
-                        {
-                            //Control words: ["si","entonces","sino", "siempre"]
-                            if (element.string === "siempre") write("while True:", 0)
+                        {   
+                            if (element.string === "siempre"){
+                                write("try:", 0)
+                                write("while True:", 4);
+                                expectedIndent = 4;
+                            }
                             if (element.string === "si") {
                                 let stringsIf = new Array();
                                 for (j = 0; j < tokens.length; j++) {
@@ -180,9 +226,11 @@ const parseAndUpload = () => {
                                             }
                                     }
                                 }
-                                write(`if ${condition}:`, element.state.indent)
+                                write(`if ${condition}:`, element.state.indent + expectedIndent)
                             }
-                            if (element.string === "sino") write("else", element.state.indent)
+                            if (element.string === "sino") write("else", element.state.indent + expectedIndent)
+                            return true;
+                            break;
                         }
                     case "servo":
                         {
@@ -191,50 +239,59 @@ const parseAndUpload = () => {
                                 switch (tokens[index + 4].string) {
                                     case "0":
                                         {
-                                            write(`pi.set_servo_pmw(${varName},1500)`, element.state.indent)
+                                            write(`pi.set_servo_pmw(${varName},1500)`, element.state.indent + expectedIndent)
                                             break;
                                         }
                                     case "90":
                                         {
-                                            write(`pi.set_servo_pmw(${varName},2000)`, element.state.indent)
+                                            write(`pi.set_servo_pmw(${varName},2000)`, element.state.indent + expectedIndent)
                                             break;
                                         }
                                     case "180":
                                         {
-                                            write(`pi.set_servo_pmw(${varName},2500)`, element.state.indent)
+                                            write(`pi.set_servo_pmw(${varName},2500)`, element.state.indent + expectedIndent)
                                             break;
                                         }
                                 }
                             }
+                            return true;
                             break;
                         }
                     case "ledbuzzer":
                         {
                             let varName = tokens[index + 2].string
                             if (element.string === "encender") {
-                                write(`pi.write(${varName}, 1)`, element.state.indent)
+                                write(`pi.write(${varName}, 1)`, element.state.indent + expectedIndent)
                             } else {
-                                write(`pi.write(${varName}, 0)`, element.state.indent)
+                                write(`pi.write(${varName}, 0)`, element.state.indent + expectedIndent)
                             }
+                            return true;
                             break;
                         }
                     case "motor":
                         {
                             let varName = tokens[index + 2].string
                             if (element.string === "mover") {
-                                write(`pi.write(${varName}, 1)`, element.state.indent)
+                                write(`pi.write(${varName}, 1)`, element.state.indent + expectedIndent)
                             } else {
-                                write(`pi.write(${varName}, 0)`, element.state.indent)
+                                write(`pi.write(${varName}, 0)`, element.state.indent + expectedIndent)
                             }
-                            break
+                            return true;
+                            break;
                         }
                     case "interruption":
                         {
                             if (element.string === "cuando") {
-                                /*if (interruption_vars.indexOf(tokens[index+2].string)<0) error("Error: interrupcion no valida", i)
-                                if (tokens[index+4].string!=="detecte") error("Error: Completacion de codigo", i)
-                                if (tokens[index+6].string!=="alto") error("Error: valor no valido", i)
-                                if (tokens[index+8].string!=="entonces") error("He", i)*/
+                                let state;
+                                let function_name = getRandomFunctionName();
+                                write(`def ${function_name}():`, element.state.indent);
+                                tokens[index + 6].string == "alto" ? state = "pigpio.RISING_EDGE" : state = "pigpio.FALLING_EDGE";;
+                                interruptionStack.push({
+                                    "name":name,
+                                    "state":state,
+                                    "variable":tokens[index + 2].string
+                                });
+                                return true;
                             }
                             break;
                         }
@@ -243,43 +300,49 @@ const parseAndUpload = () => {
                             switch (element.string) {
                                 case "esperar":
                                     {
-                                        write(`sleep(${tokens[index+2].string})`, element.state.indent)
+                                        write(`sleep(${tokens[index+2].string})`, element.state.indent + expectedIndent)
+                                        return true;
                                         break;
                                     }
-                                    case "decir":
-                                        {
-                                            printArg = "";
-                                            let stringsPrint = new Array();
-                                            for (j = 0; j < tokens.length; j++) {
-                                                stringsPrint.push(tokens[j].string)
-                                            }
-                                            let start = stringsPrint.indexOf('decir') + 2
-                                            for (j = start; j < tokens.length; j++) {
-                                                printArg += stringsPrint[j]
-                                            }
-                                            write(`print(${printArg})`, element.state.indent)
-                                            break;
+                                case "decir":
+                                    {
+                                        printArg = "";
+                                        let stringsPrint = new Array();
+                                        for (j = 0; j < tokens.length; j++) {
+                                            stringsPrint.push(tokens[j].string)
                                         }
+                                        let start = stringsPrint.indexOf('decir') + 2
+                                        for (j = start; j < tokens.length; j++) {
+                                            printArg += stringsPrint[j]
+                                        }
+                                        write(`print(${printArg})`, element.state.indent + expectedIndent)
+                                        return true;
+                                        break;
+                                    }
                             }
                             break;
                         }
                         break;
                 }
             });
-        }   
+        }
+        writeArray(exceptTemplate)
+        writeFinally()
         let fd = new FormData();
-        let file = new File(code,'code.txt',{type: "text/plain"})
-        fd.append('file',file)
+        let file = new File(code, 'code.txt', {
+            type: "text/plain"
+        })
+        fd.append('file', file)
         $.ajax({
             url: '/code/set_python/' + slug,
             data: fd,
             type: 'POST',
             contentType: false,
-            processData: false, 
-            success:(data)=>{
+            processData: false,
+            success: (data) => {
                 console.log(data)
             },
-            error:(data)=>{
+            error: (data) => {
                 console.log(data)
             }
         })
@@ -292,4 +355,45 @@ const write = (string, indent) => {
         finalString += "\t"
     }
     code.push(finalString + string + "\n")
+}
+
+const getRandomFunctionName = () =>{
+    let words = ['red','blue','yellow','green','purple','orange','pink']
+    name = "function_" + words[Math.floor(Math.random()*words.length)]
+    if(functionNames.indexOf(name)===-1){
+        functionNames.push(name);
+        return name;
+    }else{
+        if(functionNames.length < 7){
+            return getRandomFunctionName();
+        }else{
+            return null;
+        }
+    }
+}
+
+const writeVariables = () =>{
+    let real_pins = [4, 17, 18, 27, 22, 23, 24, 25];
+    variables.forEach((element)=>{
+        write(`${element['nme_variable']} = ${real_pins[element['pin_variable']-1]}`, 0)
+    })
+    write("\n")
+}
+
+const writeFinally = ()=>{
+    variables.forEach((element)=>{
+        let type = element['tpe_variable']
+        if(type != "button" && type != "pir"){
+            write(`pi.write(${element['nme_variable']}, 0)`, 4)
+        }
+    })
+    functionNames.forEach((element)=>{
+        write(`${element}_ref.cancel()`, 4)
+    })
+}
+
+const writeArray = (array) =>{
+    array.forEach((element)=>{
+        write(element, 0);
+    })
 }

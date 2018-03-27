@@ -1,0 +1,13 @@
+except ZeroDivisionError:
+    print("[Error]: Division entre cero")
+except NameError:
+    print("[Error]: Se intento usar una variable no declarada")
+except OverflowError:
+    print("[Error]: Valor de una operacion muy grande para ser representada")
+except RuntimeError:
+    print("[Error]: Ha ocurrido un error inesperado")
+except SyntaxError:
+    print("[Error]: Error de sintaxis")
+except IndentationError:
+    print("[Error]: Error de Indentacion")
+finally:

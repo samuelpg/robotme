@@ -37,6 +37,14 @@ def stop_code(project_slug):
     #Stop task with process ID
     pass
 
+@app.route('/code/except_template', methods = ['GET'])
+def get_except():
+    return send_from_directory(directory='static', filename='except.txt')
+
+@app.route('/code/import_template', methods = ['GET'])
+def get_import():
+    return send_from_directory(directory='static', filename='import.txt')
+
 @app.route('/connected')
 def connected():
     def event_stream():
