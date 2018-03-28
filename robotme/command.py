@@ -26,9 +26,6 @@ def ensure_dir(file_path):
 def delete_project_dir(slug):
     shutil.rmtree('robotme/projects/'+slug)
 
-def create_py_file(slug):
-    try:
-        with open("robotme/projects/"+slug+"/program.py", "w") as p:
-            p.writelines("import os")
-    except (RuntimeError, TypeError, NameError):
-        print("Something wrong with creating .py")
+
+
+

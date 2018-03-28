@@ -36,24 +36,3 @@ def run_code(project_slug):
 def stop_code(project_slug):
     #Stop task with process ID
     pass
-
-@app.route('/code/except_template', methods = ['GET'])
-def get_except():
-    return send_from_directory(directory='static', filename='except.txt')
-
-@app.route('/code/import_template', methods = ['GET'])
-def get_import():
-    return send_from_directory(directory='static', filename='import.txt')
-
-@app.route('/connected')
-def connected():
-    def event_stream():
-        while True:
-            time.sleep(3)
-            yield 'data: %s\n\n' % 'hola mundo'
-    return Response(event_stream(), mimetype="text/event-stream")
-
-@app.route('/test/<project_slug>')
-def test_this(project_slug):
-    command.create_py_file(project_slug)
-    return "ok"

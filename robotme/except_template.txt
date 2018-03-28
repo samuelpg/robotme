@@ -10,4 +10,5 @@ except SyntaxError:
     print("[Error]: Error de sintaxis")
 except IndentationError:
     print("[Error]: Error de Indentacion")
-finally:
+finally:    
+    print("Programa finalizado")

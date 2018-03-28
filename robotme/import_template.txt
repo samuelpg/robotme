@@ -2,3 +2,4 @@ import os, time
 import pigpio
 
 pi = pigpio.pi()
+print("Programa iniciado")
