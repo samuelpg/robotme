@@ -11,8 +11,8 @@ thread = None
 thread_lock = Lock()
 
 def run_code_thread(project_slug):
-    #cmds = ['python','projects/'+project_slug+'/code.py']
-    cmds = ['python','test.py']
+    cmds = ['python','projects/'+project_slug+'/code.py']
+    #cmds = ['python','test.py']
     print("running code")
     proc = Popen(cmds, stdout=PIPE, bufsize=1)
     app.config['PROCESS'] = proc
@@ -54,16 +54,10 @@ def run_this(project_slug):
         global thread
         with thread_lock:
             if thread is None:
-                thread = socketio.start_background_task(target=run_code_thread, args=[project_slug])
+                thread = socketio.start_background_task(target=run_code_thread, project_slug=[project_slug])
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
-
-""" @socketio.on('my_event', namespace='/test')
-def test_message(message):
-    session['receive_count'] = session.get('receive_count', 0) + 1
-    emit('my_response',
-         {'data': message['data'], 'count': session['receive_count']}) """
 
 @app.route('/code/kill')
 def kill():
