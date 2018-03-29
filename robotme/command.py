@@ -1,5 +1,5 @@
 import subprocess, os, shutil
-from robotme import app
+from robotme import app, socketio
 from flask_socketio import SocketIO, emit, disconnect
 from subprocess import PIPE, Popen
 
