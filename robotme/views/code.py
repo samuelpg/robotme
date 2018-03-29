@@ -5,7 +5,6 @@ import os, time, sys
 from flask_socketio import SocketIO, emit, disconnect
 from subprocess import PIPE, Popen
 from threading import Lock
-from ../command import run_code_thread
 #RESTFULL ENDPOINTS FOR CODE EDITOR
 
 thread = None
