@@ -14,7 +14,7 @@ const run = () =>{
     console.log(namespace)
     socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
     socket.on('connect', function(e) {
-        //socket.emit('my_event', {data: 'I\'m connected!'});
+        socket.emit('run', {data: slug});
         console.log(e)
     });
     socket.on('log', function(msg) {

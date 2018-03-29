@@ -10,7 +10,7 @@ from threading import Lock
 thread = None
 thread_lock = Lock()
 
-def run_code_thread():#project_slug):
+def run_code_thread(project_slug):
     #cmds = ['python','projects/'+project_slug+'/code.py']
     cmds = ['python','test.py']
     print("running code")
@@ -43,15 +43,18 @@ def set_python(project_slug):
     return "ok"
 
 @socketio.on('connect', namespace='/test')
-def run_this():
+def connect():
+    pass
+
+@socketio.on('run', namespace='/test')
+def run_this(project_slug):
     proc = app.config['PROCESS']
-    print("Hello")
+    print(project_slug)
     if proc == None:
-        #project_slug = data['project_slug']
         global thread
         with thread_lock:
             if thread is None:
-                thread = socketio.start_background_task(target=run_code_thread)#, args=[project_slug])
+                thread = socketio.start_background_task(target=run_code_thread, args=[project_slug])
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
