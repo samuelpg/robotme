@@ -25,6 +25,17 @@ def ensure_dir(file_path):
 
 def delete_project_dir(slug):
     shutil.rmtree('robotme/projects/'+slug)
-
-
-
+    
+def run_code_thread(project_slug):
+    print(app.instance_path)
+    print(os.path.dirname(os.path.abspath(__file__)) )
+    cmds = ['python','projects/'+project_slug+'/code.py']
+    #cmds = ['python','test.py']
+    print("running code")
+    proc = Popen(cmds, stdout=PIPE, bufsize=1)
+    app.config['PROCESS'] = proc
+    print(proc)
+    while proc.poll() is None:
+        output = proc.stdout.readline()
+        if output != "":
+            socketio.emit('log', {'data': output}, namespace='/run')

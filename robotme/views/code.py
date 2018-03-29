@@ -5,28 +5,11 @@ import os, time, sys
 from flask_socketio import SocketIO, emit, disconnect
 from subprocess import PIPE, Popen
 from threading import Lock
+from command import run_code_thread
 #RESTFULL ENDPOINTS FOR CODE EDITOR
 
 thread = None
 thread_lock = Lock()
-
-def run_code_thread(project_slug):
-    print(app.instance_path)
-    print(os.path.isfile('./projects/'+project_slug+'/code.py'))
-    print(os.path.isfile('../projects/'+project_slug+'/code.py'))
-    print(os.path.isfile('../projects/'+project_slug+'/pseudo.txt'))
-    print(os.path.isfile('projects/'+project_slug+'/pseudo.txt'))
-    print(os.path.isfile('./projects/'+project_slug+'/pseudo.txt'))
-    cmds = ['python','projects/'+project_slug+'/code.py']
-    #cmds = ['python','test.py']
-    print("running code")
-    proc = Popen(cmds, stdout=PIPE, bufsize=1)
-    app.config['PROCESS'] = proc
-    print(proc)
-    while proc.poll() is None:
-        output = proc.stdout.readline()
-        if output != "":
-            socketio.emit('log', {'data': output}, namespace='/run')
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
 def code(project_slug):
