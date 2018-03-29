@@ -12,7 +12,7 @@ thread_lock = Lock()
 
 def run_code_thread(project_slug):
     print(app.instance_path)
-    cmds = ['python',project_slug]
+    cmds = ['python','projects/'+project_slug+'/code.py']
     #cmds = ['python','test.py']
     print("running code")
     proc = Popen(cmds, stdout=PIPE, bufsize=1)
