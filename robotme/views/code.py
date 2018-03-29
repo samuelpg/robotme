@@ -11,6 +11,7 @@ thread = None
 thread_lock = Lock()
 
 def run_code_thread(project_slug):
+    print(os.path.dirname(os.path.realpath(__file__)))
     cmds = ['python','projects/'+project_slug+'/code.py']
     #cmds = ['python','test.py']
     print("running code")
@@ -68,3 +69,5 @@ def kill():
         return "Programa terminado"
     else:
         return "No hay programa corriendo"
+
+#python: can't open file 'projects/HouseDogFly/code.py': [Errno 2] No such file or directory
