@@ -1,4 +1,9 @@
-import os, time
+import os, time, sys
+from time import sleep
 import pigpio
 
 pi = pigpio.pi()
+
+def printf(msg):
+    print(msg)
+    sys.stdout.flush()

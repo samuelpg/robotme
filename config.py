@@ -11,3 +11,6 @@ DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Bo
 
 #PROJECTS FOLDER
 PROJECT_FOLDER = 'robotme/projects'
+
+#PROCESS ID
+PROCESS = None

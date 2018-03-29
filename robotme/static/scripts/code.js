@@ -168,7 +168,3 @@ const save = () =>{
         }
     })
 }
-
-const goBack = () =>{
-    editor.undo();
-}

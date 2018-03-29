@@ -324,7 +324,7 @@ const parseAndUpload = () => {
                                         for (j = start; j < tokens.length; j++) {
                                             printArg += stringsPrint[j]
                                         }
-                                        write(`print(${printArg})`, element.state.indent + expectedIndent)
+                                        write(`printf(${printArg})`, element.state.indent + expectedIndent)
                                         return true;
                                         break;
                                     }
@@ -350,6 +350,7 @@ const parseAndUpload = () => {
             processData: false,
             success: (data) => {
                 console.log(data)
+                $('#console-modal').show()
             },
             error: (data) => {
                 console.log(data)

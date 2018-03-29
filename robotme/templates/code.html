@@ -271,27 +271,30 @@
         <button class="project-button">
             <i class="fa fa-chevron-left"></i> Variables</button>
         <div class="code-buttons">
-            <button class="project-button" onclick="goBack()">
+            <button class="project-button" onclick="editor.undo()">
                 <i class="fa fa-undo"></i>
             </button>
-            <button class="project-button" onclick="goBack()">
-                <i class="fa fa-redo"> </i>
+            <button class="project-button" onclick="editor.redo();">
+                <i class="fa fa-repeat"> </i>
             </button>
             <button class="project-button" onclick="save()">
                 <i class="fa fa-floppy-o"></i>
             </button>
             <button class="project-button" onclick="parseAndUpload()">
-                <i class="fa fa-play"></i> Correr</button>
+                <i class="fa fa-play"></i></button>
         </div>
     </div>
     <!-- CONSOLE -->
     <div id="console-modal" class="modal">
         <div class="modal-content">
             <div id="console">
-
+                
             </div>
-            <button class="project-button"><i class="fa fa-play"></i> Correr</button>
-            <button class="project-button"><i class="fa fa-stop"></i> Parar</button>
+            <div id="console-buttons">
+                <button class="project-button" onclick="run()"><i class="fa fa-play"></i> Correr</button>
+                <button class="project-button" onclick="stop()"><i class="fa fa-stop"></i> Parar</button>
+                <button class="project-button" onclick="edit()"><i class="fa fa-pencil"></i></button>
+            </div>
         </div>
     </div>
     <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
@@ -301,6 +304,7 @@
     <script src="../static/scripts/libs/python.js"></script>
     <script src="../static/scripts/code.js"></script>
     <script src="../static/scripts/parser.js"></script>
+    <script src="../static/scripts/run.js"></script>
 </body>
 
 </html>
