@@ -11,7 +11,7 @@ thread = None
 thread_lock = Lock()
 
 def run_code_thread(project_slug):
-    print(os.path.dirname(os.path.realpath(__file__)))
+    print(app.instance_path)
     cmds = ['python','../projects/'+project_slug+'/code.py']
     #cmds = ['python','test.py']
     print("running code")
