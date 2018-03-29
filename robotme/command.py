@@ -28,4 +28,3 @@ def delete_project_dir(slug):
 
 
 
-
