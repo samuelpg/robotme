@@ -42,7 +42,7 @@ def run_this(project_slug):
         global thread
         with thread_lock:
             if thread is None:
-                thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data'])
+                thread = socketio.start_background_task(target=command.run_code_thread, project_slug=project_slug['data'])
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})

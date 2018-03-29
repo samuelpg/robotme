@@ -1,5 +1,7 @@
 import subprocess, os, shutil
 from robotme import app
+from flask_socketio import SocketIO, emit, disconnect
+from subprocess import PIPE, Popen
 
 def create_new_project_dir(slug, name, author):
     #create dir projects /slug and files slug/program.py and slug/code.txt
@@ -25,7 +27,7 @@ def ensure_dir(file_path):
 
 def delete_project_dir(slug):
     shutil.rmtree('robotme/projects/'+slug)
-    
+
 def run_code_thread(project_slug):
     print(app.instance_path)
     print(os.path.dirname(os.path.abspath(__file__)) )
