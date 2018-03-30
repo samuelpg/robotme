@@ -5,7 +5,7 @@ import os, time, sys
 from flask_socketio import SocketIO, emit, disconnect
 from subprocess import PIPE, Popen
 from threading import Lock
-
+import eventlet
 """ import eventlet
 eventlet.monkey_patch()
  """
@@ -36,7 +36,7 @@ def run_code_thread(project_slug):
 def test_thread():
     while True:
         socketio.emit('log', {'data': "F"}, namespace='/run')
-        time.sleep(2)
+        socketio.sleep(2)
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
 def code(project_slug):
@@ -67,12 +67,12 @@ def run_this(project_slug):
     proc = app.config['PROCESS']
     print(proc)
     if proc == None:
-        global thread
+        """ global thread
         with thread_lock:
             if thread is None:
-                thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data'])
+                thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
         #eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
-        #eventlet.spawn(test_thread)
+        eventlet.spawn(test_thread)
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
