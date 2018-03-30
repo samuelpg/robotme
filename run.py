@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch() 
+
 from robotme import app, socketio
 from robotme import database
 from flask_socketio import SocketIO

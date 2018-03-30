@@ -4,16 +4,16 @@ from werkzeug.utils import secure_filename
 import os, time, sys
 from flask_socketio import SocketIO, emit, disconnect
 from subprocess import PIPE, Popen
-from threading import Lock
+#from threading import Lock
 import eventlet
 """ import eventlet
 eventlet.monkey_patch()
  """
 #RESTFULL ENDPOINTS FOR CODE EDITOR
-
+""" 
 thread = None
 thread_lock = Lock()
-
+ """
 def run_code_thread(project_slug):
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))
     #APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
@@ -71,8 +71,8 @@ def run_this(project_slug):
         with thread_lock:
             if thread is None:
                 thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
-        #eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
-        eventlet.spawn(test_thread)
+        eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
+        #eventlet.spawn(test_thread)
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
