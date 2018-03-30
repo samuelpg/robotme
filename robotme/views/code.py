@@ -76,7 +76,7 @@ def kill():
     proc = app.config['PROCESS']
     if proc != None:
         proc.kill()
-        app.config['process'] = None
+        app.config['PROCESS'] = None
         return "Programa terminado"
     else:
         return "No hay programa corriendo"
