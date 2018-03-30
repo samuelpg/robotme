@@ -26,9 +26,7 @@ def run_code_thread(project_slug):
         if output != "":
             socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
-        x = line.rstrip()
-        print(x)
-        socketio.emit('log', {'data': x}, namespace='/run')
+        socketio.emit('log', {'data': line.rstrip()}, namespace='/run')
 
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
@@ -58,7 +56,7 @@ def connect():
 @socketio.on('run', namespace='/test')
 def run_this(project_slug):
     proc = app.config['PROCESS']
-    print(project_slug)
+    print(proc)
     if proc == None:
         global thread
         with thread_lock:
