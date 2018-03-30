@@ -362,7 +362,7 @@ const parseAndUpload = () => {
 const write = (string, indent) => {
     let finalString = ""
     for (i = 0; i < (indent / 4); i++) {
-        finalString += "\t"
+        finalString += "    "
     }
     code.push(finalString + string + "\n")
 }
