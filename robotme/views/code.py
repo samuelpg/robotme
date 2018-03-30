@@ -30,8 +30,7 @@ def run_code_thread(project_slug):
         if output != "":
             socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
-        print line
-        socketio.emit('log', {'data': line.rstrip()}, namespace='/run')
+        socketio.emit('log', {'data': line}, namespace='/run')
         socketio.sleep(0)
 
 def test_thread():
