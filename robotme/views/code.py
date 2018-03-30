@@ -26,7 +26,7 @@ def run_code_thread(project_slug):
         if output != "":
             socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
-        socketio.emit('log', {'data': line.rstrip()}, namespace='/run')
+        emit('log', {'data': line.rstrip()}, namespace='/run')
 
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
