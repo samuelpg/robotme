@@ -10,10 +10,10 @@ import eventlet
 eventlet.monkey_patch()
  """
 #RESTFULL ENDPOINTS FOR CODE EDITOR
-""" 
+
 thread = None
 thread_lock = Lock()
- """
+
 def run_code_thread(project_slug):
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))
     APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
