@@ -32,6 +32,7 @@ def run_code_thread(project_slug):
     for line in iter(proc.stdout.readline,''):
         print line
         socketio.emit('log', {'data': line.rstrip()}, namespace='/run')
+        socketio.sleep(0)
 
 def test_thread():
     while True:
@@ -71,8 +72,8 @@ def run_this(project_slug):
         """ with thread_lock:
             if thread is None:
                 thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
-        #eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
-        eventlet.spawn(test_thread)
+        eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
+        #eventlet.spawn(test_thread)
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
