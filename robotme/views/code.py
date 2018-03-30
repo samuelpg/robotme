@@ -35,7 +35,7 @@ def run_code_thread(project_slug):
 
 def test_thread():
     while True:
-        emit('log', {'data': "F"}, namespace='/run')
+        socketio.emit('log', {'data': "F"}, namespace='/run')
         time.sleep(2)
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
