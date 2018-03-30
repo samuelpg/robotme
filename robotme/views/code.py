@@ -26,6 +26,7 @@ def run_code_thread(project_slug):
         if output != "":
             socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
+        print(line.rstrip())
         socketio.emit('log', {'data': line.rstrip()}, namespace='/run')
 
 
