@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 import os, time, sys
 from flask_socketio import SocketIO, emit, disconnect
 from subprocess import PIPE, Popen
-#from threading import Lock
+from threading import Lock
 import eventlet
 """ import eventlet
 eventlet.monkey_patch()
@@ -17,21 +17,10 @@ thread_lock = Lock()
 def run_code_thread(project_slug):
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))
     APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
-    cmds = ['python',APP_STATIC]
-    #APP_STATIC = os.path.join(APP_ROOT, 'test.py')
-    #cmds = ['python', APP_STATIC]
-    print(cmds[1])
-    proc = Popen(cmds, stdout=PIPE, bufsize=1)
+    proc = Popen(['python',APP_STATIC], stdout=PIPE, bufsize=1)
     app.config['PROCESS'] = proc
-    print(proc)
-    """ while proc.poll() is None:
-        print("F")
-        output = proc.stdout.readline()
-        if output != "":
-            socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
         socketio.emit('log', {'data': line}, namespace='/run')
-        eventlet.sleep(1)
         print line
 
 def test_thread():
@@ -66,14 +55,12 @@ def connect():
 @socketio.on('run', namespace='/test')
 def run_this(project_slug):
     proc = app.config['PROCESS']
-    print(proc)
     if proc == None:
-        """ global thread
+        #eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
+        global thread
         with thread_lock:
             if thread is None:
-                thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
-        eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
-        #eventlet.spawn(test_thread)
+                thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data'])
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
@@ -89,3 +76,13 @@ def kill():
         return "No hay programa corriendo"
 
 #python: can't open file 'projects/HouseDogFly/code.py': [Errno 2] No such file or directory
+""" while proc.poll() is None:
+    print("F")
+    output = proc.stdout.readline()
+    if output != "":
+        socketio.emit('log', {'data': output}, namespace='/run') """
+    
+""" global thread
+with thread_lock:
+    if thread is None:
+        thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
