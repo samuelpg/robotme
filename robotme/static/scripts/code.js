@@ -112,6 +112,7 @@ $(document).ready(function () {
     $.ajax({
         url: '/code/import_template',
         method: "GET",
+        cache: false,
         success: (data) => {
             importTemplate = data.split("\n")
         },
@@ -123,6 +124,7 @@ $(document).ready(function () {
     $.ajax({
         url: '/code/except_template',
         method: "GET",
+        cache: false,
         success: (data) => {
             exceptTemplate = data.split("\n")
         },

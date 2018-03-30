@@ -11,7 +11,7 @@ thread = None
 thread_lock = Lock()
 
 def run_code_thread(project_slug):
-    APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
+    APP_ROOT = os.path.dirname(os.path.abspath(__file__))
     #APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
     #cmds = ['python',APP_STATIC]
     APP_STATIC = os.path.join(APP_ROOT, 'test.py')
@@ -20,10 +20,13 @@ def run_code_thread(project_slug):
     proc = Popen(cmds, stdout=PIPE, bufsize=1)
     app.config['PROCESS'] = proc
     print(proc)
-    while proc.poll() is None:
+    """ while proc.poll() is None:
+        print("F")
         output = proc.stdout.readline()
         if output != "":
-            socketio.emit('log', {'data': output}, namespace='/run')
+            socketio.emit('log', {'data': output}, namespace='/run') """
+    for line in iter(proc.stdout.readline,''):
+        socketio.emit('log', {'data': line.rstrip()}, namespace='/run')
 
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
