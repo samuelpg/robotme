@@ -31,7 +31,7 @@ def run_code_thread(project_slug):
             socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
         socketio.emit('log', {'data': line}, namespace='/run')
-        socketio.sleep(0)
+        print line
 
 def test_thread():
     while True:
