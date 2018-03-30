@@ -12,9 +12,10 @@ thread_lock = Lock()
 
 def run_code_thread(project_slug):
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
-    APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
+    #APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
+    #cmds = ['python',APP_STATIC]
+    APP_STATIC = os.path.join(APP_ROOT, '/test.py')
     cmds = ['python',APP_STATIC]
-    #cmds = ['python','test.py']
     print("running code")
     proc = Popen(cmds, stdout=PIPE, bufsize=1)
     app.config['PROCESS'] = proc
