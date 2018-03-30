@@ -16,11 +16,11 @@ thread_lock = Lock()
  """
 def run_code_thread(project_slug):
     APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-    #APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
-    #cmds = ['python',APP_STATIC]
-    APP_STATIC = os.path.join(APP_ROOT, 'test.py')
-    cmds = ['python', APP_STATIC]
-    print("running code")
+    APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
+    cmds = ['python',APP_STATIC]
+    #APP_STATIC = os.path.join(APP_ROOT, 'test.py')
+    #cmds = ['python', APP_STATIC]
+    print(cmds[1])
     proc = Popen(cmds, stdout=PIPE, bufsize=1)
     app.config['PROCESS'] = proc
     print(proc)
@@ -31,6 +31,7 @@ def run_code_thread(project_slug):
             socketio.emit('log', {'data': output}, namespace='/run') """
     for line in iter(proc.stdout.readline,''):
         socketio.emit('log', {'data': line}, namespace='/run')
+        eventlet.sleep(1)
         print line
 
 def test_thread():
