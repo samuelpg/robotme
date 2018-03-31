@@ -68,9 +68,11 @@ def run_this(project_slug):
 @app.route('/code/kill')
 def kill():
     proc = app.config['PROCESS']
+    print proc
     if proc != None:
-        proc.kill()
+        proc.terminate()
         app.config['PROCESS'] = None
+        print app.config['PROCESS']
         return "Programa terminado"
     else:
         return "No hay programa corriendo"

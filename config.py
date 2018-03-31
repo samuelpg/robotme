@@ -7,7 +7,7 @@ GPIO_INPUT = [24, 25] #GPIO input pins
 RTDB_NAME = 'robotme.db'
 
 #SLUG DICTIONARY, POSIBLE SLUGS: 10626
-DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Book','Room','Song','Fun','Robot','Cat','Money','Ice','Fly','Apple','Berry','Happy','Sad','Pizza','Cake']
+DICTIONARY_EN = ['Dog','House','Candy','Cream','Red','Blue','Phone','Yellow','Book','Room','Song','Fun','Robot','Cat','Money','Ice','Fly','Apple','Berry','Happy','Pizza','Cake','Coin']
 
 #PROJECTS FOLDER
 PROJECT_FOLDER = 'robotme/projects'
