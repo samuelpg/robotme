@@ -293,7 +293,7 @@ const parseAndUpload = () => {
                             if (element.string === "cuando") {
                                 let state;
                                 let function_name = getRandomFunctionName();
-                                write(`def ${function_name}():`, element.state.indent);
+                                write(`def ${function_name}(gpio, level, tick):`, element.state.indent);
                                 tokens[index + 6].string == "alto" ? state = "pigpio.RISING_EDGE" : state = "pigpio.FALLING_EDGE";;
                                 interruptionStack.push({
                                     "name":name,
