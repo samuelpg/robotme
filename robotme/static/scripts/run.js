@@ -10,7 +10,7 @@ let socket
 
 const run = () =>{
     $("#console").empty();
-    let namespace = '/test';
+    let namespace = '/run';
     console.log(namespace)
     socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
     socket.on('connect', function(e) {
