@@ -78,6 +78,14 @@ def kill():
     else:
         return "No hay programa corriendo"
 
+@app.route('/connected')
+def connected():
+    def event_stream():
+        while True:
+            time.sleep(3)
+            yield 'data: %s\n\n' % 'hola mundo'
+    return Response(event_stream(), mimetype="text/event-stream")
+    
 #python: can't open file 'projects/HouseDogFly/code.py': [Errno 2] No such file or directory
 """ while proc.poll() is None:
     print("F")

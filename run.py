@@ -1,7 +1,7 @@
 import eventlet
 eventlet.monkey_patch() 
 
-from robotme import app, socketio, database, setter
+from robotme import app, socketio, database
 from flask_socketio import SocketIO
 
 database.config_db()

@@ -115,8 +115,8 @@ $(document).ready(function () {
 
     if(ls.getItem(slug)!=null){
         data = JSON.parse(ls.getItem(slug));
-        code = data['data']
-        editor.setValue(data)
+        codeSaved = data['data']
+        editor.setValue(codeSaved)
         ls.removeItem(slug)
     }else{
         $.ajax({
@@ -184,6 +184,7 @@ const saveOnRemote = () =>{
         processData: false, 
         success:(data)=>{
             console.log(data)
+            lastSavedMsg()
             if(ls.getItem(slug)!=null){
                 ls.removeItem(slug)
             }
@@ -199,9 +200,16 @@ const saveOnLocal = () =>{
         'data':editor.getValue()
     }
     ls.setItem(slug, JSON.stringify(data))
+    lastSavedMsg()
+}
+
+const lastSavedMsg = () =>{
+    date = new Date($.now())
+    $('#last-saved').html(`Ultimo guardado: ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} ${date.getHours()+1}:${date.getMinutes()}`)
 }
 
 const initSSE = () =>{
+    console.log("SSE")
     source = new EventSource("/connected");
     con = $('#connection-indicator')
     source.onmessage = () =>{
@@ -220,9 +228,10 @@ const initSSE = () =>{
             con.empty()
             con.append(`<span>Desconectado!</span>`)
             source.close();
-            setTimeout(initSSE, 5000);
         }
+        setTimeout(initSSE, 5000);
     }
+    console.log('hey')
 }
 
 const save = () =>{
