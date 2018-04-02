@@ -48,11 +48,11 @@ def set_python(project_slug):
     f.save(os.path.join('robotme/projects/'+project_slug,"code.py"))
     return "ok"
 
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/run')
 def connect():
     emit('msg',{'data':'connected'})
 
-@socketio.on('run', namespace='/test')
+@socketio.on('run', namespace='/run')
 def run_this(project_slug):
     proc = app.config['PROCESS']
     if proc == None:
