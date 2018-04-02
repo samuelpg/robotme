@@ -394,7 +394,10 @@ const writeFinally = ()=>{
     variables.forEach((element)=>{
         let type = element['tpe_variable']
         if(type != "button" && type != "pir"){
-            write(`pi.write(${element['nme_variable']}, 0)`, 4)
+            if(type != "servo")
+                write(`pi.write(${element['nme_variable']}, 0)`, 4)
+            else
+                write(`pi.set_servo_pulsewidth(${element['nme_variable']}, 0)`, 4)
         }
     })
     functionNames.forEach((element)=>{

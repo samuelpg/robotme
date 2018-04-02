@@ -1,15 +1,20 @@
 let textArea = document.getElementById('codemirror');
-
 let previousContentTitle = new Array();
-let variables
+
+//array for variables
+let variables;
+
+//arrays for variable verification
 let ledbuzzer_vars = new Array();
 let servo_vars = new Array();
 let motor_vars = new Array();
 let interruption_vars = new Array();
 
+//templates for parser.js
 let importTemplate = new Array();
 let exceptTemplate = new Array();
 
+//Editor
 let editor = CodeMirror.fromTextArea(textArea, {
     lineNumbers: true,
     autoClearEmptyLines: true,
@@ -17,8 +22,19 @@ let editor = CodeMirror.fromTextArea(textArea, {
     indentUnit: 4,
 });
 
-let slug;
+//localStorage
+let ls = window.localStorage;
 
+//Slug
+let slug
+//Online SSE
+let source;
+let online = true;
+//Autosave 
+let autosave_timer = null;
+let generation = null;
+
+//template for rows
 const row = (pin, type, name) =>{
     let color = "";
     switch (type) {
@@ -83,6 +99,7 @@ const draw = (variables) =>{
 $(document).ready(function () {
     path = window.location.pathname.split('/');
     slug = path[2];
+
     $.ajax({
         url: '/variables/get/' + slug,
         method: "GET",
@@ -96,19 +113,25 @@ $(document).ready(function () {
         }
     })
 
-    $.ajax({
-        url: '/code/get/' + slug,
-        method: "GET",
-        cache: false,
-        success: (data) => {
-            editor.setValue(data);
-            editor.clearHistory();
-        },
-        error: (data)=>{
-            console.log(error)
-        }
-    })
-
+    if(ls.getItem(slug)!=null){
+        data = JSON.parse(ls.getItem(slug));
+        code = data['data']
+        editor.setValue(data)
+        ls.removeItem(slug)
+    }else{
+        $.ajax({
+            url: '/code/get/' + slug,
+            method: "GET",
+            cache: false,
+            success: (data) => {
+                editor.setValue(data);
+                editor.clearHistory();
+            },
+            error: (data)=>{
+                console.log(error)
+            }
+        })
+    }
     $.ajax({
         url: '/code/import_template',
         method: "GET",
@@ -146,13 +169,10 @@ $(document).ready(function () {
         }
     });
 
-    /*let eventSource = new EventSource("/connected");
-    eventSource.onmessage = function (e) {
-        console.log(e);
-    };*/
+    initSSE();
 })
 
-const save = () =>{
+const saveOnRemote = () =>{
     let fd = new FormData();
     let file = new File([editor.getValue()],'pseudo.txt',{type: "text/plain"})
     fd.append('file',file)
@@ -164,9 +184,61 @@ const save = () =>{
         processData: false, 
         success:(data)=>{
             console.log(data)
+            if(ls.getItem(slug)!=null){
+                ls.removeItem(slug)
+            }
         },
         error:(data)=>{
-            console.log(data)
+            console.log(data)  
         }
     })
 }
+
+const saveOnLocal = () =>{
+    let data = {
+        'data':editor.getValue()
+    }
+    ls.setItem(slug, JSON.stringify(data))
+}
+
+const initSSE = () =>{
+    source = new EventSource("/connected");
+    con = $('#connection-indicator')
+    source.onmessage = () =>{
+        online = true
+        if(con.attr('class') !== 'connection-indicator'){
+            con.attr('class','connection-indicator')
+            con.empty()
+            con.append(`<span>Conectado!</span>`)
+            save();
+        }
+    }
+    source.onerror = () =>{
+        online = false
+        if(con.attr('class') !== 'connection-indicator disconnected'){
+            con.attr('class','connection-indicator disconnected')
+            con.empty()
+            con.append(`<span>Desconectado!</span>`)
+            source.close();
+            setTimeout(initSSE, 5000);
+        }
+    }
+}
+
+const save = () =>{
+    if(online){
+        saveOnRemote();
+    }else{
+        saveOnLocal();
+    }
+}
+
+editor.on("change", function(cm, change) {
+    if (autosave_timer) {
+        autosave_timer = clearTimeout(autosave_timer);
+    }
+    // Initiate the timeout and wait for 5 seconds
+    autosave_timer = setTimeout(function() {
+        save()
+    }, 5000);
+})

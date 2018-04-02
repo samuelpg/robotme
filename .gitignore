@@ -5,3 +5,4 @@
 *.sqlite
 *.db
 robotme/projects/*
+.vscode/launch.json

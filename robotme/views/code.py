@@ -50,7 +50,7 @@ def set_python(project_slug):
 
 @socketio.on('connect', namespace='/test')
 def connect():
-    pass
+    emit('msg',{'data':'connected'})
 
 @socketio.on('run', namespace='/test')
 def run_this(project_slug):
@@ -70,7 +70,8 @@ def kill():
     proc = app.config['PROCESS']
     print proc
     if proc != None:
-        proc.terminate()
+        proc.send_signal(signal.SIGINT)
+        #proc.terminate()
         app.config['PROCESS'] = None
         print app.config['PROCESS']
         return "Programa terminado"
