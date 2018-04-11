@@ -276,6 +276,7 @@ $(".element-input").draggable({
 
 $("#pin-7, #pin-8").droppable({
     accept: ".element-input",
+    activeClass: "accepted-variable",
     drop: function (event, ui) {
         $(this).droppable('disable');
         addVariable(parseInt($(this).attr('data-value')), $(ui.helper).attr('data-type'))
@@ -283,6 +284,7 @@ $("#pin-7, #pin-8").droppable({
 });
 $("#pin-1, #pin-2, #pin-3, #pin-4, #pin-5, #pin-6").droppable({
     accept: ".element-output",
+    activeClass: "accepted-variable",
     drop: function (event, ui) {
         $(this).droppable('disable');
         addVariable(parseInt($(this).attr('data-value')), $(ui.helper).attr('data-type'))

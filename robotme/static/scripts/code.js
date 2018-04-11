@@ -251,3 +251,8 @@ editor.on("change", function(cm, change) {
         save()
     }, 5000);
 })
+
+const goToVariables = () =>{
+    save();
+    window.location.href = "/variables/" + slug;
+}

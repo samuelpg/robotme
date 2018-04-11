@@ -23,12 +23,17 @@ const run = () =>{
 }
 
 const stop = () =>{
-    socket.disconnect()
+    try{
+        socket.disconnect()
+    }catch{
+        console.log('hee')
+    }
     $.ajax({
         url : '/code/kill',
         method: 'GET',
         success: (e) =>{
             console.log(e)
+            $('#console').append(ouput(e))
         },
         error: (e)=>{
             console.log(e)

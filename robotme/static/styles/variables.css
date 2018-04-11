@@ -57,6 +57,7 @@
     box-shadow: inset 0px 0px 15px -7px rgba(0, 0, 0, 0.75);
     border: none;
     background-color: white;
+    transition: 0.5s;
 }
 
 input {
@@ -121,7 +122,9 @@ p {
     float: right;
     margin-right: 50px;
 }
-
+.accepted-variable {
+    background-color: rgb(179, 255, 173);
+}
 .delete-drop-zone {
     width: 80px;
     height: 80px;
@@ -141,9 +144,9 @@ p {
     transition: 0.5s;
 }
 .delete-drop-zone-hover{
-    width: 100px !important;
+   /*  width: 100px !important;
     height: 100px !important;
-    right: 100px !important;
+    right: 100px !important; */
     background-color: #DA3C6C !important;
     color: white !important;
     transition: 0.5s;

@@ -85,8 +85,8 @@
             </div>
             <div class="variables-selected shadow">
                 <h3>¡Nombra tus variables!</h3>
-                <p>Es importante que le des un nombre descriptivo a tu variable, debe ser unico, no puede empezar con un numero, y ¡no deben
-                    haber espacios ni mayusculas! Ejemplo:
+                <p>Es importante que le des un nombre descriptivo a tu variable, debe ser unico, no puede empezar con un numero,
+                    y ¡no deben haber espacios ni mayusculas! Ejemplo:
                     <span class="code-span">brazo_derecho</span>
                 </p>
                 <table id="table-selected-variables" class="table-variables">
@@ -122,9 +122,46 @@
     <div id="wrong-names" class="toast">
         ¡Tienes un nombre con errores!
     </div>
+    <!-- tutorial modal -->
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content">
+            <div class="carousell">
+                <div class="carousell-content">
+                    <div class="carousell-page">
+                        <img src="../static/assets/gifs/variables_4.gif" alt="">
+                        <h3>Selecciona tus componentes!</h3>
+                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
+                            de verde </p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/variables_2.gif" alt="">
+                        <h3>Dale un nombre a tu variable</h3>
+                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
+                            de verde </p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/variables_3.gif" alt="">
+                        <h3>No lo necesitas? no lo uses!</h3>
+                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
+                            de verde </p>
+                    </div>
+                </div>
+                <div class="carousell-buttons">
+                    <button class="project-button" id="back" onclick="back()">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button class="project-button" id='next' onclick="next()">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                    <button class="project-button saltar" onclick="closeTutorial()">saltar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../static/scripts/libs/jquery-3.3.1.min.js"></script>
     <script src="../static/scripts/libs/jquery-ui.min.js"></script>
     <script src="../static/scripts/variables.js"></script>
+    <script src="../static/scripts/tutorial.js" defer></script>
 </body>
 
 </html>

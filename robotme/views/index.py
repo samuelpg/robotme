@@ -46,12 +46,15 @@ def delete():
         print("slug: "+project_slug)
     return "ok"
 
-@app.route('/test', methods = ['POST'])
-def test():
-    print(request.data)
-    print(json.loads(request.data))
-    return jsonify(json.loads(request.data))
+@app.route('/test/<project_slug>', methods = ['POST'])
+def test(project_slug):
+    database.see_if_exist(project_slug)
+    return "ok"
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404

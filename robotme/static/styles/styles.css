@@ -426,3 +426,27 @@ input {
     from {bottom: 80px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 } 
+
+.carousell-page{
+    text-align: center;
+}
+.carousell-page > img{
+    width: 70%;
+    max-width: 700px;
+}
+.carousell-buttons{
+    text-align: center;
+    width: 100%;;
+}
+.disabled{
+    background-color: rgb(214, 214, 214);
+    border: none;
+}
+.disabled:hover{
+    background-color: rgb(214, 214, 214);
+    border: none;
+}
+.saltar{
+    border: none;
+    float: right;
+}
