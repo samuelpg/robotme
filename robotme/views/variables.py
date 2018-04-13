@@ -5,7 +5,10 @@ from .. import app, database, command
 
 @app.route('/variables/<project_slug>', methods = ['GET', 'POST'])
 def variables(project_slug):
-    return render_template('variables.html')
+    if(database.see_if_exist(project_slug)):
+        return render_template('variables.html')
+    else:
+        abort(404)
 
 @app.route('/variables/get/<project_slug>', methods = ['GET'])
 def get_variables(project_slug):

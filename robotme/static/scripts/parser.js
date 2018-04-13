@@ -294,7 +294,7 @@ const parseAndUpload = () => {
                                 let state;
                                 let function_name = getRandomFunctionName();
                                 write(`def ${function_name}(gpio, level, tick):`, element.state.indent);
-                                tokens[index + 6].string == "alto" ? state = "pigpio.RISING_EDGE" : state = "pigpio.FALLING_EDGE";;
+                                tokens[index + 6].string == "alto" ? state = "pigpio.RISING_EDGE" : state = "pigpio.FALLING_EDGE";
                                 interruptionStack.push({
                                     "name":name,
                                     "state":state,
@@ -338,6 +338,7 @@ const parseAndUpload = () => {
         writeArray(exceptTemplate)
         writeFinally()
         let fd = new FormData();
+        //Se forma el archivo con los strings guardados en code[]
         let file = new File(code, 'code.txt', {
             type: "text/plain"
         })
@@ -403,6 +404,7 @@ const writeFinally = ()=>{
     functionNames.forEach((element)=>{
         write(`${element}_ref.cancel()`, 4)
     })
+    write(`pi.stop()`, 4)
 }
 
 const writeArray = (array) =>{

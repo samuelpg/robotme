@@ -450,3 +450,10 @@ input {
     border: none;
     float: right;
 }
+/*404*/
+.center{
+    text-align: center;
+}
+.center > img{
+    width: 400px;
+}

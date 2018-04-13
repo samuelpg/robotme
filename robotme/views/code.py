@@ -28,7 +28,10 @@ def test_thread():
 
 @app.route('/code/<project_slug>', methods = ['GET', 'POST'])
 def code(project_slug):
-    return render_template('code.html')
+    if(database.see_if_exist(project_slug)):
+        return render_template('code.html')
+    else:
+        abort(404)
 
 @app.route('/code/get/<project_slug>', methods = ['GET'])
 def get_code(project_slug):
@@ -63,7 +66,14 @@ def run_this(project_slug):
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
 
+@socketio.on('disconnect')
+def kill_socket():
+    kill()
+
 @app.route('/code/kill')
+def kill_route():
+    kill()
+    
 def kill():
     proc = app.config['PROCESS']
     print proc
@@ -83,4 +93,3 @@ def connected():
             time.sleep(3)
             yield 'data: %s\n\n' % 'hola mundo'
     return Response(event_stream(), mimetype="text/event-stream")
-    

@@ -129,3 +129,17 @@ def update_date(slug):
             conn.commit()
         except (RuntimeError, TypeError, NameError):
             print("Something went wrong with updating the date | database.py")
+
+def see_if_exist(slug):
+    with get_conn() as conn:
+        try:
+            c = conn.cursor()
+            c.execute('SELECT 1 FROM projects WHERE slu_projects = ?', [slug])
+            conn.commit()
+            x = c.fetchall()
+            if len(x)==1:
+                return True
+            else: 
+                return False
+        except (RuntimeError, TypeError, NameError):
+            print("Something went wrong looking for a project | database.py")
