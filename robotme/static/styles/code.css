@@ -227,6 +227,7 @@ th {
     padding: 20px 0px;
     overflow-y: scroll;
     overflow-wrap: break-word;
+    text-align: left;
 }
 
 .modal-content.console-background {
