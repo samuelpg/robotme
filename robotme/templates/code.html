@@ -17,6 +17,7 @@
     <!-- navbar -->
     <div class="navbar-container">
         <div id="navbar" class="navbar white-background">
+            <button class="help-button" onclick="openTutorial()"><i class="fa fa-question"></i></button>
             <img id="logo" class="logo" src="../static/assets/logo.png">
         </div>
         <div id="connection-indicator" class="connection-indicator">
@@ -287,14 +288,51 @@
     </div>
     <!-- CONSOLE -->
     <div id="console-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content console-background">
             <div id="console">
                 
             </div>
             <div id="console-buttons">
-                <button class="project-button" onclick="run()"><i class="fa fa-play"></i> Correr</button>
-                <button class="project-button" onclick="stop()"><i class="fa fa-stop"></i> Parar</button>
+                <button disabled='false' id='run-button' class="project-button" onclick="run()"><i class="fa fa-play"></i> Correr</button>
+                <button disabled='true' id='stop-button' class="project-button disabled" onclick="stop()"><i class="fa fa-stop"></i> Parar</button>
                 <button class="project-button" onclick="edit()"><i class="fa fa-pencil"></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- tutorial modal -->
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content">
+            <div class="carousell">
+                <div class="carousell-content">
+                    <div class="carousell-page">
+                        <img src="../static/assets/gifs/variables_4.gif" alt="">
+                        <h3>Selecciona tus componentes!</h3>
+                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
+                            de verde </p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/variables_2.gif" alt="">
+                        <h3>Dale un nombre a tu variable</h3>
+                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
+                            de verde </p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/variables_3.gif" alt="">
+                        <h3>No lo necesitas? no lo uses!</h3>
+                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
+                            de verde </p>
+                    </div>
+                </div>
+                <div class="carousell-buttons">
+                    <button class="project-button" id="back" onclick="back()">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <span id="carousell-current"></span>
+                    <button class="project-button" id='next' onclick="next()">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                    <button class="project-button saltar" onclick="closeTutorial()">Entendido</button>
+                </div>
             </div>
         </div>
     </div>
@@ -304,6 +342,7 @@
     <script src="../static/scripts/libs/codemirror.js"></script>
     <script src="../static/scripts/libs/python.js"></script>
     <script src="../static/scripts/code.js"></script>
+    <script src="../static/scripts/tutorial.js"></script>
     <script src="../static/scripts/parser.js"></script>
     <script src="../static/scripts/run.js"></script>
 </body>

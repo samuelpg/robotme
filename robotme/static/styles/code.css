@@ -229,7 +229,7 @@ th {
     overflow-wrap: break-word;
 }
 
-.modal-content {
+.modal-content.console-background {
     background-color: #080F2B !important;
     padding: 0px !important;
 }

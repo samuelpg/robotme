@@ -107,6 +107,7 @@ span {
     /* Could be more or less, depending on screen size */
     box-shadow: 0px 10px 20px -4px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
+    text-align: center;
 }
 
 /* The Close Button */
@@ -448,7 +449,6 @@ input {
 }
 .saltar{
     border: none;
-    float: right;
 }
 /*404*/
 .center{
@@ -456,4 +456,16 @@ input {
 }
 .center > img{
     width: 400px;
+}
+
+.help-button{
+    position: fixed;
+    left: 12px;
+    top: 5px;
+    color: grey;
+    background-color: white;
+    border: none;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
 }

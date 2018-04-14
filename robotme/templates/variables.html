@@ -15,6 +15,7 @@
     <!-- navbar -->
     <div class="navbar-container">
         <div id="navbar" class="navbar white-background">
+            <button class="help-button" onclick="openTutorial()"><i class="fa fa-question"></i></button>
             <img id="logo" class="logo" src="../static/assets/logo.png">
         </div>
     </div>
@@ -150,10 +151,11 @@
                     <button class="project-button" id="back" onclick="back()">
                         <i class="fa fa-chevron-left"></i>
                     </button>
+                    <span id="carousell-current"></span>
                     <button class="project-button" id='next' onclick="next()">
                         <i class="fa fa-chevron-right"></i>
                     </button>
-                    <button class="project-button saltar" onclick="closeTutorial()">saltar</button>
+                    <button class="project-button saltar" onclick="closeTutorial()">Entendido</button>
                 </div>
             </div>
         </div>
