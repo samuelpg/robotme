@@ -10,6 +10,10 @@ let socket
 
 const run = () =>{
     $("#console").empty();
+    $("#run-button").attr('disabled',true)
+    $("#run-button").addClass('disabled')
+    $("#stop-button").attr('disabled',false)
+    $("#stop-button").removeClass('disabled')
     let namespace = '/run';
     console.log(namespace)
     socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
@@ -36,6 +40,11 @@ const stop = () =>{
     }) */
     try{
         socket.disconnect()
+        $('#console').append("Programa Finalizado")
+        $("#run-button").attr('disabled',false)
+        $("#run-button").removeClass('disabled')
+        $("#stop-button").attr('disabled',true)
+        $("#stop-button").addClass('disabled')
     }catch{
         console.log('hee')
     }
