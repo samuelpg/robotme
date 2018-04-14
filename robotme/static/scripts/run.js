@@ -34,13 +34,11 @@ const stop = () =>{
             console.log(e)
         }
     }) */
-    setTimeout(()=>{
-        try{
-            socket.disconnect()
-        }catch{
-            console.log('hee')
-        }
-    }, 2000)
+    try{
+        socket.disconnect()
+    }catch{
+        console.log('hee')
+    }
 }
 
 const edit = () =>{
