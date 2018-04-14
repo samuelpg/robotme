@@ -23,7 +23,7 @@ const run = () =>{
 }
 
 const stop = () =>{
-    $.ajax({
+   /*  $.ajax({
         url : '/code/kill',
         method: 'GET',
         success: (e) =>{
@@ -33,7 +33,7 @@ const stop = () =>{
         error: (e)=>{
             console.log(e)
         }
-    })
+    }) */
     setTimeout(()=>{
         try{
             socket.disconnect()

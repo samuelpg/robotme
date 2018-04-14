@@ -77,9 +77,10 @@ def run_this(project_slug):
 def kill_socket():
     return kill()
 
-@app.route('/code/kill')
+""" @app.route('/code/kill')
 def kill_route():
     return kill()
+     """
     
 def kill():
     proc = app.config['PROCESS']
