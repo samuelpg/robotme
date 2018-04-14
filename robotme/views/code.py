@@ -57,7 +57,8 @@ def connect():
         print "############$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
     else:
         print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-    emit('msg',{'data':'connected'})
+        return False
+    #emit('msg',{'data':'connected'})
 
 @socketio.on('run', namespace='/run')
 def run_this(project_slug):
