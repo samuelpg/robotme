@@ -40,7 +40,7 @@ const stop = () =>{
     }) */
     try{
         socket.disconnect()
-        $('#console').append("Programa Finalizado")
+        $('#console').append(output("Programa Finalizado"))
         $("#run-button").attr('disabled',false)
         $("#run-button").removeClass('disabled')
         $("#stop-button").attr('disabled',true)
