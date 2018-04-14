@@ -51,6 +51,12 @@ def set_python(project_slug):
 
 @socketio.on('connect', namespace='/run')
 def connect():
+    print 'HELLLOO####################################'
+    proc = app.config['PROCESS']
+    if proc == None: 
+        print "############$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    else:
+        print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     emit('msg',{'data':'connected'})
 
 @socketio.on('run', namespace='/run')
@@ -64,15 +70,15 @@ def run_this(project_slug):
                 thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
-        emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este'})
+        emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este', 'error':True})
 
 @socketio.on('disconnect')
 def kill_socket():
-    kill()
+    return kill()
 
 @app.route('/code/kill')
 def kill_route():
-    kill()
+    return kill()
     
 def kill():
     proc = app.config['PROCESS']
@@ -82,7 +88,7 @@ def kill():
         #proc.terminate()
         app.config['PROCESS'] = None
         print app.config['PROCESS']
-        return "Programa terminado"
+        return "ok"
     else:
         return "No hay programa corriendo"
 
