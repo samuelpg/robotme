@@ -225,21 +225,47 @@
                     <span class="cm-interruption">detecte bajo</span>
                     <span class="cm-control">entonces</span>:
                 </div>
+                <p><b><i class="fa fa-clock"></i> Toma en cuenta:</b> Los sensores pir tardan de 30 a 60 segundos en funcionar correctamente</p>
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
                 Otros
             </h3>
             <div class="accordion-content">
-                <p>Los elementos que pueden ser utilizados en los pines de entrada son los
-                    <b>decir</b> y
-                    <b>esperar</b>
-                </p>
+                <h3>Comentario</h3>
+                <p>Los comentarios son utiles para explicar tu codigo ya que son ignorados al momento de correr el codigo, comienzan con el simbolo <span class="code-span">#</span></p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-comment">#Este codigo no se ejecutara nunca</span>
+                    <br>
+                    <span class="cm-comment">#encender led</span>
+                </div>
+                <br>
                 <h3>Decir</h3>
                 <p>La consola del sistema es un terminal que tiene atributos especiales y se utiliza para determinados fines.
                     En este caso, el fin sería el de verificar como esta ejecutandose el programa previamente realizado.
                     Para poder utilizar la consola de esta manera tienes las siguientes instrucciones:
-                    <span class="code-span">esperar [numero] segundos</span>, debes usarla de esta manera:</p>
+                    <span class="code-span">decir [mensaje]</span>, debes usarla de esta manera:</p>
+                    <div class="looks-like-code">
+                        <span class="cm-comment">#Ejemplo: </span>
+                        <br>
+                        <span class="cm-comment">#Puedes usar decir con numeros</span><br>
+                        <span class="cm-other">decir</span>
+                        <span class="cm-number">24</span>
+                        <br>
+                        <span class="cm-comment">#o con variables</span><br>
+                        <span class="cm-other">decir</span>
+                        mensaje
+                        <br>
+                        <span class="cm-comment">#Tambien con oraciones entre comillas</span><br>
+                        <span class="cm-other">decir</span>
+                        <span class="cm-string">'Hola mundo!'</span><br>
+                        <span class="cm-comment">#Y combinando con el simbolo +</span><br>
+                        <span class="cm-other">decir</span>
+                        <span class="cm-string">'Saludos'</span> + nombre 
+                        <br>
+                    </div>
                 <br>
                 <h3>Esperar</h3>
                 <p>La finalidad de esta función es la de detenr la ejecución del programa por una cantidad de segundos determinada.
@@ -305,22 +331,35 @@
             <div class="carousell">
                 <div class="carousell-content">
                     <div class="carousell-page">
-                        <img src="../static/assets/gifs/variables_4.gif" alt="">
-                        <h3>Selecciona tus componentes!</h3>
-                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
-                            de verde </p>
+                        <img src="../static/assets/gifs/code_1.gif" alt="">
+                        <h3>¿Tienes dudas?</h3>
+                        <p>Encuentra las respuestas en el panel a tu izquierda sobre como programar los componentes que escogiste</p>
                     </div>
                     <div class="carousell-page" style="display: none">
-                        <img src="../static/assets/gifs/variables_2.gif" alt="">
-                        <h3>Dale un nombre a tu variable</h3>
-                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
-                            de verde </p>
+                        <img src="../static/assets/gifs/code_2.gif" alt="">
+                        <h3>Correr codigo</h3>
+                        <p>cuando estes listo para correr el codigo, haz click en el boton <i class="fa fa-play"></i> en la esquina inferior derecha
+                        </p>
                     </div>
                     <div class="carousell-page" style="display: none">
-                        <img src="../static/assets/gifs/variables_3.gif" alt="">
-                        <h3>No lo necesitas? no lo uses!</h3>
-                        <p>Arrastra y deja caer los componentes a tu izquierda en el prototipo en los pines que se coloreen
-                            de verde </p>
+                        <img src="../static/assets/gifs/code_6.gif" alt="">
+                        <h3>¡Oh no! un error ha aparecido</h3>
+                        <p>Todos cometemos errores, ¡por suerte se pueden corregir facilmente! solo es cuestion de editarlos. para saber cuales son, revisa el cuadro de errores</p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/code_3.gif" alt="">
+                        <h3>¿Necesitas hacer cambios?</h3>
+                        <p>Si tu codigo corre bien, pero te gustaria cambiar cosas, solo haz click en el boton <i class="fa fa-pencil"></i> y podras volver al editor</p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/code_4.gif" alt="">
+                        <h3>¡estas conectado!</h3>
+                        <p>¡Tus cambios se guardan automaticamente! y podras correr tu codigo sin problemas</p>
+                    </div>
+                    <div class="carousell-page" style="display: none">
+                        <img src="../static/assets/gifs/code_5.gif" alt="">
+                        <h3>¿desconectado?</h3>
+                        <p>Tus cambios igual se guardaran, pero no podras correr tu codigo, ¡pide ayuda para resolver el problema!</p>
                     </div>
                 </div>
                 <div class="carousell-buttons">
