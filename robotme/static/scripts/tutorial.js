@@ -5,7 +5,9 @@ let current
 let ls = window.localStorage
 
 window.onload = () =>{
-    let seen = ls.getItem('seen')
+    let path = window.location.pathname.split('/');
+    let page = path[1];
+    let seen = ls.getItem('seen_'+page)
     if(seen == null || !seen){
         openTutorial()
         ls.setItem('seen', true)
