@@ -53,10 +53,7 @@ def set_python(project_slug):
 def connect():
     print 'HELLLOO####################################'
     proc = app.config['PROCESS']
-    if proc == None: 
-        print "############$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    else:
-        print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    if proc != None: 
         return False
     #emit('msg',{'data':'connected'})
 
@@ -94,10 +91,6 @@ def kill():
     else:
         return "No hay programa corriendo"
 
-@app.route('/connected')
-def connected():
-    def event_stream():
-        while True:
-            time.sleep(3)
-            yield 'data: %s\n\n' % 'hola mundo'
-    return Response(event_stream(), mimetype="text/event-stream")
+@socketio.on('__ping__', namespace='/connect')
+def ping_pong():
+    emit('__pong__')

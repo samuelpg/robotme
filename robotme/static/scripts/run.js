@@ -15,7 +15,6 @@ const run = () =>{
     $("#stop-button").attr('disabled',false)
     $("#stop-button").removeClass('disabled')
     let namespace = '/run';
-    console.log(namespace)
     socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
     socket.on('connect', function(e) {
         socket.emit('run', {data: slug});

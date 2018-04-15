@@ -169,7 +169,7 @@ $(document).ready(function () {
         }
     });
 
-    initSSE();
+    initWebsocket();
 })
 
 const saveOnRemote = () =>{
@@ -208,11 +208,12 @@ const lastSavedMsg = () =>{
     $('#last-saved').html(`Ultimo guardado: ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} ${date.getHours()+1}:${date.getMinutes()}`)
 }
 
-const initSSE = () =>{
-    console.log("SSE")
-    source = new EventSource("/connected");
+const initWebsocket = () =>{
+    let tm;
     con = $('#connection-indicator')
-    source.onmessage = () =>{
+    let namespace = '/connect';
+    let socketConnection = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+    socketConnection.on('connect',(e)=>{
         online = true
         if(con.attr('class') !== 'connection-indicator'){
             con.attr('class','connection-indicator')
@@ -220,18 +221,15 @@ const initSSE = () =>{
             con.append(`<span>Conectado!</span>`)
             save();
         }
-    }
-    source.onerror = () =>{
+    })
+    socketConnection.on('disconnect',(e)=>{
         online = false
-        if(con.attr('class') !== 'connection-indicator disconnected'){
-            con.attr('class','connection-indicator disconnected')
-            con.empty()
-            con.append(`<span>Desconectado!</span>`)
-            source.close();
-        }
-        setTimeout(initSSE, 5000);
-    }
-    console.log('hey')
+            if(con.attr('class') !== 'connection-indicator disconnected'){
+                con.attr('class','connection-indicator disconnected')
+                con.empty()
+                con.append(`<span>Desconectado!</span>`)
+            }
+    })
 }
 
 const save = () =>{

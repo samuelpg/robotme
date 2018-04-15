@@ -355,6 +355,7 @@ const parseAndUpload = () => {
             },
             error: (data) => {
                 console.log(data)
+                showToast("#no-connected")
             }
         })
     }
@@ -366,6 +367,11 @@ const write = (string, indent) => {
         finalString += "    "
     }
     code.push(finalString + string + "\n")
+}
+
+const showToast = (id) =>{
+    $(id).toggleClass("show");
+    setTimeout(function(){$(id).toggleClass("show");}, 3000);
 }
 
 const getRandomFunctionName = () =>{
