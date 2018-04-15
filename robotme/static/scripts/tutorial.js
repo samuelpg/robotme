@@ -2,15 +2,15 @@ const tutorial = $("#tutorial-modal");
 const currentPageText = $("#carousell-current");
 let pages = $(".carousell-page");
 let current
-let ls = window.localStorage
+let lstutorial = window.localStorage
 
 window.onload = () =>{
     let path = window.location.pathname.split('/');
     let page = path[1];
-    let seen = ls.getItem('seen_'+page)
+    let seen = lstutorial.getItem('seen_'+page)
     if(seen == null || !seen){
         openTutorial()
-        ls.setItem('seen', true)
+        lstutorial.setItem('seen_'+page, true)
     }
 }
 

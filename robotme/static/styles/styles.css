@@ -315,7 +315,7 @@ input {
 .button-delete{
     padding: 10px 10px;
     margin: 10px;
-    background-color:  #DA3C6C;
+    background-color:  rgb(218, 60, 108);
     color: white;
     text-decoration: none;
     border-radius: 2px;
@@ -433,7 +433,7 @@ input {
 }
 .carousell-page > img{
     width: 70%;
-    max-width: 700px;
+    max-width: 550px;
 }
 .carousell-buttons{
     text-align: center;
