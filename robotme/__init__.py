@@ -3,10 +3,10 @@ from flask_socketio import SocketIO
 """ app = Flask(__name__)
 app.config.from_object('config')
  """
-app = Flask(__name__)
+app = Flask(__name__, instance_path='/robotme')
 app.config.from_object('config')
 app.debug = True
 async_mode = None
-socketio = SocketIO(app, async_mode='eventlet', instance_path='/robotme')
+socketio = SocketIO(app, async_mode='eventlet')
 
 from views import index, code, variables, code_templates, states
