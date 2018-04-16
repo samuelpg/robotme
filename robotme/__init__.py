@@ -7,6 +7,6 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.debug = True
 async_mode = None
-socketio = SocketIO(app, async_mode='eventlet')
+socketio = SocketIO(app, async_mode='eventlet', instance_path='/robotme')
 
 from views import index, code, variables, code_templates, states
