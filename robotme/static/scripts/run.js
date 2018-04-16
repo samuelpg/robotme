@@ -1,3 +1,5 @@
+let socket
+
 const output = (msg) =>{
     //Check for errors
     if (msg.includes("[Error]"))
@@ -6,7 +8,10 @@ const output = (msg) =>{
         return `<span class="console-output"> > ${msg}</span>`
 }
 
-let socket
+const updateScroll = () =>{
+    let element = document.getElementById("console");
+    element.scrollTop = element.scrollHeight;
+}
 
 const run = () =>{
     $("#console").empty();
@@ -22,21 +27,11 @@ const run = () =>{
     });
     socket.on('log', function(msg) {
         $('#console').append(output(msg.data));
+        updateScroll()
     });
 }
 
 const stop = () =>{
-   /*  $.ajax({
-        url : '/code/kill',
-        method: 'GET',
-        success: (e) =>{
-            console.log(e)
-            $('#console').append(ouput(e))
-        },
-        error: (e)=>{
-            console.log(e)
-        }
-    }) */
     try{
         socket.disconnect()
         $('#console').append(output("Programa Finalizado"))

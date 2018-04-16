@@ -5,7 +5,7 @@ app.config.from_object('config')
  """
 app = Flask(__name__)
 app.config.from_object('config')
-app.debug = True
+app.debug = False
 async_mode = None
 socketio = SocketIO(app, async_mode='eventlet')
 
