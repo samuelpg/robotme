@@ -211,8 +211,7 @@ const lastSavedMsg = () =>{
 const initWebsocket = () =>{
     let tm;
     con = $('#connection-indicator')
-    let namespace = '/connect';
-    let socketConnection = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+    let socketConnection = io.connect(location.protocol + '//' + document.domain + ':' + location.port + '/connect');
     socketConnection.on('connect',(e)=>{
         online = true
         if(con.attr('class') !== 'connection-indicator'){

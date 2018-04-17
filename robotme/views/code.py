@@ -51,9 +51,10 @@ def set_python(project_slug):
 
 @socketio.on('connect', namespace='/run')
 def connect():
-    print 'HELLLOO####################################'
+    print 'hello new connection'
     proc = app.config['PROCESS']
     if proc != None: 
+        print 'rejected'
         return False
     #emit('msg',{'data':'connected'})
 
@@ -62,10 +63,6 @@ def run_this(project_slug):
     proc = app.config['PROCESS']
     if proc == None:
         eventlet.spawn(run_code_thread, project_slug=project_slug['data'])
-        """ global thread
-        with thread_lock:
-            if thread is None:
-                thread = socketio.start_background_task(target=run_code_thread, project_slug=project_slug['data']) """
         emit('log', {'data': 'Programa Ejecutandoce'})
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este', 'error':True})
@@ -74,17 +71,14 @@ def run_this(project_slug):
 def kill_socket():
     return kill()
 
-""" @app.route('/code/kill')
-def kill_route():
-    return kill()
-     """
-    
 def kill():
+    print 'killing spree'
     proc = app.config['PROCESS']
     print proc
     if proc != None:
         proc.send_signal(signal.SIGINT)
         app.config['PROCESS'] = None
+        print 'wasted'
         print app.config['PROCESS']
         return "ok"
     else:

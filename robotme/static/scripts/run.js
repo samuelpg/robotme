@@ -1,5 +1,3 @@
-let socket
-
 const output = (msg) =>{
     //Check for errors
     if (msg.includes("[Error]"))
@@ -12,6 +10,8 @@ const updateScroll = () =>{
     let element = document.getElementById("console");
     element.scrollTop = element.scrollHeight;
 }
+
+let socket
 
 const run = () =>{
     $("#console").empty();
@@ -33,6 +33,8 @@ const run = () =>{
 
 const stop = () =>{
     try{
+        console.log('killing socket')
+        console.log(socket)
         socket.disconnect()
         $('#console').append(output("Programa Finalizado"))
         $("#run-button").attr('disabled',false)
