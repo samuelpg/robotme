@@ -84,7 +84,6 @@ def kill():
     print proc
     if proc != None:
         proc.send_signal(signal.SIGINT)
-        #proc.terminate()
         app.config['PROCESS'] = None
         print app.config['PROCESS']
         return "ok"
