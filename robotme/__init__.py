@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 """ app = Flask(__name__)
 app.config.from_object('config')
  """
-app = Flask(__name__, instance_path='/robotme')
+app = Flask(__name__)
 app.config.from_object('config')
 app.debug = True
 async_mode = None
