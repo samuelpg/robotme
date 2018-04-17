@@ -17,7 +17,6 @@ def run_code_thread(project_slug):
     APP_STATIC = os.path.join(APP_ROOT,'/home/pi/robotme/robotme/projects/'+project_slug+'/code.py')
     proc = Popen(['python',APP_STATIC], stdout=PIPE, bufsize=1)
     app.config['PROCESS'] = proc
-    print('da')
     for line in iter(proc.stdout.readline,''):
         socketio.emit('log', {'data': line}, namespace='/run')
 
@@ -67,7 +66,7 @@ def run_this(project_slug):
     else:
         emit('log', {'data': 'Ya existe un programa ejecutandoce, debes parar el programa anterior para ejecutar este', 'error':True})
 
-@socketio.on('disconnect')
+@socketio.on('disconnect', namespace='/run')
 def kill_socket():
     return kill()
 
