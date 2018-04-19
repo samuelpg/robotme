@@ -1,6 +1,7 @@
 from flask import Flask, request, g, redirect, url_for, abort, render_template, flash, jsonify, send_from_directory
 from .. import app, database, command
 import os
+from subprocess import Popen
 
 #RESTFUL ENDPOINTS FOR USE IN index.html
 
@@ -58,3 +59,7 @@ def favicon():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
+@app.route('/poweroff')
+def poweroff():
+    Popen(['sudo','poweroff'])

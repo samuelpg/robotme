@@ -42,8 +42,16 @@ const template = ({nme_projects, aut_projects, dte_projects, slu_projects, tag_p
             break;
         }
     }
+    let object = {
+        "title":nme_projects,
+        "author":aut_projects,
+        "slug": slu_projects,
+        "color":color,
+        "icon":icon,
+    }
+    objectString = JSON.stringify(object);
     return `<div class="project shadow" id="${slu_projects}">
-        <div id="icon" class="tag ${color}"><img src="${icon}"></div>
+        <div class="tag ${color}"><img src="${icon}"></div>
         <div class="project_text">
             <h2 class="project-title">${nme_projects}</h2>
             <h3 class="project-author">Hecho por: ${aut_projects}</h3>
@@ -58,7 +66,7 @@ const template = ({nme_projects, aut_projects, dte_projects, slu_projects, tag_p
             </a>
         </div>
         <div class="trash-icon">
-            <button onclick="openDeleteModal('${slu_projects}')" class="delete">
+            <button onclick='openDeleteModal(${objectString})' class="delete">
                 <i class="fa fa-trash pink-text"></i>
             </button>
         </div>
@@ -139,4 +147,20 @@ const postNewProject = () =>{
             }
         })
     }
+}
+
+const openPower = () =>{
+    $("#powerOffModal").show();
+}
+
+const cancelPower = () =>{
+    $("#powerOffModal").hide();
+}
+
+const powerOff = () =>{
+    $.ajax({
+        url: '/poweroff',
+        type: "GET"
+    })
+    cancelPower();
 }

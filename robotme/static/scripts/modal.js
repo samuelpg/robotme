@@ -23,8 +23,18 @@ window.onclick = (event) => {
     }
 }
 
-const openDeleteModal = (slug) =>{
-    $('body').data('del',slug);
+const projectDeleteInfo = (color, icon, title, author) =>{
+    return `
+    <div class="center">
+        <div id="icon" class="tag ${color}" style='margin: auto;'><img src="${icon}"></div>
+        <h2 class="project-title">${title}</h2>
+        <h3 class="project-author">Hecho por: ${author}</h3>
+    </div>`
+}
+const openDeleteModal = (object) =>{
+    $('#project_info').empty();
+    $('#project_info').append(projectDeleteInfo(object.color, object.icon, object.title, object.author))
+    $('body').data('del',object.slug);
     del.style.display = "block";
 }
 

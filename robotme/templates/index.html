@@ -17,6 +17,7 @@
         <div id="navbar" class="navbar white-background">
             <button class="help-button" onclick="openTutorial()"><i class="fa fa-question-circle"></i></button>
             <img id="logo" class="logo" src="../static/assets/logo.png">
+            <button class="help-button power-off" onclick="openPower()"><i class="fa fa-power-off"></i></button>
         </div>
     </div>
     <!-- create project modal -->
@@ -87,7 +88,7 @@
                 <i class="fa fa-close"></i>
             </span>
             <div class="delete-buttons">
-                <h2>Estas seguro que quieres borrar este proyecto?</h2>
+                <h2>¿Estas seguro que quieres borrar este proyecto?</h2>
                 <div id="project_info">
                     
                 </div>
@@ -106,7 +107,7 @@
                     <div class="carousell-content">
                         <div class="carousell-page">
                             <img src="../static/assets/gifs/index_1.gif" alt="">
-                            <h3>Crea un nuevo robot!</h3>
+                            <h3>¡Crea un nuevo robot!</h3>
                             <p>Para crear un nuevo proyecto haz click en el boton + en la esquina, 
                                 colocale un titulo a tu proyecto y tu nombre, ¡y estaras 
                                 listo para el siguiente paso!</p>
@@ -115,6 +116,21 @@
                     <div class="carousell-buttons"></div>
                 </div>
                 <button class="project-button" onclick="closeTutorial()">¡Entendido!</button>
+        </div>
+    </div>
+    <!--turn off-->
+    <div class="modal" id="powerOffModal">
+        <div class="modal-content">
+            <span class="close">
+                <i class="fa fa-close"></i>
+            </span>
+            <div class="delete-buttons">
+                <h2>¿Estas seguro que quieres apagar robotme?</h2>
+                <div>
+                    <button class="button-delete" id="button-delete" onclick="powerOff()">Si, estoy seguro</button>
+                    <button class="button-cancel" id="button-cancel" onclick="cancelPower()">No</button>
+                </div>
+            </div>
         </div>
     </div>
     <!-- SCRIPTS -->

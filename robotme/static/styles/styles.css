@@ -469,3 +469,8 @@ input {
     width: 50px;
     height: 50px;
 }
+
+.power-off{
+    right: 12px !important;
+    left: auto;
+}
