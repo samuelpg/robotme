@@ -16,9 +16,17 @@ const check = () => {
                     motor_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
                     ledbuzzer_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
                     interruption_vars.indexOf(element.string) !== -1 ? error("Error: esta variable esta bloqueada", i) : null;
+                    try{
+                        tokens[index+2].string != "=" ? error("Error: variable no inicializada o asignada", i) : null
+                    }catch(e){
+                        error("Error: variable no inicializada o asignada", i)
+                    }
+                    break;
                 }
                 case "control":
                     {
+                        console.log(element.string)
+                        if(tokens[tokens.length-1].string != ":") error("Error: Sentencia de control debe terminar con ':'", i)
                         switch (element.string) {
                             case "siempre":
                                 {
@@ -35,6 +43,8 @@ const check = () => {
                                     for (j = 0; j < tokens.length; j++) {
                                         stringsIf.push(tokens[j].string)
                                     }
+                                    console.log(stringsIf)
+                                    if (stringsIf.indexOf('entonces')!=stringsIf.length-2) error("Error: completa la sentencia con 'entonces'", i);
                                     if (stringsIf.indexOf(")") < 0) error("Error: Completa los parentesis", i)
                                     if (stringsIf.indexOf("(") < 0) error("Error: Completa los parentesis", i)
                                     if (stringsIf.indexOf("(") > stringsIf.indexOf(")")) error("Error: Completa los parentesis", i)
@@ -68,7 +78,7 @@ const check = () => {
                         checkIndent(element, i)
                         if (motor_vars.indexOf(tokens[index + 2].string) < 0) error("Error: variable de tipo difente a motor ", i)
                         return true;
-                        break
+                        break;
                     }
                 case "interruption":
                     {
@@ -237,7 +247,7 @@ const parseAndUpload = () => {
                                 }
                                 write(`if ${condition}:`, element.state.indent + expectedIndent)
                             }
-                            if (element.string === "sino") write("else", element.state.indent + expectedIndent)
+                            if (element.string === "sino") write("else:", element.state.indent + expectedIndent)
                             return true;
                             break;
                         }

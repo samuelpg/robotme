@@ -1,6 +1,0 @@
-import os, time
-from time import sleep
-import pigpio
-
-pi = pigpio.pi()
-print("Programa iniciado")

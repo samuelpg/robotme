@@ -55,7 +55,6 @@ def connect():
     if proc != None: 
         print 'rejected'
         return False
-    #emit('msg',{'data':'connected'})
 
 @socketio.on('run', namespace='/run')
 def run_this(project_slug):

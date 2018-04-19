@@ -7,4 +7,3 @@ pi = pigpio.pi()
 def printf(msg):
     print(msg)
     sys.stdout.flush()
-    
