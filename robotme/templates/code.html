@@ -17,8 +17,12 @@
     <!-- navbar -->
     <div class="navbar-container">
         <div id="navbar" class="navbar white-background">
-            <button class="help-button" onclick="openTutorial()"><i class="fa fa-question-circle"></i></button>
-            <a class="logo"href="/"><img id="logo" class="logo" src="../static/assets/logo.png"></a>
+            <button class="help-button" onclick="openTutorial()">
+                <i class="fa fa-question-circle"></i>
+            </button>
+            <a class="logo" href="/">
+                <img id="logo" class="logo" src="../static/assets/logo.png">
+            </a>
         </div>
         <div id="connection-indicator" class="connection-indicator">
             <span>Conectado!</span>
@@ -225,7 +229,142 @@
                     <span class="cm-interruption">detecte bajo</span>
                     <span class="cm-control">entonces</span>:
                 </div>
-                <p><b><i class="fa fa-clock-o"></i> Toma en cuenta:</b> Los sensores pir tardan de 30 a 60 segundos en funcionar correctamente</p>
+                <p>
+                    <b>
+                        <i class="fa fa-clock-o"></i> Toma en cuenta:</b> Los sensores pir tardan de 30 a 60 segundos en funcionar correctamente</p>
+            </div>
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Control
+            </h3>
+            <div class="accordion-content">
+                <h3>Siempre</h3>
+                <p>Dentro de un ciclo siempre se ejecuta el codigo de tu robot, y el codigo se repetira... por siempre! o hasta
+                    que lo detengas
+                </p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-control">siempre</span>:
+                    <br>
+                    <span class="cm-comment" style="text-indent: 20px; display: block;">#codigo que se ejecuta por siempre</span>
+                </div>
+                <p>Solo puede haber un ciclo siempre dentro de tu codigo.</p>
+                <br>
+                <h3>Condicionales: si y sino</h3>
+                <p>una sentencia condicional es una instrucción o grupo de instrucciones que se pueden ejecutar o no en función
+                    del valor de una condición.
+                    <br> Para usar las condicionales tenemos las instrucciones
+                    <span class="code-span">si ([condicion])</span> y
+                    <span class="code-span">sino</span>
+                    y se usan con operaciones logicas igual
+                    <span class="code-span">==</span>, mayor que
+                    <span class="code-span">></span>, menor que
+                    <span class="code-span">
+                        <</span>, mayor o igual que
+                            <span class="code-span">>=</span>, menor o igual que
+                            <span class="code-span">
+                                <=</span> y diferente
+                                    <span class="code-span">!=</span>:</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-control">si</span> (mensaje ==
+                    <span class='cm-string'>'hola'</span>)
+                    <span class="cm-control">entonces</span>:
+                    <br>
+                    <span class="cm-other" style="text-indent: 20px; display: block;">decir
+                        <span class='cm-string'>'tu mensaje es hola!'</span>
+                    </span>
+                    <br>
+                </div>
+                <br>
+                <p>Cuando la condicion dentro del
+                    <span class="code-span">si ([condicion])</span> no se cumple, se ejecuta el codigo en el
+                    <span class="code-span">sino</span>
+                </p>
+                <br>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-control">si</span> (edad
+                    < <span class='cm-number'>18</span>)
+                        <span class="cm-control">entonces</span>:
+                        <br>
+                        <span class="cm-other" style="text-indent: 20px; display: block;">decir
+                            <span class='cm-string'>'eres menor a 18 años'</span>
+                        </span>
+                        <span class="cm-control">sino</span>:
+                        <br>
+                        <span class="cm-other" style="text-indent: 20px; display: block;">decir
+                            <span class='cm-string'>'eres mayor a 18 años'</span>
+                        </span>
+                        <br>
+                </div>
+            </div>
+            <h3 class="accordion-toggle">
+                <i class="fa fa-chevron-right"></i>
+                Operaciones
+            </h3>
+            <div class="accordion-content">
+                <h3>Aritmeticas</h3>
+                <p>Puedes sumar, restar, multiplicar y dividir</p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Sumar</span>
+                    <br> suma =
+                    <span class="cm-number">5</span> +
+                    <span class="cm-number">10</span>
+                    <br>
+                    <span class="cm-comment">#Resta</span>
+                    <br> resta =
+                    <span class="cm-number">5</span> -
+                    <span class="cm-number">10</span>
+                    <br>
+                    <span class="cm-comment">#Multiplicar</span>
+                    <br> multiplicacion =
+                    <span class="cm-number">5</span> *
+                    <span class="cm-number">10</span>
+                    <br>
+                    <span class="cm-comment">#Dividir</span>
+                    <br> dividir =
+                    <span class="cm-number">5</span> /
+                    <span class="cm-number">10</span>
+                    <br>
+                </div>
+                <br>
+                <h3>Logicas</h3>
+                <p>Las operaciones logicas se utilizan con los condicionales, son utiles para hacer condicionales mas complejas</p>
+                <p>Las operaciones logicas son:
+                    <span class="code-span">y</span>,
+                    <span class="code-span">o</span> y
+                    <span class="code-span">no</span>
+                </p>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Operador Y: retorna verdad solo si ambas condiciones son verdad</span>
+                    <br>
+                    <span class="cm-control">si</span> (edad >
+                    <span class="cm-number">18</span>
+                    <span class="cm-property">y</span> edad
+                    < <span class="cm-number">60</span>)
+                        <span class="cm-control">entonces</span>:
+                        <br>
+                        <br>
+                        <span class="cm-comment">#Operador O: retorna verdad solo si una de las condiciones es verdad</span>
+                        <br>
+                        <span class="cm-control">si</span> (nombre ==
+                        <span class="cm-string">'caterine'</span>
+                        <span class="cm-property">o</span> nombre ==
+                        <span class="cm-string">'jose'</span>)
+                        <span class="cm-control">entonces</span>:
+                        <br>
+                        <br>
+                        <span class="cm-comment">#Operador NO: retorna el opuesto al valor</span>
+                        <br>
+                        <span class="cm-control">si</span> (
+                        <span class="cm-property">no</span> mascota ==
+                        <span class="cm-string">'gato'</span>)
+                        <span class="cm-control">entonces</span>:
+                </div>
             </div>
             <h3 class="accordion-toggle">
                 <i class="fa fa-chevron-right"></i>
@@ -233,7 +372,10 @@
             </h3>
             <div class="accordion-content">
                 <h3>Comentario</h3>
-                <p>Los comentarios son utiles para explicar tu codigo ya que son ignorados al momento de correr el codigo, comienzan con el simbolo <span class="code-span">#</span></p>
+                <p>Los comentarios son utiles para explicar tu codigo ya que son ignorados al momento de correr el codigo, comienzan
+                    con el simbolo
+                    <span class="code-span">#</span>
+                </p>
                 <div class="looks-like-code">
                     <span class="cm-comment">#Ejemplo: </span>
                     <br>
@@ -247,25 +389,30 @@
                     En este caso, el fin sería el de verificar como esta ejecutandose el programa previamente realizado.
                     Para poder utilizar la consola de esta manera tienes las siguientes instrucciones:
                     <span class="code-span">decir [mensaje]</span>, debes usarla de esta manera:</p>
-                    <div class="looks-like-code">
-                        <span class="cm-comment">#Ejemplo: </span>
-                        <br>
-                        <span class="cm-comment">#Puedes usar decir con numeros</span><br>
-                        <span class="cm-other">decir</span>
-                        <span class="cm-number">24</span>
-                        <br>
-                        <span class="cm-comment">#o con variables</span><br>
-                        <span class="cm-other">decir</span>
-                        mensaje
-                        <br>
-                        <span class="cm-comment">#Tambien con oraciones entre comillas</span><br>
-                        <span class="cm-other">decir</span>
-                        <span class="cm-string">'Hola mundo!'</span><br>
-                        <span class="cm-comment">#Y combinando con el simbolo +</span><br>
-                        <span class="cm-other">decir</span>
-                        <span class="cm-string">'Saludos'</span> + nombre 
-                        <br>
-                    </div>
+                <div class="looks-like-code">
+                    <span class="cm-comment">#Ejemplo: </span>
+                    <br>
+                    <span class="cm-comment">#Puedes usar decir con numeros</span>
+                    <br>
+                    <span class="cm-other">decir</span>
+                    <span class="cm-number">24</span>
+                    <br>
+                    <span class="cm-comment">#o con variables</span>
+                    <br>
+                    <span class="cm-other">decir</span>
+                    mensaje
+                    <br>
+                    <span class="cm-comment">#Tambien con oraciones entre comillas</span>
+                    <br>
+                    <span class="cm-other">decir</span>
+                    <span class="cm-string">'Hola mundo!'</span>
+                    <br>
+                    <span class="cm-comment">#Y combinando con el simbolo +</span>
+                    <br>
+                    <span class="cm-other">decir</span>
+                    <span class="cm-string">'Saludos'</span> + nombre
+                    <br>
+                </div>
                 <br>
                 <h3>Esperar</h3>
                 <p>La finalidad de esta función es la de detenr la ejecución del programa por una cantidad de segundos determinada.
@@ -309,19 +456,24 @@
                 <i class="fa fa-floppy-o"></i>
             </button>
             <button class="project-button" onclick="parseAndUpload()">
-                <i class="fa fa-play"></i></button>
+                <i class="fa fa-play"></i>
+            </button>
         </div>
     </div>
     <!-- CONSOLE -->
     <div id="console-modal" class="modal">
         <div class="modal-content console-background">
             <div id="console">
-                
+
             </div>
             <div id="console-buttons">
-                <button id='run-button' class="project-button" onclick="run()"><i class="fa fa-play"></i> Correr</button>
-                <button disabled='true' id='stop-button' class="project-button disabled" onclick="stop()"><i class="fa fa-stop"></i> Parar</button>
-                <button class="project-button" onclick="edit()"><i class="fa fa-pencil"></i></button>
+                <button id='run-button' class="project-button" onclick="run()">
+                    <i class="fa fa-play"></i> Correr</button>
+                <button disabled='true' id='stop-button' class="project-button disabled" onclick="stop()">
+                    <i class="fa fa-stop"></i> Parar</button>
+                <button class="project-button" onclick="edit()">
+                    <i class="fa fa-pencil"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -338,18 +490,21 @@
                     <div class="carousell-page" style="display: none">
                         <img src="../static/assets/gifs/code_2.gif" alt="">
                         <h3>Correr codigo</h3>
-                        <p>cuando estes listo para correr el codigo, haz click en el boton <i class="fa fa-play"></i> en la esquina inferior derecha
+                        <p>cuando estes listo para correr el codigo, haz click en el boton
+                            <i class="fa fa-play"></i> en la esquina inferior derecha
                         </p>
                     </div>
                     <div class="carousell-page" style="display: none">
                         <img src="../static/assets/gifs/code_6.gif" alt="">
                         <h3>¡Oh no! un error ha aparecido</h3>
-                        <p>Todos cometemos errores, ¡por suerte se pueden corregir facilmente! solo es cuestion de editarlos. para saber cuales son, revisa el cuadro de errores</p>
+                        <p>Todos cometemos errores, ¡por suerte se pueden corregir facilmente! solo es cuestion de editarlos.
+                            para saber cuales son, revisa el cuadro de errores</p>
                     </div>
                     <div class="carousell-page" style="display: none">
                         <img src="../static/assets/gifs/code_3.gif" alt="">
                         <h3>¿Necesitas hacer cambios?</h3>
-                        <p>Si tu codigo corre bien, pero te gustaria cambiar cosas, solo haz click en el boton <i class="fa fa-pencil"></i> y podras volver al editor</p>
+                        <p>Si tu codigo corre bien, pero te gustaria cambiar cosas, solo haz click en el boton
+                            <i class="fa fa-pencil"></i> y podras volver al editor</p>
                     </div>
                     <div class="carousell-page" style="display: none">
                         <img src="../static/assets/gifs/code_4.gif" alt="">

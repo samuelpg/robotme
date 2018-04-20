@@ -21,11 +21,11 @@ const check = () => {
                     }catch(e){
                         error("Error: variable no inicializada o asignada", i)
                     }
+                    return true
                     break;
                 }
                 case "control":
                     {
-                        console.log(element.string)
                         if(tokens[tokens.length-1].string != ":") error("Error: Sentencia de control debe terminar con ':'", i)
                         switch (element.string) {
                             case "siempre":
@@ -43,7 +43,6 @@ const check = () => {
                                     for (j = 0; j < tokens.length; j++) {
                                         stringsIf.push(tokens[j].string)
                                     }
-                                    console.log(stringsIf)
                                     if (stringsIf.indexOf('entonces')!=stringsIf.length-2) error("Error: completa la sentencia con 'entonces'", i);
                                     if (stringsIf.indexOf(")") < 0) error("Error: Completa los parentesis", i)
                                     if (stringsIf.indexOf("(") < 0) error("Error: Completa los parentesis", i)
@@ -114,7 +113,6 @@ const check = () => {
                                     let start = stringsPrint.indexOf('decir') + 2
                                     for (j = start; j < tokens.length; j++) {
                                         if (allowed_types.indexOf(tokens[j].type) < 0 && tokens[j].type !== null) {
-                                            console.log(tokens[j])
                                             error("Error: valor de 'decir' no valido" + j, i)
                                         }
                                     }
@@ -129,10 +127,8 @@ const check = () => {
         });
     }
     if ($('.cm-error').length) {
-        console.log("ERROR")
         return true
     } else {
-        console.log("NO ERROR")
         return false
     }
 }
@@ -360,11 +356,9 @@ const parseAndUpload = () => {
             contentType: false,
             processData: false,
             success: (data) => {
-                console.log(data)
                 $('#console-modal').show()
             },
             error: (data) => {
-                console.log(data)
                 showToast("#no-connected")
             }
         })

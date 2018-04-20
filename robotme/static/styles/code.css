@@ -167,6 +167,9 @@ body {
 .cm-number {
     color: #a16a94;
 }
+.cm-property {
+    color:rgb(153, 204, 153);
+}
 
 .show-selected-variables table {
     width: 100%;

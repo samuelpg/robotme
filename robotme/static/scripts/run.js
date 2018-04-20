@@ -23,7 +23,6 @@ const run = () =>{
     socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
     socket.on('connect', function(e) {
         socket.emit('run', {data: slug});
-        console.log(e)
     });
     socket.on('log', function(msg) {
         $('#console').append(output(msg.data));
@@ -33,8 +32,6 @@ const run = () =>{
 
 const stop = () =>{
     try{
-        console.log('killing socket')
-        console.log(socket)
         socket.disconnect()
         $('#console').append(output("Programa Finalizado"))
         $("#run-button").attr('disabled',false)
@@ -42,7 +39,7 @@ const stop = () =>{
         $("#stop-button").attr('disabled',true)
         $("#stop-button").addClass('disabled')
     }catch{
-        console.log('hee')
+        console.log("Error disconnecting socket")
     }
 }
 

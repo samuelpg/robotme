@@ -78,7 +78,6 @@ window.onload = () =>{
     $.get(
         "/get_projects",
         (env)=>{
-            console.log(env);
             $('#projects').html(env["projects"].map(template).join(''));
         }
     )

@@ -9,6 +9,6 @@ except RuntimeError:
 except SyntaxError:
     print("[Error]: Error de sintaxis")
 except IndentationError:
-    print("[Error]: Error de Indentacion")
+    print("[Error]: Error de Indentacion, Indentacion inesperada")
 finally:
-    print("Programa finalizado")
+    print("Programa finalizado por error")

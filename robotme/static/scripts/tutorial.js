@@ -18,7 +18,6 @@ const openTutorial = () =>{
     current = 0;
     pages[current].style = "display: block"
     currentPageText.html(`${current+1}/${pages.length}`)
-    console.log("A")
     checkButtons();
     tutorial.show();
 }

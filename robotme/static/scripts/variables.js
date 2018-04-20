@@ -156,7 +156,6 @@ const deleteVariable = (pin) =>{
         value = variables[i]
         if(value['pin_variable']==pin){
             variables.splice(i, 1)
-            console.log(variables)
             break
         }
     }
@@ -184,7 +183,6 @@ const sendVariables = () => {
         var values = [];
         let readyToSend = true;
         $('input[id^=input-]').each(function () {
-            console.log(this.value)
             if ($.inArray(this.value, values) >= 0) {
                 showToast("#no-repetition")
                 readyToSend = false;
@@ -202,15 +200,11 @@ const sendVariables = () => {
         values.push(this.value);
         });
         if(readyToSend){
-            console.log(variables)
-            console.log(variables)
             let fd = new FormData();
             let json = {
                 "vars":variables,
             }
-            console.log(json)
             let str_json = JSON.stringify(json)
-            console.log(str_json)
             fd.append('variables',str_json);
             $.ajax({
                 url: `/variables/set/${slug}`,
