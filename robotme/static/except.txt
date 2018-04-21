@@ -11,6 +11,6 @@ except SyntaxError:
 except IndentationError:
     print("[Error]: Error de Indentacion, Indentacion inesperada")
 except TypeError:
-    print("[Error]: Combinacion de tipos (Enteros, Float o Cadenas) no aceptada)
+    print("[Error]: Combinacion de tipos (Enteros, Float o Cadenas) no aceptada")
 finally:
     print("Programa finalizado por error")
