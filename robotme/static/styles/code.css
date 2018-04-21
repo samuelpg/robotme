@@ -255,3 +255,6 @@ th {
 .console-output.console-error {
     color: #d54e53;
 }
+.console-output.console-warning{
+    color: gold;
+}

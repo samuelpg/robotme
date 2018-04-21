@@ -356,6 +356,12 @@ const parseAndUpload = () => {
             contentType: false,
             processData: false,
             success: (data) => {
+                for(i = 0; i < variables.length; i++){
+                    if(variables[i].tpe_variable == "pir"){
+                        $('#console').append(output("[Advertencia] Los sensores PIR necesitan entre 30 y 60 segundos para funcionar correctamente"));
+                        break;
+                    }
+                }
                 $('#console-modal').show()
             },
             error: (data) => {

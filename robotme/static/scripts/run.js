@@ -2,6 +2,8 @@ const output = (msg) =>{
     //Check for errors
     if (msg.includes("[Error]"))
         return `<span class="console-output console-error">${msg}</span>`
+    else if(msg.includes("[Advertencia]"))
+        return `<span class="console-output console-warning"> > ${msg}</span>`
     else
         return `<span class="console-output"> > ${msg}</span>`
 }
