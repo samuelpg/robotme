@@ -5,7 +5,9 @@
 ################################################
 
 #Inicializa aqui tus variables dandoles un nombre y un valor
-#Ejemplo: mensaje = 'Hola Mundo'
+#Ejemplo: 
+#mensaje = 'Hola Mundo'
+#apagar luz
 
 #Crea las interrupciones 'cuando' aqui con tus variables de entrada
 #Ejemplo: cuando boton detecte bajo entonces:

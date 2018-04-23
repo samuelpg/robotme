@@ -1,7 +1,9 @@
+let siempreCounter
+
 const check = () => {
     $("#errors").hide();
     $("#error-desc").empty();
-    let siempreCounter = new Array();
+    siempreCounter = new Array();
     for (i = 0; i < editor.lineCount(); i++) {
         tokens = editor.getLineTokens(i)
         tokens.some((element, index) => {
@@ -157,7 +159,7 @@ const error = (message, line) => {
 }
 
 const checkIndent = (element, line) => {
-    if (element.state.indent <= 0) error("Error: falta indentacion", line)
+    if (element.state.indent <= 0 && siempreCounter.length > 0) error("Error: falta indentacion", line)
 }
 
 let code, def, functionNames, interruptionStack, expectedIndent

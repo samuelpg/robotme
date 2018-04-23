@@ -139,18 +139,15 @@ const addVariable = (pin, type) => {
         containment: $('.container')
     })
     $("#selected-variables").append(row(varData['pin_variable'], varData['tpe_variable'], varData['nme_variable']));
+    $(".table-input").on('input', function(event) {
+        checkInput(this)
+    });
 }
 
 //deletes variable from variables arrray, table and pi.
 const deleteVariable = (pin) =>{
     $(`#row-${pin}`).remove();
     $(`#pin-${pin}`).droppable('enable')
-    /* $.each(variables, (key, value) => {
-        if(value['pin_variable']==pin){
-            variables.pop(key)
-            return false
-        }
-    }) */
 
     for(i = 0; i < variables.length; i++){
         value = variables[i]
@@ -226,7 +223,7 @@ const sendVariables = () => {
 }
 //(?=\S*[^0-9]*[a-z])[a-z_]+[^_\s]$
 //[a-z][a-z]*(_[a-z0-9]+)*$
-const varNameValidator = new RegExp('[a-z][a-z]*(_[a-z0-9]+)*$');
+const varNameValidator = new RegExp('^[a-z][a-zA-Z0-9_]*(_[A-Z0-9]+)*$');
 //check inputs for variable names
 const checkInput = (input) =>{
     let result = varNameValidator.test($(input).val());
@@ -246,6 +243,9 @@ $(document).ready((function () {
         variables = data['variables'];
         console.log(variables)
         draw();
+        $(".table-input").on('input', function(event) {
+            checkInput(this)
+        });
     })
 
 }));
